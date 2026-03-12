@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIV2BUILDS — The Division 2 Build Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090c;--bg2:#0d1018;--bg3:#111520;--panel:#10141d;--border:#1a2232;--border2:#22304a;--orange:#f97316;--orange2:#fb923c;--odim:rgba(249,115,22,.13);--blue:#38bdf8;--bdim:rgba(56,189,248,.1);--green:#4ade80;--gdim:rgba(74,222,128,.1);--yellow:#fbbf24;--red:#f87171;--gold:#f59e0b;--purple:#a78bfa;--text:#dde4ef;--text2:#8a9ab5;--text3:#4e5e76;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px;line-height:1.5;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.025) 2px,rgba(0,0,0,.025) 4px);pointer-events:none;z-index:999}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:54px;background:rgba(8,9,12,.97);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;backdrop-filter:blur(14px)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:21px;letter-spacing:2px;color:var(--orange);text-transform:uppercase}
+.logo-sub{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text3);letter-spacing:3px;display:block;margin-top:-2px}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-weight:600;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 13px;border:1px solid transparent;transition:all .15s;cursor:pointer;display:block}
+.nav-links a:hover,.nav-links a.active{color:var(--orange);border-color:var(--border2);background:var(--odim)}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:7px 16px;cursor:pointer;border:none;font-size:12px;transition:all .15s}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2)}
+.btn-ghost:hover{color:var(--text);border-color:var(--text3)}
+.btn-primary{background:var(--orange);color:#000;clip-path:polygon(7px 0%,100% 0%,calc(100% - 7px) 100%,0% 100%)}
+.btn-primary:hover{background:var(--orange2);transform:translateY(-1px)}
+.btn-save{background:transparent;color:var(--yellow);border:1px solid var(--yellow)}
+.layout{display:grid;grid-template-columns:270px 1fr;min-height:calc(100vh - 54px)}
+aside{background:var(--bg2);border-right:1px solid var(--border);padding:16px 0;position:sticky;top:54px;height:calc(100vh - 54px);overflow-y:auto}
+aside::-webkit-scrollbar{width:3px}
+aside::-webkit-scrollbar-thumb{background:var(--border2)}
+.sb{padding:0 14px 16px;border-bottom:1px solid var(--border);margin-bottom:14px}
+.sb:last-child{border-bottom:none;margin-bottom:0}
+.sb-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:3px;text-transform:uppercase;padding:8px 0;display:flex;align-items:center;gap:7px}
+.sb-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+.sw{position:relative;margin-bottom:10px}
+.sw input{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 30px 8px 11px;font-family:'Rajdhani',sans-serif;font-size:13px;outline:none;transition:border-color .15s}
+.sw input:focus{border-color:var(--orange)}
+.sw input::placeholder{color:var(--text3)}
+.spec-list{display:flex;flex-direction:column;gap:3px}
+.spec-btn{display:flex;align-items:center;gap:9px;padding:8px 10px;cursor:pointer;border:1px solid transparent;transition:all .15s;background:transparent;width:100%;text-align:left;color:var(--text2);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px}
+.spec-btn:hover{background:var(--odim);border-color:var(--border2);color:var(--text)}
+.spec-btn.active{background:var(--odim);border-color:var(--orange);color:var(--orange)}
+.sdot{width:7px;height:7px;transform:rotate(45deg);flex-shrink:0}
+.scnt{margin-left:auto;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text3);background:var(--bg3);padding:1px 5px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:4px 8px;border:1px solid var(--border);color:var(--text3);cursor:pointer;transition:all .15s;background:transparent;text-transform:uppercase}
+.tag:hover{border-color:var(--text3);color:var(--text2)}
+.tag.active{border-color:var(--orange);color:var(--orange);background:var(--odim)}
+.ev{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border)}
+.ev:last-child{border-bottom:none}
+.evdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.evdot.live{background:var(--green);box-shadow:0 0 7px var(--green);animation:blink 2s infinite}
+.evdot.soon{background:var(--yellow)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.evname{font-weight:600;font-size:12px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.evtime{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3)}
+.evbadge{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 5px;text-transform:uppercase;flex-shrink:0;border:1px solid}
+.evbadge.live{color:var(--green);border-color:rgba(74,222,128,.3);background:var(--gdim)}
+.evbadge.soon{color:var(--yellow);border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.07)}
+main{padding:22px;background:var(--bg)}
+.hero{background:linear-gradient(135deg,#0d1520 0%,#080d14 60%,#0d0a12 100%);border:1px solid var(--border);padding:26px 28px;margin-bottom:20px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(26,34,50,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(26,34,50,.35) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.hglow{position:absolute;top:-40px;right:120px;width:320px;height:220px;background:radial-gradient(ellipse,rgba(249,115,22,.07) 0%,transparent 70%);pointer-events:none}
+.hero-text h1{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;line-height:1;letter-spacing:2px;text-transform:uppercase;position:relative}
+.hero-text h1 span{color:var(--orange)}
+.hero-text p{color:var(--text2);font-size:14px;margin-top:7px;max-width:480px;position:relative}
+.hstats{display:flex;gap:28px;position:relative}
+.hs-num{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;color:var(--orange);line-height:1}
+.hs-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+.toolbar{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.sort-sel{background:var(--panel);border:1px solid var(--border);color:var(--text2);padding:7px 11px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;outline:none;cursor:pointer}
+.rcount{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text3);margin-left:auto}
+.sg{margin-bottom:26px}
+.sg-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;user-select:none}
+.sg-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+.sg-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 8px;text-transform:uppercase;border:1px solid}
+.sg-badge.cur{color:var(--orange);border-color:var(--orange);background:var(--odim)}
+.sg-badge.old{color:var(--text3);border-color:var(--border2)}
+.sg-line{flex:1;height:1px;background:var(--border)}
+.sg-cnt{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text3)}
+.sg-tog{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text3);border:1px solid var(--border);padding:3px 8px;background:transparent;cursor:pointer;transition:all .15s}
+.sg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.sg-grid.collapsed{display:none}
+.bc{background:var(--panel);border:1px solid var(--border);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.bc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .2s}
+.bc:hover{border-color:var(--orange);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.45)}
+.bc:hover::before{background:var(--orange)}
+.bc-head{padding:13px 15px 11px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.bc-spec{display:flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 7px;border:1px solid;margin-bottom:7px;width:fit-content}
+.bc-title{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;letter-spacing:.8px;color:var(--text);line-height:1.1}
+.bc-author{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3);margin-top:3px}
+.bc-author span{color:var(--blue)}
+.creator-badge{display:inline-flex;align-items:center;gap:4px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:1px 5px;border:1px solid var(--blue);color:var(--blue);background:var(--bdim);text-transform:uppercase;margin-left:5px}
+.bc-rating{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.rnum{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--orange);line-height:1}
+.stars{display:flex;gap:2px}
+.star{width:9px;height:9px;background:var(--orange);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.e{background:var(--border2)}
+.bc-body{padding:12px 15px}
+.gear-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:12px}
+.gs{background:var(--bg2);border:1px solid var(--border);padding:7px 5px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.gs-icon{font-size:15px;line-height:1}
+.gs-slot{font-family:'Share Tech Mono',monospace;font-size:7px;color:var(--text3);letter-spacing:.5px;text-transform:uppercase}
+.gs-name{font-size:10px;font-weight:600;color:var(--text2);line-height:1.2}
+.gs-name.exotic{color:var(--gold)}
+.gs-name.named{color:var(--blue)}
+.cs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:11px}
+.cp{background:var(--bg2);border:1px solid var(--border);padding:5px 7px;text-align:center}
+.cp-v{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;line-height:1}
+.cp-l{font-family:'Share Tech Mono',monospace;font-size:7px;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;margin-top:1px}
+.ctags{display:flex;flex-wrap:wrap;gap:4px}
+.ctag{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:.8px;padding:2px 5px;border:1px solid var(--border);color:var(--text3);text-transform:uppercase}
+.bc-foot{padding:9px 15px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.bc-meta{display:flex;gap:12px}
+.mitem{display:flex;align-items:center;gap:4px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3)}
+.bc-acts{display:flex;gap:5px}
+.abt{background:transparent;border:1px solid var(--border);color:var(--text3);padding:5px 9px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.abt:hover{border-color:var(--orange);color:var(--orange);background:var(--odim)}
+.abt.saved{border-color:var(--yellow);color:var(--yellow)}
+.pbadge{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 5px;background:var(--gdim);border:1px solid rgba(74,222,128,.2);color:var(--green);text-transform:uppercase;margin-left:5px}
+.obadge{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 5px;background:transparent;border:1px solid var(--border2);color:var(--text3);text-transform:uppercase;margin-left:5px}
+.empty{text-align:center;padding:55px 20px;border:1px dashed var(--border2)}
+.empty h3{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-top:10px}
+.empty p{color:var(--text3);font-size:12px;margin-top:6px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:300;display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(5px)}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--bg2);border:1px solid var(--border);width:100%;max-width:960px;margin:auto;position:relative;transform:translateY(22px);transition:transform .2s}
+.overlay.open .modal{transform:translateY(0)}
+.mh{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;background:linear-gradient(135deg,var(--panel),var(--bg2));position:relative;overflow:hidden}
+.mh-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(26,34,50,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(26,34,50,.3) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.mh-left{position:relative;z-index:1}
+.mspec{display:inline-flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 9px;border:1px solid;margin-bottom:8px}
+.mtitle{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;letter-spacing:2px;text-transform:uppercase;line-height:1}
+.msub{color:var(--text2);font-size:13px;margin-top:5px}
+.mclose{background:transparent;border:1px solid var(--border);color:var(--text3);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;flex-shrink:0;position:relative;z-index:1}
+.mclose:hover{border-color:var(--red);color:var(--red)}
+.mbody{padding:22px;display:grid;grid-template-columns:1fr 300px;gap:22px}
+.sec{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.sec::after{content:'';flex:1;height:1px;background:var(--border)}
+.gd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:20px}
+.gd{background:var(--bg3);border:1px solid var(--border);padding:11px}
+.gd-slot{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.gd-name{font-weight:700;font-size:13px;line-height:1.2;margin-bottom:2px}
+.gd-name.exotic{color:var(--gold)}
+.gd-name.named{color:var(--blue)}
+.gd-brand{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:6px}
+.gd-talent{font-size:11px;color:var(--orange2);font-weight:600;margin-bottom:5px}
+.gd-mod{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3)}
+.gd-mod::before{content:'▸ '}
+.wdrop-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--orange);padding:14px;margin-bottom:20px}
+.wdrop-title{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.wdrop-w{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.wdrop-w:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.wdrop-wname{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;margin-bottom:6px}
+.drop-row{display:flex;align-items:flex-start;gap:7px;margin-bottom:6px;font-size:12px;color:var(--text2);line-height:1.4}
+.drop-badge{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 5px;border:1px solid;flex-shrink:0;text-transform:uppercase}
+.drop-badge.targeted{color:var(--green);border-color:rgba(74,222,128,.3);background:var(--gdim)}
+.drop-badge.campaign{color:var(--yellow);border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.07)}
+.drop-badge.world{color:var(--text3);border-color:var(--border2)}
+.skill-pair{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px}
+.skill-card{background:var(--bg3);border:1px solid var(--border);padding:12px;display:flex;align-items:center;gap:10px}
+.skill-icon{font-size:24px}
+.skill-name{font-weight:700;font-size:14px}
+.skill-var{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3)}
+.talent-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px}
+.talent-card{background:var(--bg3);border:1px solid var(--border);padding:11px}
+.talent-name{font-weight:700;font-size:13px;margin-bottom:3px;color:var(--orange2)}
+.talent-desc{font-size:11px;color:var(--text2);line-height:1.5}
+.tips-box{background:var(--bg3);border:1px solid var(--border);padding:13px;font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:20px}
+.sbars{display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+.sbar{display:grid;grid-template-columns:110px 1fr 50px;align-items:center;gap:9px}
+.sbar-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.8px;text-transform:uppercase}
+.sbar-track{height:5px;background:var(--bg3);border:1px solid var(--border);position:relative;overflow:hidden}
+.sbar-fill{height:100%;position:absolute;left:0;top:0}
+.sbar-val{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;text-align:right}
+.author-card{background:var(--bg3);border:1px solid var(--border);padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.author-av{width:40px;height:40px;background:var(--odim);border:1px solid var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--orange);flex-shrink:0}
+.author-name{font-weight:700;font-size:14px}
+.author-sub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3)}
+.meta-rows{display:flex;flex-direction:column}
+.mrow{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.mrow:last-child{border-bottom:none}
+.mrow .lbl{color:var(--text3);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.8px;text-transform:uppercase}
+.mrow .val{font-weight:600}
+.mfoot{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.cmodal{max-width:680px}
+.fg{margin-bottom:14px}
+.flbl{display:block;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:5px}
+.finput,.fsel,.fta{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 12px;font-family:'Rajdhani',sans-serif;font-size:13px;outline:none;transition:border-color .15s}
+.finput:focus,.fsel:focus,.fta:focus{border-color:var(--orange)}
+.fta{resize:vertical;min-height:75px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.spec-opt{border:1px solid var(--border);padding:9px;text-align:center;cursor:pointer;transition:all .15s;background:transparent;width:100%;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;color:var(--text3)}
+.spec-opt:hover{border-color:var(--border2);color:var(--text2)}
+.spec-opt.sel{background:var(--odim);border-color:var(--orange);color:var(--orange)}
+.ev-card{background:var(--panel);border:1px solid var(--border);padding:18px}
+.ev-card.live{border-left:3px solid var(--green)}
+.ev-card.soon{border-left:3px solid var(--yellow)}
+.ev-card.off{border-left:3px solid var(--border2);opacity:.6}
+.cc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:16px}
+.cc-card{background:var(--panel);border:1px solid var(--border);padding:14px;display:flex;align-items:center;gap:10px}
+.cc-av{width:38px;height:38px;background:var(--bdim);border:1px solid var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--blue);flex-shrink:0}
+.notif{position:fixed;bottom:24px;right:24px;background:var(--panel);border:1px solid var(--orange);padding:12px 18px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--orange);z-index:500;transform:translateY(60px);opacity:0;transition:all .3s;pointer-events:none}
+.notif.show{transform:translateY(0);opacity:1}
+/* MOBILE BOTTOM NAV */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:58px;background:rgba(8,9,12,.98);border-top:1px solid var(--border2);z-index:300;backdrop-filter:blur(14px)}
+.mob-nav-items{display:flex;height:100%}
+.mob-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:color .15s;padding:0;-webkit-tap-highlight-color:transparent}
+.mob-nav-item.active{color:var(--orange)}
+.mob-nav-item svg{width:20px;height:20px}
+.mob-nav-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase}
+/* MOBILE FILTER DRAWER */
+.mob-filter-btn{display:none;position:fixed;bottom:70px;right:16px;width:46px;height:46px;background:var(--orange);border:none;cursor:pointer;z-index:250;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(249,115,22,.4)}
+.mob-filter-btn svg{width:20px;height:20px;color:#000}
+.filter-drawer{position:fixed;inset:0;z-index:400;pointer-events:none}
+.filter-drawer.open{pointer-events:all}
+.filter-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.7);opacity:0;transition:opacity .25s}
+.filter-drawer.open .filter-backdrop{opacity:1}
+.filter-panel{position:absolute;left:0;top:0;bottom:0;width:min(290px,85vw);background:var(--bg2);border-right:1px solid var(--border2);transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding-bottom:20px}
+.filter-panel::-webkit-scrollbar{width:3px}
+.filter-panel::-webkit-scrollbar-thumb{background:var(--border2)}
+.filter-drawer.open .filter-panel{transform:translateX(0)}
+.filter-header{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 12px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.filter-header-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:2px;text-transform:uppercase;color:var(--orange)}
+.filter-close{background:transparent;border:1px solid var(--border2);color:var(--text3);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px}
+
+@media(max-width:760px){
+  nav{padding:0 12px;height:50px}
+  .logo-sub{display:none}
+  .logo-text{font-size:17px}
+  .nav-links{display:none}
+  .nav-actions{display:none}
+  .layout{grid-template-columns:1fr}
+  aside{display:none}
+  main{padding:12px 12px 80px}
+  .hero{padding:18px 16px;flex-direction:column;gap:14px;align-items:flex-start}
+  .hero-text h1{font-size:28px}
+  .hero-text p{font-size:13px}
+  .hstats{gap:18px}
+  .hs-num{font-size:26px}
+  .sg-grid{grid-template-columns:1fr}
+  .bc-head{flex-wrap:wrap}
+  .gear-row{grid-template-columns:repeat(3,1fr)}
+  .cs{grid-template-columns:repeat(3,1fr)}
+  .mbody{grid-template-columns:1fr!important;padding:14px}
+  .gd-grid{grid-template-columns:repeat(2,1fr)}
+  .talent-grid{grid-template-columns:1fr}
+  .skill-pair{grid-template-columns:1fr 1fr}
+  .mtitle{font-size:24px}
+  .mfoot{padding:12px 14px}
+  .modal{max-width:100%;margin:8px}
+  .notif{bottom:70px;right:12px;left:12px;text-align:center}
+  .mob-nav{display:flex}
+  .mob-filter-btn{display:flex}
+  .f2{grid-template-columns:1fr}
+  .spec-grid{grid-template-columns:repeat(2,1fr)}
+  .sort-sel{font-size:12px;padding:6px 9px}
+  .toolbar{gap:7px}
+  .sg-title{font-size:18px}
+  .cc-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-text h1{font-size:24px}
+  .hstats{gap:14px}
+  .hs-num{font-size:22px}
+  .gd-grid{grid-template-columns:1fr 1fr}
+  .bc-title{font-size:16px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo" onclick="setTab('builds')">
+    <div>
+      <div class="logo-text">&#x25C6; DIV2BUILDS</div>
+      <span class="logo-sub">The Division 2 &mdash; Build Planner &middot; Year 7 Season 3</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a id="tab-builds" class="active" onclick="setTab('builds')">Builds</a></li>
+    <li><a id="tab-saved" onclick="setTab('saved')">Saved</a></li>
+    <li><a id="tab-events" onclick="setTab('events')">Events</a></li>
+    <li><a id="tab-creators" onclick="setTab('creators')">Creators</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn btn-ghost" onclick="showNotif('Sign-in coming soon!')">Sign In</button>
+    <button class="btn btn-primary" onclick="openCreate()">+ Create Build</button>
+  </div>
+</nav>
+
+<!-- Mobile bottom nav -->
+<nav class="mob-nav" id="mobNav">
+  <div class="mob-nav-items">
+    <button class="mob-nav-item active" id="mob-builds" onclick="setTab('builds')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span class="mob-nav-lbl">Builds</span>
+    </button>
+    <button class="mob-nav-item" id="mob-saved" onclick="setTab('saved')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      <span class="mob-nav-lbl">Saved</span>
+    </button>
+    <button class="mob-nav-item" id="mob-events" onclick="setTab('events')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span class="mob-nav-lbl">Events</span>
+    </button>
+    <button class="mob-nav-item" id="mob-creators" onclick="setTab('creators')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="mob-nav-lbl">Creators</span>
+    </button>
+    <button class="mob-nav-item" onclick="openCreate()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      <span class="mob-nav-lbl">Create</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile filter fab -->
+<button class="mob-filter-btn" id="mobFilterBtn" onclick="openFilterDrawer()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+</button>
+
+<!-- Mobile filter drawer -->
+<div class="filter-drawer" id="filterDrawer">
+  <div class="filter-backdrop" onclick="closeFilterDrawer()"></div>
+  <div class="filter-panel">
+    <div class="filter-header">
+      <span class="filter-header-title">&#x25C6; Filters</span>
+      <button class="filter-close" onclick="closeFilterDrawer()">&#x2715;</button>
+    </div>
+    <div style="padding:0 14px">
+      <div class="sb-lbl" style="margin-top:14px">Search</div>
+      <div class="sw" style="margin-bottom:14px">
+        <input type="text" id="searchInputMob" placeholder="Name, gear set, weapon..." oninput="syncSearch(this.value)">
+      </div>
+      <div class="sb-lbl">Specialization</div>
+      <div class="spec-list" style="margin-bottom:14px">
+        <button class="spec-btn active" onclick="setSpec('all',this)"><span class="sdot" style="background:var(--text3)"></span>All Specs<span class="scnt" id="cnt-all-mob">0</span></button>
+        <button class="spec-btn" onclick="setSpec('demolitionist',this)"><span class="sdot" style="background:#f97316"></span>Demolitionist<span class="scnt"></span></button>
+        <button class="spec-btn" onclick="setSpec('sharpshooter',this)"><span class="sdot" style="background:#60a5fa"></span>Sharpshooter<span class="scnt"></span></button>
+        <button class="spec-btn" onclick="setSpec('survivalist',this)"><span class="sdot" style="background:#4ade80"></span>Survivalist<span class="scnt"></span></button>
+        <button class="spec-btn" onclick="setSpec('technician',this)"><span class="sdot" style="background:#a78bfa"></span>Technician<span class="scnt"></span></button>
+        <button class="spec-btn" onclick="setSpec('firewall',this)"><span class="sdot" style="background:#f87171"></span>Firewall<span class="scnt"></span></button>
+        <button class="spec-btn" onclick="setSpec('gunner',this)"><span class="sdot" style="background:#fbbf24"></span>Gunner<span class="scnt"></span></button>
+      </div>
+      <div class="sb-lbl">Playstyle</div>
+      <div class="tags" style="margin-bottom:14px">
+        <button class="tag" onclick="toggleTag(this,'DPS')">DPS</button>
+        <button class="tag" onclick="toggleTag(this,'Tank')">Tank</button>
+        <button class="tag" onclick="toggleTag(this,'Healer')">Healer</button>
+        <button class="tag" onclick="toggleTag(this,'Skill')">Skill</button>
+        <button class="tag" onclick="toggleTag(this,'Status')">Status</button>
+        <button class="tag" onclick="toggleTag(this,'Solo')">Solo</button>
+        <button class="tag" onclick="toggleTag(this,'Raid')">Raid</button>
+        <button class="tag" onclick="toggleTag(this,'PvP')">PvP</button>
+        <button class="tag" onclick="toggleTag(this,'Farming')">Farming</button>
+      </div>
+      <div class="sb-lbl">Difficulty</div>
+      <div class="tags" style="margin-bottom:16px">
+        <button class="tag" onclick="toggleTag(this,'Heroic')">Heroic</button>
+        <button class="tag" onclick="toggleTag(this,'Legendary')">Legendary</button>
+        <button class="tag" onclick="toggleTag(this,'Challenging')">Challenging</button>
+      </div>
+      <button class="btn btn-primary" style="width:100%;padding:11px;clip-path:none" onclick="closeFilterDrawer()">Apply Filters</button>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+<aside>
+  <div class="sb">
+    <div class="sb-lbl">Search</div>
+    <div class="sw">
+      <input type="text" id="searchInput" placeholder="Name, gear set, weapon..." oninput="applyFilters()">
+    </div>
+  </div>
+  <div class="sb">
+    <div class="sb-lbl">Specialization</div>
+    <div class="spec-list">
+      <button class="spec-btn active" onclick="setSpec('all',this)"><span class="sdot" style="background:var(--text3)"></span>All Specs<span class="scnt" id="cnt-all">0</span></button>
+      <button class="spec-btn" onclick="setSpec('demolitionist',this)"><span class="sdot" style="background:#f97316"></span>Demolitionist<span class="scnt" id="cnt-demolitionist">0</span></button>
+      <button class="spec-btn" onclick="setSpec('sharpshooter',this)"><span class="sdot" style="background:#60a5fa"></span>Sharpshooter<span class="scnt" id="cnt-sharpshooter">0</span></button>
+      <button class="spec-btn" onclick="setSpec('survivalist',this)"><span class="sdot" style="background:#4ade80"></span>Survivalist<span class="scnt" id="cnt-survivalist">0</span></button>
+      <button class="spec-btn" onclick="setSpec('technician',this)"><span class="sdot" style="background:#a78bfa"></span>Technician<span class="scnt" id="cnt-technician">0</span></button>
+      <button class="spec-btn" onclick="setSpec('firewall',this)"><span class="sdot" style="background:#f87171"></span>Firewall<span class="scnt" id="cnt-firewall">0</span></button>
+      <button class="spec-btn" onclick="setSpec('gunner',this)"><span class="sdot" style="background:#fbbf24"></span>Gunner<span class="scnt" id="cnt-gunner">0</span></button>
+    </div>
+  </div>
+  <div class="sb">
+    <div class="sb-lbl">Playstyle</div>
+    <div class="tags">
+      <button class="tag" onclick="toggleTag(this,'DPS')">DPS</button>
+      <button class="tag" onclick="toggleTag(this,'Tank')">Tank</button>
+      <button class="tag" onclick="toggleTag(this,'Healer')">Healer</button>
+      <button class="tag" onclick="toggleTag(this,'Skill')">Skill</button>
+      <button class="tag" onclick="toggleTag(this,'Status')">Status</button>
+      <button class="tag" onclick="toggleTag(this,'Solo')">Solo</button>
+      <button class="tag" onclick="toggleTag(this,'Raid')">Raid</button>
+      <button class="tag" onclick="toggleTag(this,'PvP')">PvP</button>
+      <button class="tag" onclick="toggleTag(this,'Farming')">Farming</button>
+    </div>
+  </div>
+  <div class="sb">
+    <div class="sb-lbl">Live Events</div>
+    <div id="evWidget"></div>
+  </div>
+</aside>
+<main id="mainContent"></main>
+</div>
+
+<div class="overlay" id="detailOverlay" onclick="if(event.target===this)closeOverlay('detailOverlay')">
+  <div class="modal" id="detailModal"></div>
+</div>
+
+<div class="overlay" id="createOverlay" onclick="if(event.target===this)closeOverlay('createOverlay')">
+  <div class="modal cmodal">
+    <div class="mh">
+      <div class="mh-grid"></div>
+      <div class="mh-left"><div class="mtitle">Create Build</div><div class="msub">Share your build with the community</div></div>
+      <button class="mclose" onclick="closeOverlay('createOverlay')">&#x2715;</button>
+    </div>
+    <div style="padding:20px">
+      <div class="f2">
+        <div class="fg"><label class="flbl">Build Name</label><input class="finput" id="nb-name" placeholder="e.g. Striker St. Elmo's DPS"></div>
+        <div class="fg"><label class="flbl">Difficulty</label><select class="fsel" id="nb-diff"><option>Challenging</option><option selected>Heroic</option><option>Legendary</option></select></div>
+      </div>
+      <div class="fg">
+        <label class="flbl">Specialization</label>
+        <div class="spec-grid">
+          <button class="spec-opt" onclick="pickSpec(this,'Demolitionist')">&#x1F4A5; Demolitionist</button>
+          <button class="spec-opt" onclick="pickSpec(this,'Sharpshooter')">&#x1F3AF; Sharpshooter</button>
+          <button class="spec-opt" onclick="pickSpec(this,'Survivalist')">&#x1F3D5;&#xFE0F; Survivalist</button>
+          <button class="spec-opt" onclick="pickSpec(this,'Technician')">&#x1F527; Technician</button>
+          <button class="spec-opt" onclick="pickSpec(this,'Firewall')">&#x1F525; Firewall</button>
+          <button class="spec-opt" onclick="pickSpec(this,'Gunner')">&#x1F52B; Gunner</button>
+        </div>
+      </div>
+      <div class="f2">
+        <div class="fg"><label class="flbl">Primary Weapon</label><input class="finput" placeholder="e.g. St. Elmo's Engine (AR)"></div>
+        <div class="fg"><label class="flbl">Secondary Weapon</label><input class="finput" placeholder="e.g. Scorpio (Shotgun)"></div>
+      </div>
+      <div class="fg"><label class="flbl">Description</label><textarea class="fta" placeholder="Explain your build, rotation, tips..."></textarea></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:6px">
+        <button class="btn btn-ghost" onclick="closeOverlay('createOverlay')">Cancel</button>
+        <button class="btn btn-primary" onclick="submitBuild()">Publish Build</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notif" id="notif"></div>
+
+<script>
+var EVENTS=[
+  {name:"Assault Global Event",status:"live",time:"Live now - Ends Mar 13",desc:"Increased weapon damage at close range. Earn Global Event Stars and event caches."},
+  {name:"Tech Overdrive Modifier",status:"live",time:"Live now - Ends Mar 13",desc:"+3 Skill Tiers, +50% Skill Damage & Duration. Skill builds shine right now."},
+  {name:"10th Anniversary Event",status:"live",time:"Mar 3 - Apr 2, 2026",desc:"Realism Mode, returning global events, Event Pass with exclusive cosmetics and bonus XP."},
+  {name:"Proficiency EXP Event",status:"soon",time:"Starts Mar 13",desc:"Increased proficiency progress on all gear from any activity."},
+  {name:"Redline Overdrive + Ambush",status:"soon",time:"Starts Mar 17",desc:"Redline: +50% Crit Dmg, +25% CHC cap. Ambush: bonus damage when stationary or in cover."},
+  {name:"Optimization Surge",status:"soon",time:"Starts Mar 20",desc:"2x Optimization materials from all sources. Best time to min-max your builds."},
+  {name:"Assault + Countdown Surge",status:"soon",time:"Starts Mar 24",desc:"Assault returns. Countdown Surge: 2x Requisition currency on completion."},
+  {name:"Expertise Surge",status:"soon",time:"Starts Mar 27",desc:"2x Expertise upgrade materials from all sources."},
+  {name:"Year 8 Season 1: Rise Up",status:"soon",time:"Starts Apr 2, 2026",desc:"New season begins. New weapons, gear sets, and seasonal content."}
+];
+
+var CREATORS=[
+  {name:"Kamikazevondoom",handle:"@Kamikazevondoom",platform:"YouTube",focus:"Builds & Meta Guides",av:"K"},
+  {name:"RogueGold",handle:"@RogueGold",platform:"YouTube",focus:"News, Builds & Guides",av:"R"},
+  {name:"GCROCK",handle:"@GCROCK",platform:"YouTube",focus:"Builds & Game News",av:"G"},
+  {name:"NothingButSkillz",handle:"@NothingButSkillz",platform:"YouTube",focus:"Builds & Guides",av:"N"},
+  {name:"Patrick Wolf",handle:"@PatrickWolfChannel",platform:"YouTube",focus:"Builds & News",av:"P"},
+  {name:"TuxedoBandido",handle:"@TuxedoBandido",platform:"YouTube",focus:"Builds & Guides",av:"T"},
+  {name:"Sgt. Greybeard",handle:"@SgtGreybeard",platform:"YouTube",focus:"Builds & Community",av:"S"},
+  {name:"MattGoesBuck",handle:"@MattGoesBuck",platform:"X / Twitter",focus:"Build Breakdowns",av:"M"}
+];
+
+var BUILDS=[
+  {id:1,season:"current",patch:"Y7S3",name:"St. Elmo's Striker DPS",spec:"demolitionist",specLabel:"Demolitionist",author:"Kamikazevondoom",creatorVerified:true,rating:9.6,stars:5,views:28400,saves:1840,tags:["DPS","Solo","Heroic","Legendary"],difficulty:"Legendary",updated:"6 days ago",
+  summary:"#1 PvE build in 2026. Full 6-piece Striker with St. Elmo's Engine. Reach 60% Crit Chance then stack Crit Damage. Striker chest extends max stacks to 200.",
+  description:"Striker 4-piece activates Striker's Gamble: +0.65% weapon damage per hit, up to 100 stacks. Backpack talent Risk Management raises this to +1% per stack. Chest talent Press the Advantage extends the cap to 200 stacks. St. Elmo's Engine synergises perfectly. Coyote's Mask provides group-wide crit buff. Goal: hit 60% Crit Chance cap, then go all-in on Crit Damage.",
+  tips:["Get to 60% Crit Chance first — after that every roll should be Crit Damage","Do NOT swap weapons while building stacks — stacks reset on weapon swap","Striker backpack (Risk Management) is mandatory — changes 0.65% to 1% per stack","Striker chest (Press the Advantage) pushes max stacks to 200","Assault Global Event is LIVE — increased weapon damage bonus right now"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — group-wide crit buff after 4 different enemies hit",mods:["Weapon Dmg","Crit Chance","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Striker's Battlegear Backpack",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Risk Management — 0.65% to 1% per Gamble stack",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Striker's Battlegear Chest",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Press the Advantage — 100 to 200 max stacks",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Striker's Battlegear Gloves",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Striker's Battlegear Holster",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Striker's Battlegear Kneepads",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Armor","Crit Damage"]}
+  ],
+  weapons:{
+    primary:{name:"St. Elmo's Engine",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED — exotic]",core2:"Health Damage [LOCKED — exotic]",attr3:"Reconfigure at Crafting Station → DMG to Targets Out of Cover (best in meta)",talent:"LOCKED: Actum Est — every 100 hits loads next mag with shock ammo",modslots:"Magazine: +20 rounds (fixed). Muzzle/optic/underbarrel: roll Critical Hit Damage or Headshot Damage",action:"Reconfigure 3rd attribute to DMG to Targets Out of Cover. Optimize Core1 and Core2 to max.",note:"Core attributes are permanently locked on exotics. The exotic mods give +20% Crit Hit Damage and +20% Crit Hit Chance built in — do not waste recalibration trying to add these as attributes."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown or The Summit (Heroic). Fastest farm method.",rate:"targeted"},
+      {icon:"&#x1F3B2;",text:"World drop at Heroic difficulty from any enemy. Low chance — use targeted loot.",rate:"world"}
+    ]},
+    secondary:{name:"GR9 LMG",type:"Light Machine Gun",rarity:"high-end",weaponStats:{wtype:"Light Machine Gun — High-End",core1:"LMG Damage [LOCKED — cannot change]",core2:"DMG to Targets Out of Cover [LOCKED — all LMGs have this built in]",attr3:"Rollable → Critical Hit Damage (best pick since Out of Cover is already in Core2)",talent:"Rollable → Frenzy: reload grants +25% fire rate and weapon damage for 10s. Good alternative: Optimist (damage scales up as mag empties)",modslots:"Magazine: Extra Rounds or Critical Hit Damage. Muzzle: Critical Hit Damage or Accuracy",action:"Roll Frenzy talent + Critical Hit Damage as 3rd attribute via Recalibration/Tinkering.",note:"LMGs already have DMG to Targets Out of Cover locked in Core2 — it is built in on every LMG. Roll your 3rd attribute for Critical Hit Damage instead, since Out of Cover is already covered."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop or craft at Crafting Bench. Roll Damage to Out of Cover and Optimist talent.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Drone",icon:"&#x2708;&#xFE0F;"},{name:"Assault Turret",variant:"Turret",icon:"&#x1F916;"}],
+  talents:[
+    {name:"Striker's Gamble (4pc)",desc:"+0.65% weapon damage per hit, up to 100 stacks. 1 stack lost/sec (0-50), 2/sec (51-100)"},
+    {name:"Risk Management (Backpack)",desc:"Increases per-stack bonus from 0.65% to 1%. MANDATORY — always use Striker backpack"},
+    {name:"Press the Advantage (Chest)",desc:"Extends max stacks to 200. 3 stacks lost/sec between 101-200"},
+    {name:"Obliterate (filler talent)",desc:"Status hit grants +5% weapon damage for 5s, stacks up to 5x (25% total)"}
+  ],
+  stats:{weaponDmg:95,armor:62,skillTier:1,critChance:60,critDmg:140,armorRegen:15}},
+
+  {id:2,season:"current",patch:"Y7S3",name:"Negotiator's Dilemma AR",spec:"demolitionist",specLabel:"Demolitionist",author:"RogueGold",creatorVerified:true,rating:9.3,stars:5,views:19200,saves:1380,tags:["DPS","Solo","Heroic","Legendary"],difficulty:"Legendary",updated:"4 days ago",
+  summary:"S-tier multi-target build. Crits mark up to 5 enemies. Hit one marked enemy and ALL others take 100% of the damage. Incredible for Legendary and group content.",
+  description:"Negotiator's Dilemma 4-piece activates Hostile Negotiations: crits mark enemies (up to 3, or 5 with the BACKPACK talent Target Rich Environment). Hitting a marked enemy deals 60% of the crit damage to all OTHER marked enemies — or 100% with the CHEST talent Critical Measures. Each marked enemy kill stacks +2% crit damage (up to +40%). Note: Backpack = Target Rich Environment (5 marks). Chest = Critical Measures (100% spread). These are often swapped in guides — this is the correct assignment.",
+  tips:["Backpack talent is Target Rich Environment — increases marks from 3 to 5","Chest talent is Critical Measures — upgrades spread damage from 60% to 100%","Tag multiple enemies before killing to maximise spread damage","Lexington AR is preferred primary — pairs well with crit-tagging","60% Crit Chance cap first, then stack Crit Damage on everything"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — group-wide crit buff",mods:["Weapon Dmg","Crit Chance","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Negotiator's Backpack",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"Target Rich Environment — marks 3 to 5 enemies",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Negotiator's Chest",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"Critical Measures — spread damage 60% to 100%",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Negotiator's Gloves",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Negotiator's Holster",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Negotiator's Kneepads",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"—",mods:["Armor","Crit Damage"]}
+  ],
+  weapons:{
+    primary:{name:"Lexington Event Horizon",type:"Assault Rifle (Named)",rarity:"named",weaponStats:{wtype:"Assault Rifle — Named",core1:"AR Damage [LOCKED — named weapon]",core2:"Health Damage [LOCKED — named weapon]",attr3:"Rollable → DMG to Targets Out of Cover",talent:"LOCKED: Perfectly Unhinged — missed shots deal 0% damage; each consecutive hit builds a stacking damage multiplier",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage or Accuracy. Optic: Critical Hit Chance",action:"Roll DMG to Targets Out of Cover as 3rd attribute. Optimize Core1 and Core2 to max via Tinkering.",note:"Named weapon talent is permanently locked — you cannot change Perfectly Unhinged. Focus Tinkering on maxing Core1 and Core2, then roll DMG to Targets Out of Cover on the 3rd attribute."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown — fastest method. Select AR loot before starting.",rate:"targeted"},
+      {icon:"&#x1F3B2;",text:"World drop from Named Enemies in Heroic missions. Also periodically sold by Clan Vendor.",rate:"world"}
+    ]},
+    secondary:{name:"CTAR-21",type:"Assault Rifle",rarity:"high-end",weaponStats:{wtype:"Assault Rifle — High-End",core1:"AR Damage [LOCKED — cannot change]",core2:"Health Damage [LOCKED — cannot change]",attr3:"Rollable → DMG to Targets Out of Cover",talent:"Rollable → Unhinged: +35% weapon damage / -15% weapon handling (best for max damage). Alt: Obliterate: crit hit = +1% weapon damage for 5s stacking 25x",modslots:"Magazine: Extra Rounds or Critical Hit Damage. Muzzle: Critical Hit Damage. Optic: Critical Hit Chance",action:"Roll DMG to Targets Out of Cover as 3rd attribute + Unhinged talent via Recalibration/Tinkering.",note:"High-end weapon — talent is rollable unlike named or exotic. Roll Unhinged if already at 60% Critical Hit Chance cap. Roll Obliterate if running status effects alongside."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop — run Heroic missions with AR targeted loot active.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Drone",icon:"&#x2708;&#xFE0F;"},{name:"Reviver Hive",variant:"Hive",icon:"&#x1F41D;"}],
+  talents:[
+    {name:"Hostile Negotiations (4pc)",desc:"Crits mark up to 3 enemies for 20s. Critting a marked enemy deals 60% of that damage to all other marked enemies"},
+    {name:"Target Rich Environment (Backpack)",desc:"Increases mark count from 3 to 5"},
+    {name:"Critical Measures (Chest)",desc:"Increases spread damage from 60% to 100%"},
+    {name:"Kill reward",desc:"Each marked enemy kill grants +2% Crit Damage, up to x20 (+40%)"}
+  ],
+  stats:{weaponDmg:88,armor:60,skillTier:1,critChance:60,critDmg:130,armorRegen:15}},
+
+  {id:3,season:"current",patch:"Y7S3",name:"Eclipse Protocol Status",spec:"firewall",specLabel:"Firewall",author:"GCROCK",creatorVerified:true,rating:9.1,stars:5,views:17600,saves:1120,tags:["Status","DPS","Heroic","Raid"],difficulty:"Heroic",updated:"2 days ago",
+  summary:"Best status build. Eclipse Protocol 4-piece spreads status effects to all nearby enemies automatically. Scorpio applies all 4 effects in one shot. Tech Overdrive modifier is LIVE — perfect time to pair this with extra Skill Tiers.",
+  description:"Eclipse Protocol 4-piece 'Spread': status effects auto-transfer to enemies within 8m of a status-affected target. Vile Mask adds poison DoT on all status-affected enemies. Scorpio exotic shotgun applies burn, bleed, blind, and shock in one shot — instantly triggering Spread on entire groups. Firewall spec adds fire damage bonus. Vindictive backpack talent boosts nearby ally damage +20% per status application.",
+  tips:["Shoot Scorpio into a group — one shot spreads all 4 status effects via Spread","Vile Mask stacks poison on every status-affected enemy — replace Coyote with it in this build","Vindictive gives allies +20% damage for 5s on each status — great in groups","Lead with Oxidizer Chem Launcher to strip enemy armor before main attack","Tech Overdrive is LIVE — +3 free Skill Tiers. Skills do massive bonus damage right now"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Vile Mask",brand:"Exotic",rarity:"exotic",talent:"Vile — status-affected enemies take stacking poison damage",mods:["Status Effect","Hazard Protection","Armor"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Eclipse Protocol Backpack",brand:"Eclipse Protocol",rarity:"gear-set",talent:"Vindictive — applying a status boosts ally damage by 20% for 5s",mods:["Status Effect","Hazard Protection"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Eclipse Protocol Chest",brand:"Eclipse Protocol",rarity:"gear-set",talent:"Spread — status effects spread to enemies within 8m",mods:["Status Effect","Armor"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Eclipse Protocol Gloves",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Status Effect","Hazard Protection"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Eclipse Protocol Holster",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Status Effect","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Eclipse Protocol Kneepads",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Hazard Protection","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Scorpio",type:"Shotgun (Exotic)",rarity:"exotic",weaponStats:{wtype:"Shotgun — Exotic",core1:"Shotgun Damage [LOCKED — exotic]",core2:"Damage to Armor [LOCKED — all shotguns have this built in]",attr3:"Reconfigure at Crafting Station → Weapon Damage % or DMG to Targets Out of Cover",talent:"LOCKED: Parasitic — applies burn, bleed, blind, and shock in a single shot",modslots:"Muzzle: Critical Hit Damage or Accuracy. Underbarrel: Stability or Critical Hit Chance",action:"Reconfigure 3rd attribute to Weapon Damage % or DMG to Targets Out of Cover. Optimize Core1 to max.",note:"Shotgun Core2 is ALWAYS Damage to Armor on every shotgun — it is permanently locked. Do not try to roll Critical Hit Damage as a core attribute on any shotgun. Use mod slots for Critical Hit Damage/Chance instead."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Shotguns in Manning National Zoo Stronghold on Heroic. Highest confirmed drop rate.",rate:"targeted"},
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Shotguns in Countdown or The Summit (Heroic).",rate:"targeted"}
+    ]},
+    secondary:{name:"FAMAS 2010 AR",type:"Assault Rifle",rarity:"high-end",weaponStats:{wtype:"Assault Rifle — High-End",core1:"AR Damage [LOCKED — cannot change]",core2:"Health Damage [LOCKED — cannot change]",attr3:"Rollable → DMG to Targets Out of Cover",talent:"Rollable → Pestilent: status hit = +5% weapon damage for 5s stacking 5x (+25% total). Good alt: Obliterate (same mechanic, triggered by critical hits)",modslots:"Magazine: Extra Rounds or Critical Hit Damage. Muzzle: Critical Hit Damage",action:"Roll DMG to Targets Out of Cover as 3rd attribute + Pestilent talent.",note:"Status Effect % is a GEAR attribute only — it does NOT exist as a weapon attribute and cannot be rolled on a weapon. Stack Status Effect on gear pieces and gear mods, not on this rifle."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop at Heroic difficulty.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Chem Launcher",variant:"Oxidizer",icon:"&#x1F9EA;"},{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"}],
+  talents:[
+    {name:"Spread (Chest, 4pc)",desc:"Status effects on an enemy automatically spread to enemies within 8m"},
+    {name:"Vindictive (Backpack)",desc:"Applying a status effect grants nearby allies +20% damage for 5s"},
+    {name:"Vile (Mask exotic)",desc:"All status-affected enemies take stacking poison DoT independent of other effects"},
+    {name:"Eclipse 2pc + 3pc",desc:"+15% Status Effect (2pc). +20% Hazard Protection (3pc) — survive your own Oxidizer clouds"}
+  ],
+  stats:{weaponDmg:55,armor:62,skillTier:2,critChance:22,critDmg:50,armorRegen:32}},
+
+  {id:4,season:"current",patch:"Y7S3",name:"Skill Tier 6 Healer",spec:"technician",specLabel:"Technician",author:"NothingButSkillz",creatorVerified:true,rating:9.0,stars:5,views:11200,saves:720,tags:["Healer","Skill","Raid","Heroic"],difficulty:"Heroic",updated:"3 days ago",
+  summary:"Essential raid healer. Full Skill Tier 6 + Future Initiative 4-piece. Tech Overdrive modifier is LIVE — now is the perfect time to farm and try this build with free +3 Skill Tiers.",
+  description:"Future Initiative 4-piece Citadel talent converts kills into team-wide healing bursts. Restorer Hive at Skill Tier 6 provides maximum range and charges. BTSU Datagloves (exotic gloves) give +1 Skill Tier and share drone charges with allies. Waveform exotic holster provides additional skill bonuses. Technician spec gives a bonus +1 Skill Tier. Tech Overdrive global modifier is LIVE until Mar 13 — free +3 Skill Tiers for everyone.",
+  tips:["BTSU Datagloves = +1 Skill Tier AND share drone charges with allies","Waveform holster is best-in-slot for skill builds — do not replace it","Place Restorer Hive behind your team, not in the line of fire","Chem Launcher Heal shot on a downed ally's body can revive them","Tech Overdrive is LIVE until Mar 13 — +3 free Skill Tiers. Perfect farming window"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Future Initiative Mask",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Haste","Skill Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Future Initiative Backpack",brand:"Future Initiative",rarity:"gear-set",talent:"Groundwork — healing out of cover also heals allies in cover nearby",mods:["Skill Tier","Skill Haste"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Future Initiative Chest",brand:"Future Initiative",rarity:"gear-set",talent:"Citadel — kills grant team-wide healing burst",mods:["Skill Damage","Skill Tier"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"BTSU Datagloves",brand:"Exotic",rarity:"exotic",talent:"+1 Skill Tier. Drone kills share charges with all allies",mods:["Skill Tier","Skill Haste","Skill Damage"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Waveform",brand:"Exotic",rarity:"exotic",talent:"Skill damage and haste bonuses tied to active skill variant",mods:["Skill Tier","Skill Haste","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Future Initiative Kneepads",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Damage","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Capacitor",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED — exotic]",core2:"Health Damage [LOCKED — exotic]",attr3:"Reconfigure at Crafting Station → Skill Haste (reduces skill cooldowns; best for skill builds)",talent:"LOCKED: Overcharge — dealing weapon damage adds charges to your active skill",modslots:"Magazine: Skill Haste or Extra Rounds. Optic/Muzzle: Skill Haste if available",action:"Reconfigure 3rd attribute to Skill Haste. Use all mod slots for Skill Haste. Fire it between skill casts to charge Overcharge.",note:"Capacitor is used as a skill-charging tool on this build, not as a damage weapon. Focus mod slots on Skill Haste to maximize skill uptime, not weapon damage."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown or The Summit.",rate:"targeted"},
+      {icon:"&#x1F3B2;",text:"Exotic Cache from Season Pass rewards. Also craftable from blueprint.",rate:"world"}
+    ]},
+    secondary:{name:"Sidearm with +1 Skill Tier",type:"Pistol",rarity:"high-end",weaponStats:{wtype:"Pistol — High-End (any)",core1:"Pistol Damage [LOCKED — irrelevant on this build]",core2:"Varies by pistol [LOCKED — irrelevant on this build]",attr3:"Irrelevant — do not waste Tinkering resources here",talent:"Any, or roll Preservation: kills repair 2% max armor per second for 10s",modslots:"MANDATORY: slot a Skill Tier mod to reach Skill Tier 6. This is the only purpose of this weapon slot.",action:"Equip any pistol. Slot a Skill Tier mod. Done. Never invest Tinkering resources here.",note:"The only purpose of this weapon slot is the Skill Tier mod, which pushes you to Skill Tier 6. All other pistol attributes are completely irrelevant on this build. Craft the cheapest pistol you can if needed."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop or craft. A sidearm with Skill Tier mod pushes you to Skill Tier 6.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Restorer Hive",variant:"Hive",icon:"&#x1F41D;"},{name:"Chem Launcher",variant:"Heal",icon:"&#x1F48A;"}],
+  talents:[
+    {name:"Citadel (Chest, 4pc)",desc:"Kills grant a burst heal to nearby allies. Core reason to use Future Initiative"},
+    {name:"Groundwork (Backpack)",desc:"Healing out of cover also heals allies who are in cover nearby"},
+    {name:"BTSU Datagloves",desc:"+1 Skill Tier. Drone kills share charges with all allies"},
+    {name:"Waveform (Holster)",desc:"Provides skill bonuses scaled to active skill tier — best exotic holster for skill builds"}
+  ],
+  stats:{weaponDmg:38,armor:72,skillTier:6,critChance:15,critDmg:35,armorRegen:40}},
+
+  {id:5,season:"current",patch:"Y7S3",name:"Memento Striker Solo",spec:"survivalist",specLabel:"Survivalist",author:"Patrick Wolf",creatorVerified:true,rating:8.8,stars:4,views:13400,saves:910,tags:["DPS","Solo","Heroic","Farming"],difficulty:"Heroic",updated:"5 days ago",
+  summary:"Memento exotic backpack replaces Striker backpack. Each Elite kill drops a trophy that simultaneously stacks Armor Regen, Weapon Damage, and Skill Damage. Aggressive solo farming.",
+  description:"Memento's Momento talent drops a trophy on every Elite NPC kill. Each trophy simultaneously buffs Armor Regen, Weapon Damage, AND Skill Damage. After 5 trophies you are dramatically stronger. Use 4-piece Striker (without the backpack — use Memento instead) for Striker's Gamble. Supplement with Coyote's Mask for crits. Note: without Striker backpack, you lose Risk Management — stacks cap at 100 and per-stack is 0.65% not 1%.",
+  tips:["Trophies drop from Elites ONLY — run Heroic Control Points or The Summit","Trophies last 60 seconds — stay aggressive and keep moving","If you die, you lose ALL trophies — use cover, don't get greedy","Assault Global Event is LIVE — increased weapon damage at close range right now","Memento means you skip Striker backpack — stacks cap at 100, but Memento makes up for it"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — group crit buff",mods:["Weapon Dmg","Crit Chance","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Memento",brand:"Exotic",rarity:"exotic",talent:"Momento — Elite kill = trophy. Stacks Armor Regen + Weapon Dmg + Skill Dmg",mods:["All stats scale with trophies"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Striker's Battlegear Chest",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Press the Advantage — 100 to 200 max stacks",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Striker's Battlegear Gloves",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Striker's Battlegear Holster",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Striker's Battlegear Kneepads",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Armor Regen","Crit Damage"]}
+  ],
+  weapons:{
+    primary:{name:"St. Elmo's Engine",type:"Assault Rifle (Exotic)",rarity:"exotic",drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown or The Summit (Heroic) — fastest method.",rate:"targeted"},
+      {icon:"&#x1F3B2;",text:"World drop at Heroic difficulty.",rate:"world"}
+    ]},
+    secondary:{name:"Shotgun (any named)",type:"Shotgun",rarity:"named",drops:[
+      {icon:"&#x1F3B2;",text:"World drop — any Heroic source. Good for close-range cleanup.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Drone",icon:"&#x2708;&#xFE0F;"},{name:"Assault Turret",variant:"Turret",icon:"&#x1F916;"}],
+  talents:[
+    {name:"Momento (Exotic Backpack)",desc:"Elite kills drop a trophy. Picking it up grants stacking Armor Regen + Weapon Damage + Skill Damage simultaneously"},
+    {name:"Striker's Gamble (4pc)",desc:"+0.65% weapon damage per stack, up to 100 stacks (no Risk Management without Striker backpack)"},
+    {name:"Press the Advantage (Chest)",desc:"Extends Striker max stacks to 200 — keep the Striker chest"},
+    {name:"Predator (Coyote's Mask)",desc:"4-enemy hits = increased Crit Chance group buff"}
+  ],
+  stats:{weaponDmg:88,armor:65,skillTier:1,critChance:55,critDmg:110,armorRegen:28}},
+
+  {id:6,season:"current",patch:"Y7S3",name:"Foundry Bulwark Tank",spec:"sharpshooter",specLabel:"Sharpshooter",author:"TuxedoBandido",creatorVerified:true,rating:8.7,stars:4,views:9800,saves:680,tags:["Tank","Solo","Legendary","Heroic"],difficulty:"Legendary",updated:"1 week ago",
+  summary:"Near-indestructible tank. Foundry Bulwark Makeshift Repairs gives armor repair on skill-kill. Unbreakable chest makes armor breaks survivable. Catharsis Mask procs on explosion hits.",
+  description:"Foundry Bulwark 4-piece Makeshift Repairs: killing an enemy while a skill is active repairs 15% armor. Catharsis exotic mask triggers armor repair + group bonus armor whenever you take explosive damage — let enemies hit you, then heal. Crusader Shield blocks frontal damage for pushing Heavies. Sharpshooter TAC-50 one-shots most Heavies on Legendary. Roll Armor Regen on all pieces.",
+  tips:["Catharsis Mask procs on ANY explosive damage — let enemies hit you, then heal","Crusader Shield blocks frontal damage — use it to cross open ground or push Heavies","Artificer Hive buffs your shield and drone simultaneously","Sharpshooter TAC-50 one-shots most Heavies on Legendary — save it for priority targets","Armor Regen as secondary attribute on all pieces — survivability before damage"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Catharsis Mask",brand:"Exotic",rarity:"exotic",talent:"Catharsis — explosive damage triggers armor repair and bonus armor for group",mods:["Armor","Armor Regen","Hazard Protection"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Foundry Bulwark Backpack",brand:"Foundry Bulwark",rarity:"gear-set",talent:"Reinforced — increases armor repair bonus from Makeshift Repairs",mods:["Armor","Armor Regen"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Foundry Bulwark Chest",brand:"Foundry Bulwark",rarity:"gear-set",talent:"Unbreakable — armor break triggers brief invulnerability + full armor repair",mods:["Armor","Weapon Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Foundry Bulwark Gloves",brand:"Foundry Bulwark",rarity:"gear-set",talent:"—",mods:["Armor","Weapon Damage"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Foundry Bulwark Holster",brand:"Foundry Bulwark",rarity:"gear-set",talent:"—",mods:["Armor","Armor Regen"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Foundry Bulwark Kneepads",brand:"Foundry Bulwark",rarity:"gear-set",talent:"—",mods:["Armor","Hazard Protection"]}
+  ],
+  weapons:{
+    primary:{name:"St. Elmo's Engine",type:"Assault Rifle (Exotic)",rarity:"exotic",drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown or The Summit on Heroic.",rate:"targeted"},
+      {icon:"&#x1F3B2;",text:"World drop at Heroic difficulty.",rate:"world"}
+    ]},
+    secondary:{name:"Scorpio",type:"Shotgun (Exotic)",rarity:"exotic",drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Shotguns in Manning National Zoo Stronghold (Heroic).",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Crusader Shield",variant:"Shield",icon:"&#x1F6E1;&#xFE0F;"},{name:"Artificer Hive",variant:"Hive",icon:"&#x1F41D;"}],
+  talents:[
+    {name:"Makeshift Repairs (4pc)",desc:"Killing an enemy while a skill is active repairs 15% of your armor"},
+    {name:"Reinforced (Backpack)",desc:"Increases armor repair value from Makeshift Repairs"},
+    {name:"Unbreakable (Chest)",desc:"When armor is fully depleted, gain brief invulnerability and full armor repair"},
+    {name:"Catharsis (Mask)",desc:"Taking explosive damage triggers armor repair and bonus armor for nearby allies"}
+  ],
+  stats:{weaponDmg:70,armor:98,skillTier:1,critChance:35,critDmg:80,armorRegen:50}},
+
+  {id:7,season:"previous",patch:"Y7S2",name:"Eagle Bearer Raid DPS",spec:"demolitionist",specLabel:"Demolitionist",author:"Sgt. Greybeard",creatorVerified:true,rating:8.9,stars:4,views:16200,saves:1050,tags:["DPS","Raid","Heroic"],difficulty:"Heroic",updated:"2 weeks ago",
+  summary:"Eagle Bearer is the best raid-exclusive exotic. Tenacity makes you durable while supporting the team. ONLY drops from Operation Dark Hours raid — not available via targeted loot.",
+  description:"Eagle Bearer's Tenacity talent absorbs a portion of incoming damage. On kill, stored damage is returned to allies as bonus armor. This makes Eagle Bearer uniquely suited for raid DPS — hard to kill AND supports the team. Key note: Eagle Bearer ONLY drops from the Operation Dark Hours raid. It cannot be obtained via targeted loot in regular activities. Pair with Contractor's Gloves brand for weapon damage stacking.",
+  tips:["Eagle Bearer ONLY from Operation Dark Hours raid — Countdown and Summit do not drop it","Tenacity absorbs damage — the more you're shot, the stronger your next kill burst","Run Contractor's Gloves brand (backpack + 1 piece) for +15% weapon damage brand bonus","Pair with Providence Defense pieces for Crit Damage stacking","Slightly powercreeped by St. Elmo's in open-world but still the best in raid context"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Contractor's Gloves Mask",brand:"Contractor's Gloves",rarity:"brand-set",talent:"—",mods:["Crit Chance","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Contractor's Gloves Backpack",brand:"Contractor's Gloves",rarity:"brand-set",talent:"Vigilance — +25% weapon damage when no hostile effects on you",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Providence Defense Chest",brand:"Providence Defense",rarity:"brand-set",talent:"Hard Hitting — +20% damage to Elites and Named enemies",mods:["Crit Chance","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Contractor's Gloves (Named)",brand:"Contractor's Gloves",rarity:"named",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Providence Defense Holster",brand:"Providence Defense",rarity:"brand-set",talent:"—",mods:["Crit Damage","Weapon Dmg"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Providence Defense Kneepads",brand:"Providence Defense",rarity:"brand-set",talent:"—",mods:["Armor Regen","Crit Damage"]}
+  ],
+  weapons:{
+    primary:{name:"Eagle Bearer",type:"Assault Rifle (Exotic — Raid Exclusive)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic (Raid Only)",core1:"AR Damage [LOCKED — exotic]",core2:"Health Damage [LOCKED — exotic]",attr3:"Reconfigure at Crafting Station → DMG to Targets Out of Cover",talent:"LOCKED: Tenacity — absorbs incoming damage; on kill shares it as bonus armor to nearby allies",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage. Optic: Critical Hit Chance",action:"Reconfigure 3rd attribute to DMG to Targets Out of Cover. Optimize Core1 to max.",note:"Eagle Bearer drops ONLY from Operation Dark Hours raid. Core attributes are permanently locked as exotic. Reconfigure 3rd attribute to DMG to Targets Out of Cover — same as all other AR exotics."},drops:[
+      {icon:"&#x2694;&#xFE0F;",text:"ONLY drops in Operation Dark Hours (original raid). Final boss has highest drop rate on first weekly clear.",rate:"campaign"},
+      {icon:"&#x2694;&#xFE0F;",text:"Also drops rarely from DZ06 Dark Zone extraction. Raid remains the primary source.",rate:"campaign"}
+    ]},
+    secondary:{name:"Any AR or Shotgun",type:"Backup weapon",rarity:"high-end",drops:[
+      {icon:"&#x1F3B2;",text:"World drop — focus on farming the raid for Eagle Bearer.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Drone",icon:"&#x2708;&#xFE0F;"},{name:"Assault Turret",variant:"Turret",icon:"&#x1F916;"}],
+  talents:[
+    {name:"Tenacity (Exotic)",desc:"Incoming damage stored (up to 80% of max armor). On kill, distributed as bonus armor to you and nearby allies"},
+    {name:"Vigilance",desc:"+25% weapon damage while you have no hostile effects — keep status effects off your character"},
+    {name:"Hard Hitting",desc:"+20% weapon damage against Elites and Named enemies"},
+    {name:"Brand bonuses",desc:"3pc Contractor = +15% weapon damage. 3pc Providence = +10% Crit Damage. Stack both."}
+  ],
+  stats:{weaponDmg:90,armor:60,skillTier:1,critChance:50,critDmg:120,armorRegen:18}},
+
+  {id:8,season:"previous",patch:"Y7S1",name:"Heartbreaker PvP",spec:"demolitionist",specLabel:"Demolitionist",author:"MattGoesBuck",creatorVerified:true,rating:8.7,stars:4,views:9400,saves:580,tags:["PvP","DPS","Heroic"],difficulty:"Hard",updated:"1 week ago",
+  summary:"Premier PvP build. Heartbreaker 4-piece gives huge damage buff after armor break. Stack 60% CHC + Crit Damage for instant-kill potential in Conflict and Dark Zone.",
+  description:"Heartbreaker Heartstopper (4pc): headshots pulse enemies for 5s. Hits on pulsed enemies stack +1% weapon damage and +1% armor (up to 50 stacks). Breaking the enemy's armor triggers the full damage buff. In PvP, armor breaks fast. Disruptor Pulse disables all enemy skills before engaging. ACS-12 semi-auto shotgun builds stacks extremely fast.",
+  tips:["Disruptor Pulse disables ALL enemy skills — strip Striker Drones and Shields before engaging","Headshots apply the pulse — then weapon hits on pulsed enemy build Heartstopper stacks fast","After 50 stacks, armor break triggers the full weapon damage buff","ACS-12 semi-auto shotgun builds stacks extremely fast — popular PvP variant","Approach from angles, use grenades for area denial before pushing in Dark Zone"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — 4-enemy hits = group crit buff (works in PvP)",mods:["Weapon Dmg","Crit Chance","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Heartbreaker Backpack",brand:"Heartbreaker",rarity:"gear-set",talent:"Vigilance — +25% weapon damage without hostile effects",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Fenris Group AB Chest",brand:"Fenris Group AB",rarity:"brand-set",talent:"Obliterate — status hit grants +5% weapon damage stacking 5x",mods:["Weapon Dmg","Crit Chance"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Heartbreaker Gloves",brand:"Heartbreaker",rarity:"gear-set",talent:"—",mods:["Crit Damage","Weapon Dmg"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Heartbreaker Holster",brand:"Heartbreaker",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Heartbreaker Kneepads",brand:"Heartbreaker",rarity:"gear-set",talent:"—",mods:["Armor","Crit Damage"]}
+  ],
+  weapons:{
+    primary:{name:"St. Elmo's Engine / ACS-12",type:"AR (Exotic) / Semi-Auto Shotgun",rarity:"exotic",weaponStats:{wtype:"AR (Exotic) + Shotgun (High-End)",core1:"AR: AR Damage [LOCKED]. ACS-12: Shotgun Damage [LOCKED]",core2:"AR: Health Damage [LOCKED]. ACS-12: Damage to Armor [LOCKED — all shotguns]",attr3:"AR: Reconfigure → DMG to Targets Out of Cover. ACS-12: Roll → DMG to Targets Out of Cover or Weapon Damage %",talent:"AR: LOCKED Actum Est. ACS-12 (High-End, rollable): Perfectly Preserved (mag refills on kill) or Big Game Hunter (+25% headshot dmg for 3s on headshot kill)",modslots:"ACS-12 mods: Magazine: Critical Hit Damage or Extra Rounds. Muzzle: Critical Hit Damage",action:"ACS-12: Roll Perfectly Preserved talent + DMG to Targets Out of Cover as 3rd attribute. Optimize Shotgun Damage core to max.",note:"Shotgun Core2 Damage to Armor is permanently locked on the ACS-12 and every other shotgun. Use mod slots for Critical Hit Damage. In PvP the ACS-12 is your primary stack builder — talent matters more than attributes here."},drops:[
+      {icon:"&#x1F3C6;",text:"St. Elmo's: Targeted Loot ARs in Countdown or Summit. ACS-12: world drop any Heroic source.",rate:"targeted"}
+    ]},
+    secondary:{name:"The Ravenous",type:"Rifle (Exotic — Raid Exclusive)",rarity:"exotic",drops:[
+      {icon:"&#x2694;&#xFE0F;",text:"Only drops from Iron Horse Raid. Popular PvP secondary for burst damage.",rate:"campaign"}
+    ]}
+  },
+  skills:[{name:"Drone",variant:"Defender",icon:"&#x2708;&#xFE0F;"},{name:"Pulse",variant:"Disruptor",icon:"&#x1F4E1;"}],
+  talents:[
+    {name:"Heartstopper (4pc)",desc:"Headshots pulse enemies for 5s. Hits on pulsed enemies stack +1% weapon dmg +1% armor (50 stacks). Armor break = damage buff"},
+    {name:"Obliterate",desc:"Status hit grants +5% weapon damage for 5s, stacks up to 5x (25% total)"},
+    {name:"Predator (Coyote's Mask)",desc:"4-enemy hits = +16% Crit Chance for you and nearby allies"},
+    {name:"Defender Drone",desc:"Intercepts incoming bullets in PvP. Combined with Disruptor Pulse, you can neutralise enemy advantages"}
+  ],
+  stats:{weaponDmg:87,armor:63,skillTier:1,critChance:58,critDmg:115,armorRegen:15}},
+
+  {id:9,season:"previous",patch:"Y7S1",name:"Hunter's Fury SMG Farm",spec:"survivalist",specLabel:"Survivalist",author:"GCROCK",creatorVerified:true,rating:8.5,stars:4,views:8700,saves:495,tags:["DPS","Farming","Solo","Heroic"],difficulty:"Heroic",updated:"2 weeks ago",
+  summary:"Best farming build. Hunter's Fury gives speed and damage bonuses on close-range kills. Ouroboros (highest RPM in game) or Chatterbox SMG for non-stop chain clearing.",
+  description:"Hunter's Fury Predator talent (4pc): killing an enemy within 15m grants +50% weapon handling and movement speed for 10s, causing nearby enemies to bleed. Chatterbox's Box Magazine refills part of the magazine on kill — no reloads during chain clears. Ouroboros exotic SMG (from Paradise Lost incursion) has the highest RPM of any weapon — strongest option if you have it. Memento backpack stacks everything on Elite kills.",
+  tips:["Hunter's Fury rewards aggression — kill within 15m to keep Predator buff refreshed","Chatterbox magazine refill on kill means you rarely need to reload — key for chain-clearing rooms","Ouroboros is stronger than Chatterbox but ONLY drops from Paradise Lost incursion","Striker Drone distracts enemies and gives you a safe gap to close distance","Memento trophies add to Weapon Dmg, Armor Regen, AND Skill Dmg simultaneously"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — crit buff",mods:["Weapon Dmg","Crit Chance","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Memento",brand:"Exotic",rarity:"exotic",talent:"Momento — Elite kill trophy stacks all stats",mods:["All stats scale with trophies"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Hunter's Fury Chest",brand:"Hunter's Fury",rarity:"gear-set",talent:"Predator — kills within 15m trigger speed, bleed AoE",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Hunter's Fury Gloves",brand:"Hunter's Fury",rarity:"gear-set",talent:"—",mods:["SMG Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Hunter's Fury Holster",brand:"Hunter's Fury",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Hunter's Fury Kneepads",brand:"Hunter's Fury",rarity:"gear-set",talent:"—",mods:["Armor Regen","Crit Damage"]}
+  ],
+  weapons:{
+    primary:{name:"Ouroboros or Chatterbox",type:"SMG (Exotic)",rarity:"exotic",weaponStats:{wtype:"SMG — Exotic",core1:"SMG Damage [LOCKED — exotic]",core2:"Critical Hit Chance [LOCKED — all SMGs have CHC built in as Core2]",attr3:"Reconfigure at Crafting Station → DMG to Targets Out of Cover",talent:"LOCKED: Ouroboros = Exposed (10 consecutive hits on same target = escalating damage bonus). Chatterbox = Box Magazine (kills refill portion of magazine)",modslots:"Magazine: Extra Rounds or Critical Hit Damage. Muzzle: Critical Hit Damage. Optic: Critical Hit Chance or Critical Hit Damage",action:"Reconfigure 3rd attribute to DMG to Targets Out of Cover. SMG Core2 CHC is already locked in — do not try to add more CHC via weapon attributes.",note:"All SMGs have Critical Hit Chance as Core2 — permanently locked on every SMG including exotics. This means you already have built-in CHC. Stack additional Critical Hit Damage on your gear and mod slots instead."},drops:[
+      {icon:"&#x2694;&#xFE0F;",text:"Ouroboros: ONLY from Paradise Lost Incursion. Highest RPM exotic in game — worth farming.",rate:"campaign"},
+      {icon:"&#x1F3C6;",text:"Chatterbox: Targeted Loot SMGs in Countdown or The Summit (Heroic). Much easier to farm.",rate:"targeted"}
+    ]},
+    secondary:{name:"Pistol or backup SMG",type:"Sidearm",rarity:"high-end",drops:[
+      {icon:"&#x1F3B2;",text:"Any world drop — not the priority for this build.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Drone",icon:"&#x2708;&#xFE0F;"},{name:"Reviver Hive",variant:"Hive",icon:"&#x1F41D;"}],
+  talents:[
+    {name:"Predator (Chest, 4pc)",desc:"Killing within 15m: +50% weapon handling + movement speed for 10s, nearby enemies bleed"},
+    {name:"Intimidate (Backpack option)",desc:"When bonus armor is active, nearby enemies take +20% weapon damage"},
+    {name:"Momento (Memento)",desc:"Elite kill trophy = stacking buff to Armor Regen + Weapon Dmg + Skill Dmg simultaneously"},
+    {name:"Box Magazine (Chatterbox)",desc:"Killing an enemy refills part of magazine — enables non-stop aggressive play"}
+  ],
+  stats:{weaponDmg:85,armor:60,skillTier:1,critChance:55,critDmg:100,armorRegen:22}},
+
+  // ── SHARPSHOOTER SNIPER ──────────────────────────────────────
+  {id:10,season:"current",patch:"Y7S3",name:"Hotshot Headhunter Sniper",spec:"sharpshooter",specLabel:"Sharpshooter",author:"Kamikazevondoom",creatorVerified:true,rating:9.2,stars:5,views:14800,saves:980,tags:["DPS","Solo","Heroic","Farming"],difficulty:"Heroic",updated:"3 days ago",
+  summary:"Best XP and SHD farming build. Hotshot 4-piece + Headhunter talent + Determined talent = infinite chain one-shot kills. Stack Headshot Damage to 300%+. One headshot kill then every bodyshot is also lethal.",
+  description:"Hotshot 4-piece gives stacking bonus armor (overshield) on headshot kills. Combined with Headhunter talent (Perfect version on Chainkiller named chest): after a headshot kill, the NEXT shot within 30s deals 150% of that kill's damage — capped at 1250% weapon damage. Combined with Determined talent on the Marksman Rifle: killing with a headshot guarantees the NEXT bodyshot also counts as a headshot. This creates an infinite chain — kill with a headshot, next bodyshot is also lethal, which re-triggers Headhunter, which re-triggers Determined. One-shot everything indefinitely. Use Sharpshooter spec for +15% headshot damage on marksman rifles.",
+  tips:["Stack Headshot Damage on EVERY mod slot — aim for 300%+ total","Use White Death named MMR or Model 700 with Determined talent — regular version works best (Perfect Determined resets differently)","Chainkiller named chest is mandatory — it has Perfect Headhunter built in","Open any mission with 3-5 Directives for max XP — one-shotting everything means directives barely slow you","Sharpshooter spec gives +15% headshot damage AND +25% headshot damage bonus — biggest spec multiplier in game"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Hotshot Mask",brand:"Hotshot",rarity:"gear-set",talent:"—",mods:["Headshot Dmg","Headshot Dmg"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Ninja Bike Messenger Backpack",brand:"Exotic",rarity:"exotic",talent:"Deadeye — headshot kills grant bonus armor. Enables mix-and-match gear without losing stats.",mods:["Headshot Dmg","Headshot Dmg"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Chainkiller",brand:"Walker Harris & Co.",rarity:"named",talent:"Perfect Headhunter — kill with headshot, next shot within 30s = 150% of kill damage (cap 1250%)",mods:["Headshot Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Hotshot Gloves",brand:"Hotshot",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Headshot Dmg"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Hotshot Holster",brand:"Hotshot",rarity:"gear-set",talent:"—",mods:["Headshot Dmg","Weapon Dmg"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Hotshot Kneepads",brand:"Hotshot",rarity:"gear-set",talent:"—",mods:["Headshot Dmg","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"White Death / Model 700",type:"Marksman Rifle (Named)",rarity:"named",weaponStats:{wtype:"Marksman Rifle — Named (White Death) / High-End (Model 700)",core1:"MMR Damage [LOCKED — cannot change]",core2:"Headshot Damage [LOCKED — all MMRs have this built in as Core2]",attr3:"Rollable → DMG to Targets Out of Cover",talent:"White Death (Named): LOCKED talent. Model 700 (High-End): Rollable — MUST roll Determined: headshot kill = next bodyshot also counts as headshot (the whole build chain depends on this)",modslots:"Magazine: Headshot Damage. Muzzle: Headshot Damage. Optic: Headshot Damage or Critical Hit Chance. Underbarrel: Headshot Damage or Stability",action:"Model 700: roll Determined talent + DMG to Targets Out of Cover as 3rd attribute. All 4 mod slots: Headshot Damage. MMR Core2 Headshot Damage is already locked in — stack extra Headshot Damage exclusively via mod slots.",note:"MMR Core2 is ALWAYS Headshot Damage — permanently locked on every marksman rifle. You cannot add more Headshot Damage via weapon core attributes. Every extra point of Headshot Damage must come from weapon mods and gear. Target 300%+ total Headshot Damage across all sources."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Marksman Rifles in The Summit or Countdown. White Death drops via MMR targeted loot on Heroic.",rate:"targeted"},
+      {icon:"&#x1F3B2;",text:"World drop at Heroic difficulty. Craft Model 700 at Crafting Bench and roll Determined talent via recalibration.",rate:"world"}
+    ]},
+    secondary:{name:"St. Elmo's Engine AR",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic (backup weapon)",core1:"AR Damage [LOCKED — exotic]",core2:"Health Damage [LOCKED — exotic]",attr3:"Reconfigure at Crafting Station → DMG to Targets Out of Cover",talent:"LOCKED: Actum Est — shock rounds on every 100th hit",modslots:"Magazine: Extra Rounds. Muzzle: Stability or Accuracy (you need to hit targets to trigger shock)",action:"Same Reconfigure as primary St. Elmo builds: 3rd attribute to DMG to Targets Out of Cover. On a sniper build this is a panic button only — do not prioritize this weapon.",note:"If you already have a St. Elmo's Engine from another build, it works here unchanged. This weapon's only job on a sniper build is to apply the shock stun effect and buy you distance. Fire once, backpedal to MMR range."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown — for when enemies close the gap and you need a primary backup.",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Spotter Drone",variant:"Drone",icon:"&#x2708;&#xFE0F;"},{name:"Reviver Hive",variant:"Hive",icon:"&#x1F41D;"}],
+  talents:[
+    {name:"Perfect Headhunter (Chainkiller Chest)",desc:"After headshot kill: next shot within 30s deals 150% of that damage. Cap = 1250% weapon damage. MUST HAVE."},
+    {name:"Determined (MMR Weapon)",desc:"Headshot kill guarantees next bodyshot also counts as headshot. Chains infinitely with Headhunter."},
+    {name:"Hotshot 4pc Talent",desc:"Headshot kills grant stacking bonus armor. More kills = more overshield. Keeps you alive in glass-cannon mode."},
+    {name:"Sharpshooter Spec",desc:"+15% Headshot Damage with Marksman Rifles. +25% additional headshot damage. Spotter Drone reveals all enemies."}
+  ],
+  stats:{weaponDmg:82,armor:48,skillTier:1,critChance:18,critDmg:80,armorRegen:20}},
+
+  // ── GUNNER LMG ───────────────────────────────────────────────
+  {id:11,season:"current",patch:"Y7S3",name:"Striker LMG Gunner",spec:"gunner",specLabel:"Gunner",author:"RogueGold",creatorVerified:true,rating:8.8,stars:4,views:11600,saves:740,tags:["DPS","Solo","Heroic","Legendary"],difficulty:"Heroic",updated:"5 days ago",
+  summary:"Best LMG build. Full Striker 6-piece with Pestilence or M60 E4 LMG. Gunner spec's Banshee signature weapon suppresses and disorients groups instantly. Stack Striker stacks on full-auto to 200.",
+  description:"Gunner specialisation's passive gives you extra armor and ammo regeneration — perfect for sustained LMG fire without reloading. Striker 4-piece Gamble gives +0.65% weapon damage per hit (up to 200 stacks with Press the Advantage chest). LMGs have very high RPM = very fast stack building. Pestilence exotic LMG's Pestilent talent applies a debuff to enemies you shoot: when they die, nearby enemies get a damage-over-time poison. The Gunner signature weapon Banshee deploys a disorienting sonic device, letting you reposition and keep stacks up. Ceska Vyroba AS OR brand pieces provide extra Crit Chance to complement Striker damage.",
+  tips:["Do NOT stop firing — Striker stacks reset if you stop shooting for too long","Gunner spec gives +10% weapon damage when you have bonus armor — keep bonus armor active","Banshee signature weapon disorients all nearby enemies — use it to safely reposition or revive","Pestilence's Plague of the Outcasts: dying enemies infect nearby ones with a DoT — focus DPS and let the DoT chain","Roll Damage to Out of Cover on your LMG — most enemies are behind cover"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — group crit buff after hitting 4 different enemies",mods:["Weapon Dmg","Crit Chance","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Striker's Battlegear Backpack",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Risk Management — 0.65% to 1% per stack",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Striker's Battlegear Chest",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Press the Advantage — 100 to 200 max stacks",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Striker's Battlegear Gloves",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["LMG Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Striker's Battlegear Holster",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Striker's Battlegear Kneepads",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Armor Regen","Crit Damage"]}
+  ],
+  weapons:{
+    primary:{name:"Pestilence",type:"LMG (Exotic)",rarity:"exotic",weaponStats:{wtype:"Light Machine Gun — Exotic",core1:"LMG Damage [LOCKED — exotic]",core2:"DMG to Targets Out of Cover [LOCKED — all LMGs have this built in]",attr3:"Reconfigure at Crafting Station → Critical Hit Damage (since Out of Cover is already Core2)",talent:"LOCKED: Plague of the Outcasts — debuff enemies you shoot; on their death, nearby enemies get infected with poison DoT (70% of weapon damage)",modslots:"Magazine: Extra Rounds or Critical Hit Damage. Muzzle: Critical Hit Damage. Optic/Underbarrel: Accuracy or Stability",action:"Reconfigure 3rd attribute to Critical Hit Damage. LMG Core2 DMG to Out of Cover is already locked in — do not reconfigure to this.",note:"Like every LMG, Pestilence already has DMG to Targets Out of Cover built in as Core2. Reconfigure the 3rd attribute to Critical Hit Damage instead — it stacks on top of the locked Out of Cover damage."},drops:[
+      {icon:"&#x2694;&#xFE0F;",text:"Drops from Dark Hours Raid (Operation Dark Hours). Blueprint also drops from Iron Horse Raid completion.",rate:"campaign"},
+      {icon:"&#x1F3C6;",text:"Targeted Loot: LMGs in Countdown or The Summit on Heroic. Pestilence can drop via LMG targeted loot.",rate:"targeted"}
+    ]},
+    secondary:{name:"M60 E4 or any LMG",type:"Light Machine Gun",rarity:"high-end",weaponStats:{wtype:"Light Machine Gun — High-End",core1:"LMG Damage [LOCKED — cannot change]",core2:"DMG to Targets Out of Cover [LOCKED — all LMGs have this built in]",attr3:"Rollable → Critical Hit Damage",talent:"Rollable → Frenzy: reload grants +25% fire rate and weapon damage for 10s (best). Alt: Measured: top half of mag has faster fire rate, bottom half has higher damage",modslots:"Magazine: Extra Rounds (M60 base mag is 100 — still worth extending). Muzzle: Critical Hit Damage. Optic: Critical Hit Chance",action:"Roll Frenzy talent + Critical Hit Damage as 3rd attribute. Reload in cover to trigger Frenzy, then immediately open fire.",note:"M60 E4 has a 100-round base magazine vs 75-80 on most LMGs. This is the main reason to use it — more sustained fire before reload. LMG Core2 Out of Cover damage is built in on every LMG, so roll the 3rd attribute for Critical Hit Damage."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop or Clan Vendor blueprint. Roll Frenzy or Measured talent for sustained fire.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Drone",icon:"&#x2708;&#xFE0F;"},{name:"Assault Turret",variant:"Turret",icon:"&#x1F916;"}],
+  talents:[
+    {name:"Striker's Gamble (4pc)",desc:"+0.65% weapon damage per hit, up to 200 stacks with chest. LMG RPM builds stacks very fast."},
+    {name:"Risk Management (Backpack)",desc:"Raises per-stack bonus from 0.65% to 1% — mandatory"},
+    {name:"Press the Advantage (Chest)",desc:"Extends max stacks to 200 for +200% weapon damage at full stacks"},
+    {name:"Plague of the Outcasts (Pestilence)",desc:"Enemies you shoot with Pestilence gain a debuff. On death they infect nearby enemies with DoT poison."}
+  ],
+  stats:{weaponDmg:92,armor:65,skillTier:1,critChance:52,critDmg:115,armorRegen:20}},
+
+  // ── FIREWALL BURN ─────────────────────────────────────────────
+  {id:12,season:"current",patch:"Y7S3",name:"Firewall Burn Build",spec:"firewall",specLabel:"Firewall",author:"TuxedoBandido",creatorVerified:true,rating:8.6,stars:4,views:8200,saves:490,tags:["DPS","Status","Solo","Heroic"],difficulty:"Heroic",updated:"4 days ago",
+  summary:"Firewall spec exclusive — combine Eclipse Protocol status spreading with the Firewall's Flamethrower signature weapon. Everything burns. Pair with Scorpio shotgun for instant status application on groups.",
+  description:"Firewall spec's passive grants +25% skill damage when you have any status effect active on you. Its signature weapon is a Flamethrower that applies fire status to everything in range instantly. Combined with Eclipse Protocol Spread talent, fire status jumps from target to target. Vile Mask adds poison DoT on all status-affected enemies for stacking damage. Screaming Eagle backpack (named) gives bonus weapon damage against status-affected enemies. This build is unique to Firewall — no other spec can use the Flamethrower.",
+  tips:["Firewall's passive: +25% skill damage while YOU are affected by a status effect — stand in your own fire","Use Flamethrower signature weapon to instantly fire-tag an entire room, then let Spread chain it","Screaming Eagle named backpack gives +20% weapon damage against burning enemies — mandatory for this build","Vile Mask adds poison DoT on top of the burn — double DoT on every enemy","Scorpio shotgun tags all 4 status effects at once — replaces fire with a full status cocktail"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Vile Mask",brand:"Exotic",rarity:"exotic",talent:"Vile — all status-affected enemies take stacking poison DoT",mods:["Status Effect","Hazard Protection","Armor"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Screaming Eagle",brand:"Douglas & Harding",rarity:"named",talent:"Screaming Eagle — +20% weapon damage against burning/on-fire enemies",mods:["Status Effect","Weapon Dmg"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Eclipse Protocol Chest",brand:"Eclipse Protocol",rarity:"gear-set",talent:"Spread — status effects auto-spread to enemies within 8m",mods:["Status Effect","Armor"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Eclipse Protocol Gloves",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Status Effect","Weapon Dmg"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Eclipse Protocol Holster",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Status Effect","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Eclipse Protocol Kneepads",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Hazard Protection","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Scorpio",type:"Shotgun (Exotic)",rarity:"exotic",drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Shotguns in Manning National Zoo Stronghold on Heroic. Highest confirmed drop rate.",rate:"targeted"},
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Shotguns in Countdown or The Summit (Heroic).",rate:"targeted"}
+    ]},
+    secondary:{name:"FAMAS or any AR",type:"Assault Rifle",rarity:"high-end",drops:[
+      {icon:"&#x1F3B2;",text:"World drop at Heroic difficulty.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Chem Launcher",variant:"Oxidizer",icon:"&#x1F9EA;"},{name:"Firefly",variant:"Blinder",icon:"&#x1F41B;"}],
+  talents:[
+    {name:"Spread (Eclipse Chest, 4pc)",desc:"Status effects auto-transfer to enemies within 8m — entire rooms catch fire off one shot"},
+    {name:"Screaming Eagle (Backpack Named)",desc:"+20% weapon damage against burning/on-fire enemies — proc every shot after Scorpio or Flamethrower"},
+    {name:"Vile (Mask Exotic)",desc:"All status-affected enemies take stacking poison DoT simultaneously — damage stacks fast in groups"},
+    {name:"Firewall Spec Passive",desc:"+25% skill damage while you are affected by a status. Stand in your own fire to proc it continuously."}
+  ],
+  stats:{weaponDmg:62,armor:60,skillTier:2,critChance:20,critDmg:55,armorRegen:28}},
+
+  // ── SURVIVALIST RAID HEALER ───────────────────────────────────
+  {id:13,season:"current",patch:"Y7S3",name:"Survivalist Raid Support",spec:"survivalist",specLabel:"Survivalist",author:"NothingButSkillz",creatorVerified:true,rating:8.5,stars:4,views:7400,saves:445,tags:["Healer","Raid","Heroic","Solo"],difficulty:"Heroic",updated:"1 week ago",
+  summary:"Survivalist support build using Future Initiative + Survivalist spec's grenade support. Incendiary grenades status-tag enemies for Vindictive, buffing the whole team. Great secondary healer for raids.",
+  description:"Survivalist spec's Incendiary Grenades apply burn status to groups — this triggers Eclipse Vindictive talent (+20% damage for allies) on every grenade. Combined with Reviver Hive and Chem Launcher Heal, this build keeps a team alive while contributing meaningful status damage. Future Initiative 4-piece Citadel talent heals allies on kills. The Survivalist spec also gives bonus ammo on kill — extremely useful in drawn-out raid encounters. Seeker Mine Airburst clusters enemies and applies explosive damage, triggering Catharsis Mask for armor repair bursts.",
+  tips:["Incendiary Grenades count as status application — each grenade procs Vindictive +20% team damage buff","Throw grenades on every enemy group for passive Vindictive uptime — this is your main team contribution","Reviver Hive should be placed behind cover near your team, not on the front line","Chem Launcher Heal emergency-revives downed allies with a direct hit — aim at their body","Survivalist spec ammo-on-kill passive means you almost never run out mid-raid"],
+  gear:[
+    {type:"MASK",icon:"&#x1F637;",name:"Future Initiative Mask",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Haste","Armor Regen"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Future Initiative Backpack",brand:"Future Initiative",rarity:"gear-set",talent:"Groundwork — healing out of cover also heals allies in cover nearby",mods:["Skill Tier","Skill Haste"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Future Initiative Chest",brand:"Future Initiative",rarity:"gear-set",talent:"Citadel — kills grant team-wide healing burst",mods:["Skill Damage","Skill Tier"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Future Initiative Gloves",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Damage","Armor"]},
+    {type:"HOLSTER",icon:"&#x1F52B;",name:"Waveform",brand:"Exotic",rarity:"exotic",talent:"Skill bonuses tied to active skill variant — best-in-slot for all skill builds",mods:["Skill Tier","Skill Haste","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Future Initiative Kneepads",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Damage","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Capacitor",type:"Assault Rifle (Exotic)",rarity:"exotic",drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown or The Summit on Heroic.",rate:"targeted"},
+      {icon:"&#x1F3B2;",text:"Exotic Cache from Season Pass rewards track.",rate:"world"}
+    ]},
+    secondary:{name:"Any SMG or AR",type:"Backup weapon",rarity:"high-end",weaponStats:{wtype:"SMG or AR — High-End (backup)",core1:"Weapon class damage [LOCKED]",core2:"SMG: Critical Hit Chance [LOCKED]. AR: Health Damage [LOCKED]",attr3:"Rollable → DMG to Targets Out of Cover",talent:"Any, or roll Preservation: kills repair 2% max armor per second for 10s (ideal for a healer to self-sustain without spending Chem Launcher charges on yourself)",modslots:"Accuracy or Stability — this is a backup weapon on a support build",action:"Do not invest Tinkering resources into this weapon. Get a decent drop and move on. If talent is rollable, Preservation is the best choice.",note:"On a healer support build, the backup weapon is the lowest priority item in your loadout. Preservation talent gives you passive self-healing which lets you spend skill cooldowns on allies instead of yourself."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop — secondary is not the priority for this support build.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Reviver Hive",variant:"Hive",icon:"&#x1F41D;"},{name:"Chem Launcher",variant:"Heal",icon:"&#x1F48A;"}],
+  talents:[
+    {name:"Citadel (Chest, 4pc)",desc:"Kills grant burst heal to nearby allies — passive team healing throughout the mission"},
+    {name:"Groundwork (Backpack)",desc:"Healing out of cover heals allies in cover — good for safe healing positioning"},
+    {name:"Vindictive (via Eclipse pieces — optional)",desc:"Applying status grants +20% ally damage for 5s — combine with Incendiary Grenades for passive uptime"},
+    {name:"Survivalist Spec",desc:"Incendiary Grenade applies burn AoE. Ammo-on-kill passive. +10% status effect damage bonus."}
+  ],
+  stats:{weaponDmg:42,armor:75,skillTier:4,critChance:20,critDmg:40,armorRegen:45}}
+];
+
+var currentSpec='all',activeTags=[],savedBuilds=new Set(),currentTab='builds',collapsed={};
+var newSpecSel='';
+
+function specCol(s){return{demolitionist:'#f97316',sharpshooter:'#60a5fa',survivalist:'#4ade80',technician:'#a78bfa',firewall:'#f87171',gunner:'#fbbf24'}[s]||'#8a9ab5';}
+function starsHTML(n){return Array.from({length:5},function(_,i){return '<div class="star'+(i<n?'':' e')+'"></div>';}).join('');}
+function fmtN(n){return n>=1000?(n/1000).toFixed(1)+'K':n;}
+function showNotif(msg){var el=document.getElementById('notif');el.textContent=msg;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2600);}
+function openOverlay(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function closeOverlay(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+
+function setTab(t){
+  currentTab=t;
+  ['builds','saved','events','creators'].forEach(function(x){
+    var el=document.getElementById('tab-'+x);
+    if(el) el.classList.toggle('active',x===t);
+  });
+  renderMain();
+}
+function setSpec(s,el){
+  currentSpec=s;
+  document.querySelectorAll('.spec-btn').forEach(function(b){b.classList.remove('active');});
+  el.classList.add('active');
+  applyFilters();
+}
+function toggleTag(el,t){
+  el.classList.toggle('active');
+  activeTags=activeTags.includes(t)?activeTags.filter(function(x){return x!==t;}):[...activeTags,t];
+  applyFilters();
+}
+function applyFilters(){if(currentTab==='builds')renderMain();}
+function getFiltered(){
+  var q=document.getElementById('searchInput').value.toLowerCase().trim();
+  return BUILDS.filter(function(b){
+    if(currentSpec!=='all'&&b.spec!==currentSpec) return false;
+    if(q&&!b.name.toLowerCase().includes(q)&&!b.author.toLowerCase().includes(q)&&!b.gear.some(function(g){return g.brand.toLowerCase().includes(q)||g.name.toLowerCase().includes(q);})) return false;
+    if(activeTags.length&&!activeTags.every(function(t){return b.tags.includes(t)||b.difficulty===t;})) return false;
+    return true;
+  });
+}
+function sortBuilds(val,arr){
+  var a=[...arr];
+  if(val==='top') a.sort(function(x,y){return y.rating-x.rating;});
+  else if(val==='new') a.sort(function(x,y){return y.id-x.id;});
+  else if(val==='views') a.sort(function(x,y){return y.views-x.views;});
+  else if(val==='name') a.sort(function(x,y){return x.name.localeCompare(y.name);});
+  return a;
+}
+function updateCounts(builds){
+  ['all','demolitionist','sharpshooter','survivalist','technician','firewall','gunner'].forEach(function(s){
+    var el=document.getElementById('cnt-'+s);
+    if(el) el.textContent=s==='all'?builds.length:builds.filter(function(b){return b.spec===s;}).length;
+  });
+}
+function renderEvWidget(){
+  var el=document.getElementById('evWidget');
+  if(!el) return;
+  el.innerHTML=EVENTS.filter(function(e){return e.status!=='off';}).slice(0,6).map(function(e){
+    return '<div class="ev"><div class="evdot '+e.status+'"></div><div style="flex:1;min-width:0"><div class="evname">'+e.name+'</div><div class="evtime">'+e.time+'</div></div><span class="evbadge '+e.status+'">'+(e.status==='live'?'Live':'Soon')+'</span></div>';
+  }).join('');
+}
+
+function renderMain(){
+  var main=document.getElementById('mainContent');
+  if(currentTab==='saved'){renderSaved(main);return;}
+  if(currentTab==='events'){renderEvents(main);return;}
+  if(currentTab==='creators'){renderCreators(main);return;}
+  var sortVal=document.getElementById('mainSort')?document.getElementById('mainSort').value:'top';
+  var filtered=getFiltered();
+  var sorted=sortBuilds(sortVal,filtered);
+  updateCounts(filtered);
+  var cur=sorted.filter(function(b){return b.season==='current';});
+  var prev=sorted.filter(function(b){return b.season==='previous';});
+  main.innerHTML='<div class="hero"><div class="hgrid"></div><div class="hglow"></div><div class="hero-text"><h1>Build Planner<br><span>The Division 2</span></h1><p>Accurate, creator-verified builds for Year 7 Season 3. Current meta with real drop locations.</p></div><div class="hstats"><div><div class="hs-num">'+BUILDS.length+'</div><div class="hs-lbl">Builds</div></div><div><div class="hs-num">8</div><div class="hs-lbl">Creators</div></div><div><div class="hs-num">Y7S3</div><div class="hs-lbl">Patch</div></div></div></div>'
+    +'<div style="background:var(--odim);border:1px solid rgba(249,115,22,.3);border-left:3px solid var(--orange);padding:10px 14px;margin-bottom:10px;font-size:12px;color:var(--orange2)"><span style="font-family:\'Share Tech Mono\',monospace;font-size:9px;letter-spacing:2px;color:var(--orange)">LIVE NOW &bull; </span> Assault Global Event &bull; Tech Overdrive (+3 Skill Tiers) &bull; 10th Anniversary &mdash; All active until Mar 13</div>'
+    +'<div style="background:var(--panel);border:1px solid var(--border);padding:9px 14px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px"><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text3);letter-spacing:1px">&#x2713; All 6 specs covered &nbsp;&bull;&nbsp; &#x2713; '+BUILDS.length+' builds total &nbsp;&bull;&nbsp; &#x2713; Creator-verified &nbsp;&bull;&nbsp; &#x1F4C5; Updated Mar 11, 2026</div><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:var(--green);letter-spacing:1px;border:1px solid rgba(74,222,128,.3);padding:2px 7px;background:var(--gdim)">LIVE DATA</div></div>'
+    +'<div class="toolbar"><select class="sort-sel" id="mainSort" onchange="renderMain()"><option value="top">Sort: Highest Rated</option><option value="new">Sort: Newest</option><option value="views">Sort: Most Viewed</option><option value="name">Sort: A&ndash;Z</option></select><span class="rcount">'+filtered.length+' build'+(filtered.length!==1?'s':'')+'</span></div>'
+    +(cur.length>0?'<div class="sg"><div class="sg-head"><div class="sg-title">Current Meta</div><span class="sg-badge cur">Y7S3 &middot; 2026</span><div class="sg-line"></div><span class="sg-cnt">'+cur.length+' builds</span><button class="sg-tog" id="tog-cur" onclick="toggleSeason(\'cur\')">'+(collapsed['cur']?'Show &darr;':'Hide &uarr;')+'</button></div><div class="sg-grid'+(collapsed['cur']?' collapsed':'')+'" id="sg-cur">'+cur.map(buildCard).join('')+'</div></div>':'')
+    +(prev.length>0?'<div class="sg"><div class="sg-head"><div class="sg-title">Still Viable</div><span class="sg-badge old">Y7S1&ndash;S2</span><div class="sg-line"></div><span class="sg-cnt">'+prev.length+' builds</span><button class="sg-tog" id="tog-prev" onclick="toggleSeason(\'prev\')">'+(collapsed['prev']?'Show &darr;':'Hide &uarr;')+'</button></div><div class="sg-grid'+(collapsed['prev']?' collapsed':'')+'" id="sg-prev">'+prev.map(buildCard).join('')+'</div></div>':'')
+    +(filtered.length===0?'<div class="empty"><h3>No Builds Found</h3><p>Adjust your filters or clear search.</p></div>':'');
+}
+
+function toggleSeason(key){
+  collapsed[key]=!collapsed[key];
+  var grid=document.getElementById('sg-'+key);
+  var tog=document.getElementById('tog-'+key);
+  if(grid) grid.classList.toggle('collapsed',collapsed[key]);
+  if(tog) tog.innerHTML=collapsed[key]?'Show &darr;':'Hide &uarr;';
+}
+
+function buildCard(b){
+  var col=specCol(b.spec);
+  var isSaved=savedBuilds.has(b.id);
+  return '<div class="bc" onclick="openBuild('+b.id+')">'
+    +'<div class="bc-head"><div>'
+    +'<div class="bc-spec" style="color:'+col+';border-color:'+col+';background:'+col+'18"><div class="sdot" style="background:'+col+';width:6px;height:6px"></div>'+b.specLabel.toUpperCase()+'<span class="'+(b.season==='current'?'pbadge':'obadge')+'">'+b.patch+'</span></div>'
+    +'<div class="bc-title">'+b.name+'</div>'
+    +'<div class="bc-author">by <span>'+b.author+'</span>'+(b.creatorVerified?'<span class="creator-badge">&#x2713; Creator</span>':'')+'&nbsp;&middot;&nbsp;'+b.updated+'</div>'
+    +'</div><div class="bc-rating"><div class="rnum">'+b.rating+'</div><div class="stars">'+starsHTML(b.stars)+'</div></div></div>'
+    +'<div class="bc-body">'
+    +'<div style="font-size:12px;color:var(--text2);margin-bottom:11px;line-height:1.5">'+b.summary+'</div>'
+    +'<div class="gear-row">'+b.gear.map(function(g){return '<div class="gs"><div class="gs-icon">'+g.icon+'</div><div class="gs-slot">'+g.type+'</div><div class="gs-name '+(g.rarity==='exotic'?'exotic':g.rarity==='named'?'named':'')+'">'+g.brand.substring(0,16)+'</div></div>';}).join('')+'</div>'
+    +'<div class="cs"><div class="cp"><div class="cp-v" style="color:'+col+'">'+b.stats.weaponDmg+'%</div><div class="cp-l">Weapon DMG</div></div><div class="cp"><div class="cp-v" style="color:var(--yellow)">'+b.stats.critChance+'%</div><div class="cp-l">Crit Chance</div></div><div class="cp"><div class="cp-v" style="color:var(--purple)">'+b.stats.skillTier+'</div><div class="cp-l">Skill Tier</div></div></div>'
+    +'<div class="ctags">'+b.tags.map(function(t){return '<span class="ctag">'+t+'</span>';}).join('')+'<span class="ctag">'+b.difficulty+'</span></div>'
+    +'</div>'
+    +'<div class="bc-foot"><div class="bc-meta"><span class="mitem">&#x1F441; '+fmtN(b.views)+'</span><span class="mitem">&#x1F516; '+b.saves+'</span></div>'
+    +'<div class="bc-acts" onclick="event.stopPropagation()"><button class="abt'+(isSaved?' saved':'')+'" onclick="toggleSave('+b.id+',this)">'+(isSaved?'&#x2713; Saved':'Save')+'</button><button class="abt" onclick="openBuild('+b.id+')">View &rarr;</button></div>'
+    +'</div></div>';
+}
+
+function renderSaved(main){
+  var builds=BUILDS.filter(function(b){return savedBuilds.has(b.id);});
+  main.innerHTML='<div style="margin-bottom:20px"><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:28px;font-weight:900;letter-spacing:2px;text-transform:uppercase">Saved Builds</div><div style="font-size:13px;color:var(--text2);margin-top:4px">'+builds.length+' saved</div></div>'
+    +(builds.length===0?'<div class="empty"><h3>Nothing Saved Yet</h3><p>Click Save on any build to bookmark it here.</p></div>'
+    :'<div class="sg-grid">'+builds.map(buildCard).join('')+'</div>');
+}
+
+function renderEvents(main){
+  var live=EVENTS.filter(function(e){return e.status==='live';});
+  var soon=EVENTS.filter(function(e){return e.status==='soon';});
+  main.innerHTML='<div style="margin-bottom:20px"><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:28px;font-weight:900;letter-spacing:2px;text-transform:uppercase">Events &mdash; March 2026</div><div style="font-size:13px;color:var(--text2);margin-top:4px">Year 7 Season 3 &middot; Year 8 Season 1 "Rise Up" starts April 2, 2026</div></div>'
+    +'<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--orange);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:7px">LIVE NOW<div style="flex:1;height:1px;background:var(--border)"></div></div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:24px">'+live.map(function(e){return '<div class="ev-card live"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div class="evdot live"></div><span style="font-family:\'Share Tech Mono\',monospace;font-size:9px;letter-spacing:2px;color:var(--green)">LIVE</span></div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:700">'+e.name+'</div><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text3);margin:4px 0 8px">'+e.time+'</div><div style="font-size:12px;color:var(--text2);line-height:1.5">'+e.desc+'</div></div>';}).join('')+'</div>'
+    +'<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--orange);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:7px">UPCOMING<div style="flex:1;height:1px;background:var(--border)"></div></div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">'+soon.map(function(e){return '<div class="ev-card soon"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div class="evdot soon"></div><span style="font-family:\'Share Tech Mono\',monospace;font-size:9px;letter-spacing:2px;color:var(--yellow)">SOON</span></div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:700">'+e.name+'</div><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text3);margin:4px 0 8px">'+e.time+'</div><div style="font-size:12px;color:var(--text2);line-height:1.5">'+e.desc+'</div></div>';}).join('')+'</div>';
+}
+
+function renderCreators(main){
+  main.innerHTML='<div style="margin-bottom:20px"><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:28px;font-weight:900;letter-spacing:2px;text-transform:uppercase">Content Creators</div><div style="font-size:13px;color:var(--text2);margin-top:4px">The Division 2\'s most trusted build guides and news channels</div></div>'
+    +'<div class="cc-grid">'+CREATORS.map(function(c){return '<div class="cc-card"><div class="cc-av">'+c.av+'</div><div><div style="font-weight:700;font-size:14px">'+c.name+'</div><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--blue);margin-bottom:2px">'+c.platform+' &middot; '+c.handle+'</div><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text3)">'+c.focus+'</div></div></div>';}).join('')+'</div>'
+    +'<div style="margin-top:24px;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--blue);padding:14px;font-size:12px;color:var(--text2);line-height:1.7"><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--blue);letter-spacing:2px;margin-bottom:8px">COMMUNITY RESOURCES</div>Builds on this site are credited to the above creators. For the latest video guides check their YouTube channels. For news and patch notes, follow <strong style="color:var(--text)">@TheDivisionGame</strong> on X. Build sharing community: <strong style="color:var(--text)">r/thedivision</strong> on Reddit.</div>';
+}
+
+function openBuild(id){
+  var b=BUILDS.find(function(x){return x.id===id;});
+  if(!b) return;
+  var col=specCol(b.spec);
+  var isSaved=savedBuilds.has(b.id);
+  function statRow(lbl,val){
+    var isLocked=val&&(val.indexOf('[LOCKED')!==-1||val.indexOf('LOCKED —')!==-1||val.indexOf('LOCKED:')!==-1);
+    var isRoll=val&&(val.indexOf('Rollable')===0||val.indexOf('Roll ')===0||val.indexOf('Reconfigure')===0);
+    var badge=isLocked
+      ?'<span style="font-family:\'Share Tech Mono\',monospace;font-size:7px;padding:1px 5px;background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.35);color:#f87171;margin-left:6px;vertical-align:middle;white-space:nowrap">&#x1F512; LOCKED</span>'
+      :isRoll
+        ?'<span style="font-family:\'Share Tech Mono\',monospace;font-size:7px;padding:1px 5px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);color:var(--green);margin-left:6px;vertical-align:middle;white-space:nowrap">&#x1F504; ROLLABLE</span>'
+        :'';
+    return '<div style="display:grid;grid-template-columns:110px 1fr;gap:6px;align-items:start;padding:5px 0;border-bottom:1px solid var(--border)">'
+      +'<span style="font-family:\'Share Tech Mono\',monospace;font-size:7.5px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;padding-top:2px;line-height:1.3">'+lbl+'</span>'
+      +'<span style="font-size:11px;color:var(--text);line-height:1.5">'+val+badge+'</span>'
+      +'</div>';
+  }
+  function dropW(w){
+    var s=w.weaponStats;
+    var statsBox=s?('<div style="background:var(--bg);border:1px solid var(--border2);border-left:3px solid var(--blue);padding:12px 14px;margin-bottom:10px">'
+      +'<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">&#x1F3AF; ATTRIBUTE &amp; ROLL GUIDE'+(s.wtype?' — '+s.wtype:'')+'</div>'
+      +statRow('CORE 1',s.core1)
+      +statRow('CORE 2',s.core2)
+      +statRow('3RD ATTRIBUTE',s.attr3)
+      +statRow('TALENT',s.talent)
+      +statRow('MOD SLOTS',s.modslots)
+      +'<div style="margin-top:10px;padding:8px 10px;background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.25);font-size:11px;color:var(--orange2);line-height:1.55">'
+      +'<span style="font-family:\'Share Tech Mono\',monospace;font-size:7.5px;letter-spacing:1px;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:3px">&#x25B6; WHAT TO DO</span>'+(s.action||'')
+      +'</div>'
+      +'<div style="margin-top:6px;padding:7px 10px;background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2);font-size:11px;color:var(--blue);line-height:1.55">'
+      +'<span style="font-family:\'Share Tech Mono\',monospace;font-size:7.5px;letter-spacing:1px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:3px">&#x2139; NOTE</span>'+s.note
+      +'</div>'
+      +'</div>'):'' ;
+    return '<div class="wdrop-w"><div class="wdrop-wname">'+w.name+' <span style="font-size:13px;font-weight:400;color:var(--text3)">'+w.type+'</span> '+(w.rarity==='exotic'?'<span style="font-family:\'Share Tech Mono\',monospace;font-size:8px;padding:2px 5px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--gold)">&#x2B50; Exotic</span>':w.rarity==='named'?'<span style="font-family:\'Share Tech Mono\',monospace;font-size:8px;padding:2px 5px;background:var(--bdim);border:1px solid rgba(56,189,248,.3);color:var(--blue)">&#x1F535; Named</span>':'')+'</div>'
+      +statsBox
+      +'<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin:8px 0 6px">DROP LOCATIONS</div>'
+      +w.drops.map(function(d){return '<div class="drop-row"><span>'+d.icon+'</span><span style="flex:1">'+d.text+'</span><span class="drop-badge '+d.rate+'">'+(d.rate==='targeted'?'Targeted':d.rate==='campaign'?'Raid/Mission':'World')+'</span></div>';}).join('')+'</div>';
+  }
+  document.getElementById('detailModal').innerHTML='<div class="mh"><div class="mh-grid"></div><div class="mh-left"><div class="mspec" style="color:'+col+';border-color:'+col+';background:'+col+'18">'+b.specLabel.toUpperCase()+' &middot; '+b.difficulty+' &middot; '+b.patch+'</div><div class="mtitle">'+b.name+'</div><div class="msub">by <span style="color:var(--blue)">'+b.author+'</span>'+(b.creatorVerified?' <span class="creator-badge">&#x2713; Creator Verified</span>':'')+'&nbsp;&middot;&nbsp;Updated '+b.updated+'&nbsp;&middot;&nbsp;'+fmtN(b.views)+' views</div></div><button class="mclose" onclick="closeOverlay(\'detailOverlay\')">&#x2715;</button></div>'
+    +'<div class="mbody"><div>'
+    +'<div class="sec">Overview</div><div class="tips-box" style="margin-bottom:20px">'+b.description+'</div>'
+    +'<div class="sec">Gear &mdash; All 6 Slots</div><div class="gd-grid">'+b.gear.map(function(g){return '<div class="gd"><div class="gd-slot">'+g.icon+' '+g.type+'</div><div class="gd-name '+(g.rarity==='exotic'?'exotic':g.rarity==='named'?'named':'')+'">'+g.name+'</div><div class="gd-brand">'+g.brand+(g.rarity==='exotic'?' &middot; &#x2B50; Exotic':g.rarity==='named'?' &middot; &#x1F535; Named':g.rarity==='gear-set'?' &middot; Gear Set':'')+'</div>'+(g.talent&&g.talent!=='—'?'<div class="gd-talent">&#x25B8; '+g.talent+'</div>':'')+'<div>'+g.mods.map(function(m){return '<div class="gd-mod">'+m+'</div>';}).join('')+'</div></div>';}).join('')+'</div>'
+    +'<div class="sec">Weapon Drop Locations</div><div class="wdrop-box"><div class="wdrop-title">&#x1F50E; Verified Drop Sources</div>'+dropW(b.weapons.primary)+(b.weapons.secondary?dropW(b.weapons.secondary):'')+'</div>'
+    +'<div class="sec">Skills</div><div class="skill-pair">'+b.skills.map(function(s){return '<div class="skill-card"><div class="skill-icon">'+s.icon+'</div><div><div class="skill-name">'+s.name+'</div><div class="skill-var">'+s.variant+'</div></div></div>';}).join('')+'</div>'
+    +'<div class="sec">Key Talents</div><div class="talent-grid">'+b.talents.map(function(t){return '<div class="talent-card"><div class="talent-name">'+t.name+'</div><div class="talent-desc">'+t.desc+'</div></div>';}).join('')+'</div>'
+    +'<div class="sec">Tips</div><div class="tips-box"><ul style="list-style:none;display:flex;flex-direction:column;gap:5px">'+b.tips.map(function(t){return '<li style="color:var(--text2)">&#x25B8; '+t+'</li>';}).join('')+'</ul></div>'
+    +'</div>'
+    +'<div><div class="sec">Stats</div><div class="sbars">'
+    +[{lbl:'Weapon DMG',v:b.stats.weaponDmg,max:100,col:col,d:b.stats.weaponDmg+'%'},{lbl:'Armor',v:b.stats.armor,max:100,col:'#60a5fa',d:b.stats.armor+'%'},{lbl:'Crit Chance',v:b.stats.critChance,max:60,col:'#fbbf24',d:b.stats.critChance+'%'},{lbl:'Crit Damage',v:b.stats.critDmg,max:150,col:'#f87171',d:b.stats.critDmg+'%'},{lbl:'Armor Regen',v:b.stats.armorRegen,max:60,col:'#4ade80',d:b.stats.armorRegen+'%'},{lbl:'Skill Tier',v:b.stats.skillTier,max:6,col:'#a78bfa',d:b.stats.skillTier+' / 6'}].map(function(s){return '<div class="sbar"><div class="sbar-lbl">'+s.lbl+'</div><div class="sbar-track"><div class="sbar-fill" style="width:'+Math.min(100,(s.v/s.max)*100)+'%;background:'+s.col+'"></div></div><div class="sbar-val" style="color:'+s.col+'">'+s.d+'</div></div>';}).join('')
+    +'</div><div class="sec">Tags</div><div class="tags" style="margin-bottom:18px">'+b.tags.map(function(t){return '<span class="tag active" style="pointer-events:none">'+t+'</span>';}).join('')+'</div>'
+    +'<div class="sec">Creator</div><div class="author-card"><div class="author-av">'+b.author[0]+'</div><div><div class="author-name">'+b.author+(b.creatorVerified?' <span class="creator-badge">&#x2713;</span>':'')+'</div><div class="author-sub">Division 2 Content Creator</div></div></div>'
+    +'<div class="sec">Build Info</div><div class="meta-rows">'
+    +'<div class="mrow"><span class="lbl">Season</span><span class="val">'+(b.season==='current'?'Current Meta':'Still Viable')+'</span></div>'
+    +'<div class="mrow"><span class="lbl">Patch</span><span class="val">'+b.patch+'</span></div>'
+    +'<div class="mrow"><span class="lbl">Difficulty</span><span class="val">'+b.difficulty+'</span></div>'
+    +'<div class="mrow"><span class="lbl">Views</span><span class="val">'+b.views.toLocaleString()+'</span></div>'
+    +'<div class="mrow"><span class="lbl">Saves</span><span class="val">'+b.saves+'</span></div>'
+    +'</div></div></div>'
+    +'<div class="mfoot"><button class="btn btn-ghost" onclick="closeOverlay(\'detailOverlay\')">Close</button><button class="btn btn-ghost" onclick="showNotif(\'Link copied!\')">&#x1F4CB; Copy Link</button><button class="btn '+(isSaved?'btn-save':'btn-primary')+'" id="mSaveBtn" onclick="toggleSaveModal('+b.id+')">'+(isSaved?'&#x2713; Saved':'Save Build')+'</button></div>';
+  openOverlay('detailOverlay');
+}
+
+function toggleSave(id,btn){
+  if(savedBuilds.has(id)){savedBuilds.delete(id);btn.textContent='Save';btn.classList.remove('saved');showNotif('Removed.');}
+  else{savedBuilds.add(id);btn.innerHTML='&#x2713; Saved';btn.classList.add('saved');showNotif('Build saved!');}
+  if(currentTab==='saved') renderMain();
+}
+function toggleSaveModal(id){
+  var btn=document.getElementById('mSaveBtn');
+  if(savedBuilds.has(id)){savedBuilds.delete(id);btn.textContent='Save Build';btn.className='btn btn-primary';showNotif('Removed.');}
+  else{savedBuilds.add(id);btn.innerHTML='&#x2713; Saved';btn.className='btn btn-save';showNotif('Saved!');}
+  renderMain();
+}
+function openCreate(){openOverlay('createOverlay');}
+function pickSpec(el,s){
+  newSpecSel=s;
+  document.querySelectorAll('.spec-opt').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+}
+function submitBuild(){
+  var name=document.getElementById('nb-name').value.trim();
+  if(!name){showNotif('Enter a build name!');return;}
+  if(!newSpecSel){showNotif('Select a specialization!');return;}
+  showNotif('"'+name+'" published!');
+  closeOverlay('createOverlay');
+  document.getElementById('nb-name').value='';
+  newSpecSel='';
+  document.querySelectorAll('.spec-opt').forEach(function(b){b.classList.remove('sel');});
+}
+
+renderEvWidget();
+renderMain();
+
+// Mobile helpers
+function openFilterDrawer(){
+  document.getElementById('filterDrawer').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeFilterDrawer(){
+  document.getElementById('filterDrawer').classList.remove('open');
+  document.body.style.overflow='';
+}
+function syncSearch(val){
+  var desk=document.getElementById('searchInput');
+  if(desk) desk.value=val;
+  applyFilters();
+}
+
+// Override setTab to also update mobile nav
+var origSetTab=setTab;
+setTab=function(t){
+  origSetTab(t);
+  ['builds','saved','events','creators'].forEach(function(x){
+    var el=document.getElementById('mob-'+x);
+    if(el) el.classList.toggle('active',x===t);
+  });
+  // Hide filter button on non-builds tabs
+  var fab=document.getElementById('mobFilterBtn');
+  if(fab) fab.style.display=(t==='builds')?'':'none';
+};
+</script>
+</body>
+</html>
