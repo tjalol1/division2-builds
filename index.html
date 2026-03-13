@@ -267,6 +267,10 @@ main{padding:22px;background:var(--bg)}
 .mob-header-live{display:flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--green);letter-spacing:1.5px;border:1px solid rgba(74,222,128,.25);padding:3px 8px;background:rgba(74,222,128,.06)}
 .mob-live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
 
+/* ── Modal Tabs (mobile) ── */
+.modal-tabs{display:none}
+.modal-tab-content{display:block}
+
 /* ── Weapon Attribute Guide ── */
 .attr-box{background:var(--bg);border:1px solid var(--border2);border-left:3px solid var(--blue);padding:12px 14px;margin-bottom:10px;overflow:hidden;word-break:break-word}
 .attr-guide-hdr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
@@ -343,6 +347,21 @@ main{padding:22px;background:var(--bg)}
   .mh{border-radius:0}
   .mbody{padding:14px 14px 40px;grid-template-columns:1fr!important}
   .mfoot{display:none}
+
+  /* Modal tabs on mobile */
+  .modal-tabs{display:flex;overflow-x:auto;gap:0;border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:56px;z-index:9;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex-shrink:0}
+  .modal-tabs::-webkit-scrollbar{display:none}
+  .modal-tab{flex-shrink:0;padding:11px 16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);background:transparent;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;-webkit-tap-highlight-color:transparent;white-space:nowrap}
+  .modal-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+  .modal-tab:active{background:rgba(255,255,255,.04)}
+  .modal-tab-content{display:none;padding:16px 14px 40px}
+  .modal-tab-content.active{display:block}
+  .mbody{padding:0;display:block}
+  .mh{padding:14px 16px}
+  .mtitle{font-size:22px}
+  .msub{font-size:11px;margin-top:3px}
+  .mspec{font-size:8px;padding:3px 6px;margin-bottom:6px}
+  .mclose{display:none}
   .wdrop-box{padding:12px}
   .drop-row{font-size:13px;gap:8px}
   .drop-badge{padding:3px 7px;font-size:8px}
@@ -1310,6 +1329,28 @@ function openBuild(id){
   openOverlay('detailOverlay');
 }
 
+function switchModalTab(idx,btn){
+  document.querySelectorAll('.modal-tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.modal-tab-content').forEach(function(c){c.classList.remove('active');});
+  btn.classList.add('active');
+  var content=document.getElementById('mtab-'+idx);
+  if(content){
+    content.classList.add('active');
+    // Scroll modal to top when switching tabs
+    var modal=document.getElementById('detailModal');
+    if(modal)modal.scrollTop=0;
+    // Re-trigger stat bar animation on Stats tab
+    if(idx===3){
+      requestAnimationFrame(function(){
+        setTimeout(function(){
+          content.querySelectorAll('.sbar-fill[data-target]').forEach(function(el){
+            el.style.width=el.getAttribute('data-target')+'%';
+          });
+        },80);
+      });
+    }
+  }
+}
 function toggleSave(id,btn){
   if(savedBuilds.has(id)){savedBuilds.delete(id);btn.textContent='Save';btn.classList.remove('saved');showNotif('Removed.');}
   else{savedBuilds.add(id);btn.innerHTML='&#x2713; Saved';btn.classList.add('saved');showNotif('Build saved!');}
