@@ -234,17 +234,18 @@ main{padding:22px;background:var(--bg)}
 /* MOBILE BOTTOM NAV */
 .mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;padding-bottom:env(safe-area-inset-bottom,0px)}
 .mob-nav::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(249,115,22,.5),transparent)}
-.mob-nav-items{display:flex;height:100%;padding:0 6px}
-.mob-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:color .2s,transform .15s;padding:0;-webkit-tap-highlight-color:transparent;position:relative}
+.mob-nav-items{display:flex;height:100%;padding:0}
+.mob-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:color .2s,transform .15s;padding:0 4px;-webkit-tap-highlight-color:transparent;position:relative;min-width:0}
 .mob-nav-item:active{transform:scale(.92)}
 .mob-nav-item.active{color:var(--orange)}
 .mob-nav-item.active .mob-nav-pip{opacity:1;transform:scaleX(1)}
 .mob-nav-pip{position:absolute;top:6px;width:16px;height:2px;background:var(--orange);border-radius:1px;opacity:0;transform:scaleX(0);transition:opacity .2s,transform .25s}
 .mob-nav-item svg{width:19px;height:19px;transition:stroke .2s}
 .mob-nav-lbl{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
-.mob-nav-create{background:var(--orange)!important;color:#000!important;border-radius:50%;width:42px!important;height:42px!important;flex:none!important;margin:auto 10px;box-shadow:0 0 20px rgba(249,115,22,.4);transition:transform .15s,box-shadow .2s!important;display:flex!important;align-items:center!important;justify-content:center!important}
-.mob-nav-create:active{transform:scale(.88)!important}
-.mob-nav-create svg{width:20px;height:20px;stroke-width:2.5}
+.mob-nav-create{display:none}
+.mob-fab{display:none;position:fixed;right:18px;bottom:76px;width:50px;height:50px;background:var(--orange);color:#000;border:none;border-radius:50%;cursor:pointer;z-index:300;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(249,115,22,.5);transition:transform .15s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+.mob-fab:active{transform:scale(.88);box-shadow:0 2px 10px rgba(249,115,22,.3)}
+.mob-fab svg{width:22px;height:22px;stroke:#000}
 /* MOBILE FILTER DRAWER */
 .mob-filter-btn{display:none;position:fixed;bottom:70px;right:16px;width:46px;height:46px;background:var(--orange);border:none;cursor:pointer;z-index:250;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(249,115,22,.4)}
 .mob-filter-btn svg{width:20px;height:20px;color:#000}
@@ -362,7 +363,8 @@ main{padding:22px;background:var(--bg)}
   .mh{padding:14px 16px}
   .mtitle{font-size:22px}
   .msub{font-size:11px;margin-top:3px}
-  .mspec{font-size:8px;padding:3px 6px;margin-bottom:6px}
+  .mspec{font-size:8px;padding:3px 8px;margin-bottom:8px;white-space:normal;word-break:break-word;max-width:100%}
+  .mh-left{padding:4px 0 6px;min-width:0;flex:1}
   .mclose{display:none}
   .wdrop-box{padding:12px}
   .drop-row{font-size:13px;gap:8px}
@@ -372,9 +374,10 @@ main{padding:22px;background:var(--bg)}
   .author-av{width:40px;height:40px}
   .notif{bottom:70px;right:12px;left:12px;text-align:center}
   .mob-nav{display:flex;height:64px;background:rgba(14,17,23,.99);border-top:1px solid rgba(249,115,22,.25)}
+  .mob-nav-item{flex:1}
   .mob-nav-item svg{width:22px;height:22px}
   .mob-nav-lbl{font-size:8px;letter-spacing:1px}
-  .mob-nav-create{width:46px!important;height:46px!important}
+  .mob-fab{display:flex}
   .mob-header{display:flex}
   .mob-filter-btn{display:flex}
   .f2{grid-template-columns:1fr}
@@ -482,11 +485,12 @@ main{padding:22px;background:var(--bg)}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       <span class="mob-nav-lbl">Creators</span>
     </button>
-    <button class="mob-nav-item mob-nav-create" onclick="openCreate()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    </button>
   </div>
 </nav>
+<!-- Floating Action Button — Create Build -->
+<button class="mob-fab" onclick="openCreate()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+</button>
 
 <!-- Mobile filter fab -->
 <button class="mob-filter-btn" id="mobFilterBtn" onclick="openFilterDrawer()">
@@ -1419,8 +1423,8 @@ setTab=function(t){
 if('serviceWorker' in navigator){
   window.addEventListener('load', function(){
     navigator.serviceWorker.register('sw.js')
-      .then(function(reg){ console.log('SW registered'); })
-      .catch(function(err){ console.log('SW failed:', err); });
+      .then(function(reg){ /* SW registered */ })
+      .catch(function(){ /* SW not supported on this domain */ });
   });
 }
 </script>
