@@ -281,9 +281,10 @@ main{padding:22px;background:var(--bg)}
   .skill-pair{grid-template-columns:1fr 1fr}
   .mtitle{font-size:24px}
   .mfoot{padding:12px 14px}
-  .modal{max-width:100%;margin:0;border-left:none;border-right:none;border-bottom:none;border-radius:16px 16px 0 0}
-  .overlay{padding:0;align-items:flex-end}
+  .modal{max-width:100%;margin:0;border-left:none;border-right:none;border-bottom:none;border-radius:16px 16px 0 0;max-height:92vh;display:flex;flex-direction:column;overflow:hidden}
+  .overlay{padding:0;align-items:flex-end;overflow:hidden}
   .overlay.open .modal{transform:translateY(0)}
+  #detailModal{overflow-y:auto;-webkit-overflow-scrolling:touch}
   .mob-back-bar{display:flex;align-items:center;gap:12px;padding:12px 16px 10px;border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:10;border-radius:16px 16px 0 0}
   .mob-drag-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 0;position:absolute;top:8px;left:50%;transform:translateX(-50%)}
   .mob-back-btn{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--text2);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:6px 10px 6px 4px;-webkit-tap-highlight-color:transparent}
@@ -291,7 +292,7 @@ main{padding:22px;background:var(--bg)}
   .mob-back-btn:active{color:var(--orange)}
   .mob-back-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
   .mh{border-radius:0}
-  .mbody{padding:14px;grid-template-columns:1fr!important}
+  .mbody{padding:14px 14px 40px;grid-template-columns:1fr!important}
   .mfoot{display:none}
   .notif{bottom:70px;right:12px;left:12px;text-align:center}
   .mob-nav{display:flex;height:60px;background:#08090c;border-top:1px solid rgba(249,115,22,.25)}
@@ -950,7 +951,10 @@ function fmtN(n){return n>=1000?(n/1000).toFixed(1)+'K':n;}
 function showNotif(msg){var el=document.getElementById('notif');el.textContent=msg;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2600);}
 function openOverlay(id){
   document.getElementById(id).classList.add('open');
-  document.body.style.overflow='hidden';
+  // On mobile, let the modal scroll itself; on desktop lock body
+  if(window.innerWidth>760){
+    document.body.style.overflow='hidden';
+  }
 }
 function closeOverlay(id){
   document.getElementById(id).classList.remove('open');
