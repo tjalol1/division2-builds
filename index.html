@@ -145,7 +145,7 @@ main{padding:22px;background:var(--bg)}
 .empty p{color:var(--text3);font-size:12px;margin-top:6px}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:300;display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(5px)}
 .overlay.open{opacity:1;pointer-events:all}
-.modal{background:var(--bg2);border:1px solid var(--border);width:100%;max-width:960px;margin:auto;position:relative;transform:translateY(22px);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+.modal{background:var(--bg2);border:1px solid var(--border);width:100%;max-width:960px;margin:auto;position:relative;transform:translateY(22px);transition:transform .25s cubic-bezier(.4,0,.2,1);overflow-x:hidden}
 .overlay.open .modal{transform:translateY(0)}
 
 /* Mobile back bar */
@@ -267,6 +267,22 @@ main{padding:22px;background:var(--bg)}
 .mob-header-live{display:flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--green);letter-spacing:1.5px;border:1px solid rgba(74,222,128,.25);padding:3px 8px;background:rgba(74,222,128,.06)}
 .mob-live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
 
+/* ── Weapon Attribute Guide ── */
+.attr-box{background:var(--bg);border:1px solid var(--border2);border-left:3px solid var(--blue);padding:12px 14px;margin-bottom:10px;overflow:hidden;word-break:break-word}
+.attr-guide-hdr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.attr-wtype{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text3);letter-spacing:1px;margin-bottom:10px;line-height:1.4}
+.stat-row{display:flex;flex-direction:column;gap:2px;padding:6px 0;border-bottom:1px solid var(--border)}
+.stat-row:last-of-type{border-bottom:none}
+.stat-lbl{font-family:'Share Tech Mono',monospace;font-size:7.5px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;line-height:1.3}
+.stat-val{font-size:12px;color:var(--text);line-height:1.5;word-break:break-word}
+.attr-badge{font-family:'Share Tech Mono',monospace;font-size:7px;padding:1px 5px;vertical-align:middle;white-space:nowrap;border-radius:2px;margin-left:5px;display:inline-block}
+.attr-badge.locked{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.35);color:#f87171}
+.attr-badge.rollable{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);color:var(--green)}
+.attr-todo{margin-top:10px;padding:10px 12px;background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.25);font-size:12px;color:var(--orange2);line-height:1.6;word-break:break-word}
+.attr-todo-lbl{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1px;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px}
+.attr-note{margin-top:6px;padding:10px 12px;background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2);font-size:12px;color:var(--blue);line-height:1.6;word-break:break-word}
+.attr-note-lbl{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px}
+
 @media(max-width:760px){
   nav{display:none}
   .layout{grid-template-columns:1fr}
@@ -367,8 +383,8 @@ main{padding:22px;background:var(--bg)}
   .hero-text h1{font-size:24px}
   .hstats{gap:14px}
   .hs-num{font-size:22px}
-  .gd-grid{display:flex;overflow-x:auto;gap:8px;padding-bottom:6px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
-  .gd{min-width:140px;flex-shrink:0;scroll-snap-align:start}
+  .gd-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .gd{min-width:0;width:100%}
   .bc-title{font-size:18px}
   .bc-spec{font-size:8px;padding:2px 5px}
   .rnum{font-size:22px}
@@ -1225,7 +1241,7 @@ function openBuild(id){
   }
   function dropW(w){
     var s=w.weaponStats;
-    var statsBox=s?('<div style="background:var(--bg);border:1px solid var(--border2);border-left:3px solid var(--blue);padding:12px 14px;margin-bottom:10px">'
+    var statsBox=s?('<div class="attr-box">'
       +'<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">&#x1F3AF; ATTRIBUTE &amp; ROLL GUIDE'+(s.wtype?' — '+s.wtype:'')+'</div>'
       +statRow('CORE 1',s.core1)
       +statRow('CORE 2',s.core2)
