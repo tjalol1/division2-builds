@@ -1053,6 +1053,249 @@ var BUILDS=[
     {name:"Survivalist Spec",desc:"Incendiary Grenade applies burn AoE. Ammo-on-kill passive. +10% status effect damage bonus."}
   ],
   stats:{weaponDmg:42,armor:75,skillTier:4,critChance:20,critDmg:40,armorRegen:45}}
+
+  // ── REFACTOR FORCE MULTIPLIER (Y7S3 NEW SET) ──────────────────
+  ,{id:14,season:"current",patch:"Y7S3",name:"Refactor Force Multiplier",spec:"technician",specLabel:"Technician",author:"NothingButSkillz",creatorVerified:true,rating:9.3,stars:5,views:31200,saves:2100,tags:["DPS","Skill","Solo","Heroic","Legendary","New"],difficulty:"Legendary",updated:"1 week ago",
+  summary:"Brand new Y7S3 gear set — Refactor provides incredible damage output AND survivability. Arguably the best all-around build in the current meta. Works solo and in groups.",
+  description:"Refactor is the new Y7S3 gear set and is the most versatile build in the current meta. The 4-piece bonus triggers when you shoot enemies within 5m of your skills, dealing 100% bonus damage. With Kinetic Momentum chest talent, your skills also boost your weapon damage by 15%. The loop: deploy Striker Drone + Assault Turret, position near them, and every shot becomes +115% damage total. Technician spec grants +1 Skill Tier passively which helps reach ST6. Best build for players who want top-tier results without needing perfect gear.",
+  tips:["Refactor 4pc: shoot enemies within 5m of your skills for +100% bonus damage — always fight near your deployed skills","Kinetic Momentum chest: +15% weapon damage while skills are active — always have skills deployed","Technician passive gives +1 Skill Tier — easier to hit ST6 without perfect gear","Striker Drone + Assault Turret = two skills always active, constant Refactor bonus","Unlike pure skill builds, this is a hybrid — shoot constantly, skills are damage multipliers not replacements"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Refactor Mask",brand:"Refactor",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Chance"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Refactor Backpack",brand:"Refactor",rarity:"gear-set",talent:"Tech Support — skill kills boost total skill damage +25% for 20s",mods:["Skill Damage","Weapon Dmg"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Refactor Chest",brand:"Refactor",rarity:"gear-set",talent:"Kinetic Momentum — +15% weapon damage while skills are active",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Refactor Gloves",brand:"Refactor",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Wyvern Wear Holster",brand:"Wyvern Wear",rarity:"high-end",talent:"—",mods:["Skill Damage","Weapon Dmg"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Hana-U Kneepads",brand:"Hana-U Corporation",rarity:"high-end",talent:"—",mods:["Skill Haste","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"St. Elmo's Engine",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED — exotic]",core2:"Health Damage [LOCKED — exotic]",attr3:"Reconfigure at Crafting Station → DMG to Targets Out of Cover",talent:"LOCKED: Actum Est — every 100 hits loads shock ammo for next mag",modslots:"Magazine: Extra Rounds. Muzzle/Optic: Critical Hit Damage",action:"Reconfigure 3rd attribute to DMG Out of Cover. Optimize Core1.",note:"Shock from Actum Est pairs perfectly with Refactor — groups enemies, allows skill damage combo."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown (Heroic). Highest rate.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache from Season Pass or Exotic Components craft.",rate:"world"}
+    ]},
+    secondary:{name:"Capacitor or any AR",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic / High-End backup",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Reconfigure → DMG to Targets Out of Cover",talent:"Any rollable talent",modslots:"Magazine: Extra Rounds.",action:"Use as backup only. Prioritize primary.",note:"Refactor shines with St. Elmo's as primary. Backup is secondary priority."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop AR at Heroic difficulty.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Striker Drone",icon:"&#x1F916;"},{name:"Assault Turret",variant:"Assault Turret",icon:"&#x1F52B;"}],
+  talents:[
+    {name:"Refactor 4pc",desc:"Shooting enemies within 5m of your deployed skills deals +100% bonus damage — the core loop of this build"},
+    {name:"Kinetic Momentum (Chest)",desc:"+15% weapon damage while skills are active — combined with 4pc = +115% total damage bonus"},
+    {name:"Tech Support (Backpack)",desc:"Skill kills give +25% total skill damage for 20s — keeps the damage loop going as skills kill"},
+    {name:"Technician Spec",desc:"+1 passive Skill Tier, Turret Drone signature. Easier to hit ST6 without perfect gear rolls"}
+  ],
+  stats:{weaponDmg:88,armor:60,skillTier:5,critChance:55,critDmg:95,armorRegen:25}}
+
+  // ── RIGGER SKILL BUILD ────────────────────────────────────────
+  ,{id:15,season:"current",patch:"Y7S3",name:"Rigger Full Skill Build",spec:"technician",specLabel:"Technician",author:"NothingButSkillz",creatorVerified:true,rating:8.9,stars:4,views:24500,saves:1680,tags:["Skill","Solo","Heroic","Safe"],difficulty:"Heroic",updated:"5 days ago",
+  summary:"92% skill uptime — your turret and drone do 85% of the total damage. You stay in cover and direct traffic. Best build for players who prefer tactical play over run-and-gun.",
+  description:"Rigger is the definitive full skill build in 2026. The 4-piece bonus creates a self-sustaining loop: skill kills reduce skill cooldowns and repair your skills. With Kinetic Momentum chest and Tech Support backpack, skill damage scales exponentially. In coordinated solo play, Rigger clears Heroic content with the player taking less than 25% of incoming damage — skills draw 60-70% of enemy aggro. Best setup: 4pc Rigger + Wyvern Wear + Hana-U, all ST cores, Turret + Drone combo.",
+  tips:["Rigger 4pc: skill kills repair skills and cut cooldowns — never let skills die, redeploy before they break","Monitor skill health constantly — the #1 failure point is leaving a low-health skill deployed (wastes the loop)","Shoot your weapon between skill casts to proc In-Sync talent: +35% skill damage for 8s","All 6 cores MUST be Skill Tier — Technician passive gets you to ST6 with 5 yellow cores","Wyvern Wear + Hana-U brand bonuses for Skill Damage and Skill Haste are mandatory for max uptime"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Rigger Mask",brand:"Rigger",rarity:"gear-set",talent:"—",mods:["Skill Tier","Skill Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Rigger Backpack",brand:"Rigger",rarity:"gear-set",talent:"Tech Support — skill kills +25% total skill damage for 20s",mods:["Skill Damage","Skill Haste"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Rigger Chest",brand:"Rigger",rarity:"gear-set",talent:"Kinetic Momentum — +15% weapon damage while skills active",mods:["Skill Damage","Armor"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Rigger Gloves",brand:"Rigger",rarity:"gear-set",talent:"—",mods:["Skill Tier","Skill Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Wyvern Wear Holster",brand:"Wyvern Wear",rarity:"high-end",talent:"—",mods:["Skill Damage","Skill Tier"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Hana-U Kneepads",brand:"Hana-U Corporation",rarity:"high-end",talent:"—",mods:["Skill Haste","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Capacitor",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED — exotic]",core2:"Health Damage [LOCKED — exotic]",attr3:"Reconfigure → Skill Haste (reduces skill cooldowns)",talent:"LOCKED: Overcharge — weapon damage adds charges to active skill",modslots:"Magazine: Skill Haste. Optic/Muzzle: Skill Haste",action:"Reconfigure 3rd attribute to Skill Haste. All mod slots: Skill Haste. Fire between skill casts to charge Overcharge.",note:"Capacitor is a skill charger, not a damage weapon on this build. Never invest mod slots in weapon damage here."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown or Summit (Heroic).",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache — Season Pass reward track.",rate:"world"}
+    ]},
+    secondary:{name:"Any pistol with Skill Tier mod",type:"Pistol",rarity:"high-end",weaponStats:{wtype:"Pistol — any High-End",core1:"Pistol Damage [irrelevant on this build]",core2:"Varies [irrelevant]",attr3:"Irrelevant — don't Tinker",talent:"Preservation (kills: +2% armor regen/s for 10s) if available",modslots:"MANDATORY: Skill Tier mod to reach ST6",action:"Equip any pistol. Slot Skill Tier mod. Never invest resources here.",note:"This slot exists only to push you to Skill Tier 6 via the mod slot. Nothing else matters on this weapon."},drops:[
+      {icon:"&#x1F3B2;",text:"Any pistol world drop. Craft cheapest available if needed.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Assault Turret",variant:"Assault Turret",icon:"&#x1F52B;"},{name:"Striker Drone",variant:"Striker Drone",icon:"&#x1F916;"}],
+  talents:[
+    {name:"Rigger 4pc Loop",desc:"Skill kills reduce cooldowns and repair skills — self-sustaining deployment cycle"},
+    {name:"In-Sync (backpack talent option)",desc:"Shooting while skills are active: +35% skill damage for 8s — always shoot between deployments"},
+    {name:"Tech Support (Backpack)",desc:"+25% total skill damage for 20s on skill kill — massive damage amp on trash-heavy content"},
+    {name:"Overcharge (Capacitor)",desc:"Weapon hits charge your active skill — fire constantly to accelerate skill redeployment"}
+  ],
+  stats:{weaponDmg:30,armor:65,skillTier:6,critChance:15,critDmg:30,armorRegen:35}}
+
+  // ── PICARO'S MEMENTO PFE LEGENDARY ───────────────────────────
+  ,{id:16,season:"current",patch:"Y7S3",name:"Picaro's Memento Legendary",spec:"gunner",specLabel:"Gunner",author:"RogueGold",creatorVerified:true,rating:9.0,stars:5,views:19800,saves:1420,tags:["DPS","Tank","Legendary","PFE","Solo"],difficulty:"Legendary",updated:"3 days ago",
+  summary:"The go-to Legendary solo build in 2026. Memento backpack scales armor on kills, PFE mods absorb elite damage. Can face-tank Legendary content that would kill most builds instantly.",
+  description:"Protection from Elites (PFE) builds use Improvised crafted gear mods to stack up to 50%+ damage reduction from Elite enemies — exactly the enemies that kill you in Legendary content. Picaro's Holster (named exotic) gives +5% weapon damage per kill stacking up to 20%, while Memento backpack gives stacking armor on kills up to 50% bonus armor. Combined result: you become harder to kill as the fight goes on. Gunner spec passively provides damage reduction and LMG handling bonuses. Chill Out Mask (seasonal Brooklyn exotic, 2x mod slots) is best-in-slot if you own it.",
+  tips:["PFE mod priority: stack Protection from Elites in every mod slot — reduces incoming damage from all Named/Elite enemies","Memento armor stacking: kill enemies fast to keep armor bonus active, it decays over time","Picaro's Holster: +5% weapon damage per kill, max 20 stacks — maintain kill momentum","Gunner passive: damage reduction while crouching/in cover — always fight from cover","Chill Out Mask (Brooklyn exclusive): 2x mod slots instead of 1 — double PFE mod value"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Chill Out Mask (or any Improvised)",brand:"Exotic / Improvised",rarity:"exotic",talent:"Chill Out — 2x gear mod slots (best-in-slot if owned)",mods:["PFE Mod","PFE Mod"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Memento",brand:"Exotic",rarity:"exotic",talent:"Momento — kills grant stacking armor bonus up to +50% max armor",mods:["PFE Mod","Weapon Dmg"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Improvised Chest",brand:"Crafted",rarity:"high-end",talent:"Shielded Vigilance — +20% weapon damage for 4s after entering cover",mods:["PFE Mod","Weapon Dmg"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Improvised Gloves",brand:"Crafted",rarity:"high-end",talent:"—",mods:["Weapon Dmg","Crit Chance"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Picaro's Holster",brand:"Exotic",rarity:"exotic",talent:"Picaro's — +5% weapon damage per kill, max 20 stacks (+20% total)",mods:["PFE Mod"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Improvised Kneepads",brand:"Crafted",rarity:"high-end",talent:"—",mods:["PFE Mod","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Dark Winter",type:"SMG (Named Exotic)",rarity:"exotic",weaponStats:{wtype:"SMG — Named Exotic",core1:"SMG Damage [LOCKED]",core2:"Critical Hit Chance [LOCKED — all SMGs]",attr3:"Reconfigure → DMG to Targets Out of Cover",talent:"LOCKED: Dark Winter — on mag reload, sends out a cryo pulse that freezes nearby enemies",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage. Optic: Critical Hit Chance",action:"Reconfigure 3rd attribute to DMG Out of Cover. Use reload proactively to proc cryo freeze on groups before engaging.",note:"Dark Winter's cryo freeze on reload is a free CC every mag. Time reloads in cover before pushing to freeze the room."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: SMGs in Roosevelt Island Stronghold on Heroic+.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache from Season Pass or Exotic Components.",rate:"world"}
+    ]},
+    secondary:{name:"GR9 LMG or M60",type:"Light Machine Gun",rarity:"high-end",weaponStats:{wtype:"Light Machine Gun — High-End",core1:"LMG Damage [LOCKED]",core2:"DMG Out of Cover [LOCKED — all LMGs]",attr3:"Rollable → Critical Hit Damage",talent:"Rollable → Frenzy: reload grants +25% fire rate and weapon damage for 10s",modslots:"Magazine: Extra Rounds or Critical Hit Damage. Muzzle: Critical Hit Damage",action:"Roll Frenzy + Critical Hit Damage as 3rd attribute.",note:"LMG Core2 DMG Out of Cover is always locked in. Roll 3rd attribute for Critical Hit Damage."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop LMGs at Heroic difficulty.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"},{name:"Chem Launcher",variant:"Oxidizer",icon:"&#x1F9EA;"}],
+  talents:[
+    {name:"Memento Armor Stacking",desc:"Each kill adds armor bonus up to +50% max armor — the harder you push, the tankier you get"},
+    {name:"Picaro's Kill Stacking",desc:"+5% weapon damage per kill up to 20 stacks (+20% total) — maintain aggression to keep stacks"},
+    {name:"Shielded Vigilance (Chest)",desc:"+20% weapon damage for 4s after entering cover — peak from cover, shoot, duck back"},
+    {name:"PFE Mods",desc:"Stack Protection from Elites across all mod slots — reduces damage from Named/Elite enemies by 50%+"}
+  ],
+  stats:{weaponDmg:82,armor:80,skillTier:2,critChance:50,critDmg:90,armorRegen:40}}
+
+  // ── HEARTBREAKER PvE LMG ──────────────────────────────────────
+  ,{id:17,season:"current",patch:"Y7S3",name:"Heartbreaker LMG DPS",spec:"gunner",specLabel:"Gunner",author:"Kamikazevondoom",creatorVerified:true,rating:8.7,stars:4,views:16300,saves:1050,tags:["DPS","LMG","Group","Heroic"],difficulty:"Heroic",updated:"1 week ago",
+  summary:"Heartbreaker gear set synergises perfectly with LMGs — 4pc bonus applies weapon damage and armor bonus based on your weapon damage. Iron Lung exotic LMG adds sustained pressure.",
+  description:"Heartbreaker 4-piece: shooting an enemy marks them. When a marked enemy dies, you receive stacking weapon damage and armor. Each ally/skill that contributed to the kill grants an additional stack. Max 35 stacks at +3% weapon damage and +2% crit damage each = +105% weapon damage at full stacks. Backpack talent (One for All) boosts stack bonus from 3% to 5% weapon damage. Iron Lung LMG paired with Gunner spec keeps you locked in sustained fire. Best in group content where kills happen fast and stacks accumulate quickly.",
+  tips:["Heartbreaker stacks: marks enemies on hit, each kill by any source adds stacks — group play maxes stacks in seconds","One for All backpack: boosts stack damage from 3% to 5% per kill — mandatory for max output","Iron Lung LMG: mix red and blue cores for damage + survivability balance","Stacks decay every 10 seconds — keep shooting, never stop your kill chain","Gunner spec: passive damage reduction while crouching, LMG damage bonus, fastest reload animation"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Heartbreaker Mask",brand:"Heartbreaker",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Chance"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Heartbreaker Backpack",brand:"Heartbreaker",rarity:"gear-set",talent:"One for All — stack bonus from 3% to 5% weapon damage per kill",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Heartbreaker Chest",brand:"Heartbreaker",rarity:"gear-set",talent:"All for One — increases max marks from 4 to 8",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Heartbreaker Gloves",brand:"Heartbreaker",rarity:"gear-set",talent:"—",mods:["LMG Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Petrov Defense Holster",brand:"Petrov Defense",rarity:"high-end",talent:"—",mods:["Weapon Dmg","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Petrov Defense Kneepads",brand:"Petrov Defense",rarity:"high-end",talent:"—",mods:["Armor Regen","Crit Chance"]}
+  ],
+  weapons:{
+    primary:{name:"Iron Lung",type:"LMG (Exotic)",rarity:"exotic",weaponStats:{wtype:"Light Machine Gun — Exotic",core1:"LMG Damage [LOCKED — exotic]",core2:"DMG to Targets Out of Cover [LOCKED — all LMGs]",attr3:"Reconfigure → Critical Hit Damage",talent:"LOCKED: Iron Lung — sustained fire builds stacks increasing damage and armor repair",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage. Underbarrel: Stability",action:"Reconfigure 3rd attribute to Critical Hit Damage. LMG Core2 Out of Cover is already locked — don't reconfigure to it. Shoot continuously to build Iron Lung stacks.",note:"Iron Lung's talent rewards sustained fire — never release the trigger mid-combat. Stack Critical Hit Damage in mods since Out of Cover is already Core2."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: LMGs in Grand Washington Hotel on Heroic.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache from Season Rewards or Exotic Components.",rate:"world"}
+    ]},
+    secondary:{name:"St. Elmo's Engine",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic (backup)",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Reconfigure → DMG Out of Cover",talent:"LOCKED: Actum Est — shock rounds every 100 hits",modslots:"Magazine: Extra Rounds.",action:"Standard St. Elmo's setup. Secondary usage only — switch when reloading Iron Lung.",note:"Keep Iron Lung as primary. St. Elmo's is a backup for shock procs when swapping mags."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown (Heroic).",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Striker Drone",icon:"&#x1F916;"},{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"}],
+  talents:[
+    {name:"Heartbreaker 4pc Stack Loop",desc:"Each kill by you, allies, or skills adds stacks of +5% weapon damage (One for All) — max 35 stacks = +175% total"},
+    {name:"All for One (Chest)",desc:"Increases max marks from 4 to 8 enemies simultaneously — more marks = more potential stacks per kill"},
+    {name:"Iron Lung Sustained Fire",desc:"Continuous fire builds Iron Lung stacks for increasing damage and armor repair — never stop shooting"},
+    {name:"Gunner Spec Passives",desc:"Damage reduction crouching, +10% LMG damage, fastest reload speed in game for LMGs"}
+  ],
+  stats:{weaponDmg:92,armor:65,skillTier:1,critChance:55,critDmg:100,armorRegen:30}}
+
+  // ── BIGHORN STRIKER PvP ───────────────────────────────────────
+  ,{id:18,season:"current",patch:"Y7S3",name:"Bighorn Striker PvP",spec:"demolitionist",specLabel:"Demolitionist",author:"MattGoesBuck",creatorVerified:true,rating:8.5,stars:4,views:12100,saves:780,tags:["PvP","DPS","Dark Zone","Conflict"],difficulty:"Heroic",updated:"2 weeks ago",
+  summary:"Relentless pressure PvP build. Bighorn exotic rifle with Striker gear set pushes fights hard. Semi-auto headshots with Striker stacks = explosive burst damage that melts armored players.",
+  description:"Bighorn is an exotic assault rifle that fires in semi-auto mode with massive headshot multipliers. Combined with Striker's Gamble stack mechanic (+0.65% weapon damage per hit up to 100 stacks = +65% total), landing headshots becomes devastating. In PvP, Striker stacks persist through encounters — entering a fight at 100 stacks means every shot is already amplified. Demolitionist spec provides explosive damage and grenade utility for PvP area denial. Best performance in 1v1 Conflict and Dark Zone roaming.",
+  tips:["Build Striker stacks on NPCs before entering PvP — walk in at 100 stacks for maximum damage","Bighorn semi-auto: aim for headshots exclusively — every miss resets your momentum","Demolitionist grenades: use for zone control and forcing enemy movement in Conflict","Risk Management backpack: stacks scale to +1% per hit — prioritize getting this piece first","In Dark Zone: engage at distance, Bighorn headshot range is your advantage"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Striker Mask",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Chance"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Striker Backpack",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Risk Management — stack bonus +0.65% to +1% per hit",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Striker Chest",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Press the Advantage — cap extends from 100 to 200 stacks",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Striker Gloves",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Grupo Sombra Holster",brand:"Grupo Sombra S.A.",rarity:"high-end",talent:"—",mods:["Weapon Dmg","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Grupo Sombra Kneepads",brand:"Grupo Sombra S.A.",rarity:"high-end",talent:"—",mods:["Armor","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Bighorn",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED — exotic]",core2:"Health Damage [LOCKED — exotic]",attr3:"Reconfigure → DMG Out of Cover or Headshot Damage",talent:"LOCKED: Bighorn — semi-auto firing mode, massively increased headshot multiplier",modslots:"Magazine: Extra Rounds. Muzzle: Headshot Damage. Optic: Critical Hit Chance",action:"Reconfigure 3rd attribute to Headshot Damage or DMG Out of Cover. Semi-auto mode only — never full-auto.",note:"Bighorn in full-auto mode is a DPS loss. Always fire in semi-auto for the headshot damage multiplier."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Bank HQ Stronghold on Heroic.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache from Season Pass rewards.",rate:"world"}
+    ]},
+    secondary:{name:"Chatterbox SMG",type:"SMG (Exotic)",rarity:"exotic",weaponStats:{wtype:"SMG — Exotic",core1:"SMG Damage [LOCKED]",core2:"Critical Hit Chance [LOCKED — all SMGs]",attr3:"Reconfigure → DMG Out of Cover",talent:"LOCKED: Box Magazine — kills refill portion of magazine",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage",action:"Reconfigure 3rd attribute to DMG Out of Cover. Use for close-range burst when Bighorn is too slow.",note:"Chatterbox fills the close-range gap. In PvP use it when enemies rush you — Bighorn semi-auto is punishing at point blank."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: SMGs in Grand Washington Hotel.",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"},{name:"Chem Launcher",variant:"Oxidizer",icon:"&#x1F9EA;"}],
+  talents:[
+    {name:"Striker Gamble Stacks",desc:"Up to 200 stacks (Press the Advantage chest) at +1% per hit (Risk Management backpack) = +200% weapon damage at max"},
+    {name:"Bighorn Headshot Multiplier",desc:"Semi-auto mode with massive headshot damage bonus — every headshot is a mini execution in PvP"},
+    {name:"Demolitionist Spec",desc:"Grenade for zone control, explosive signature for pushing campers, passive explosive damage bonus"}
+  ],
+  stats:{weaponDmg:95,armor:55,skillTier:1,critChance:55,critDmg:105,armorRegen:20}}
+
+  // ── DARK WINTER MEMENTO FARM BUILD ───────────────────────────
+  ,{id:19,season:"current",patch:"Y7S3",name:"Dark Winter Memento Farmer",spec:"survivalist",specLabel:"Survivalist",author:"Patrick Wolf",creatorVerified:true,rating:8.4,stars:4,views:14700,saves:920,tags:["DPS","Farming","Solo","XP","SHD"],difficulty:"Heroic",updated:"4 days ago",
+  summary:"Best farming build in Y7S3. Dark Winter cryo freeze + Memento armor stacking = clear rooms fast, stay alive, collect loot. Designed for high-volume Control Point and Summit farming.",
+  description:"Dark Winter SMG (exotic named) fires normally but on each magazine reload sends out a cryo pulse that freezes nearby enemies. Combined with Memento backpack (armor stacks on kills) and a full red DPS setup, this build excels at farming speed. The cryo freeze gives you safe windows to push and loot. Survivalist spec grants bonus status effect damage, ammo-on-kill passive (never reload), and incendiary grenade for room-clearing. Best used for Summit floors 90-100, Control Points Level 4, and Bounty farming for SHD/XP.",
+  tips:["Dark Winter cryo: always reload in cover before pushing a new room — cryo lands before you peek","Memento stacks: chain kills without stopping — armor bonus decays if you pause","Survivalist ammo-on-kill passive: effectively unlimited ammo during sustained kills","Summit floors 91-100 on Heroic: best loot-per-hour in the game for this build","Combine with Xmas Gift seasonal modifier if active — double XP on Status Effect kills"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Striker Mask",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Chance"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Memento",brand:"Exotic",rarity:"exotic",talent:"Memento — kills grant stacking armor bonus up to +50% max armor",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Striker Chest",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Press the Advantage — Striker stack cap to 200",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Striker Gloves",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["SMG Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Striker Holster",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Coyote's Kneepads",brand:"Exotic",rarity:"high-end",talent:"—",mods:["Armor Regen","Crit Chance"]}
+  ],
+  weapons:{
+    primary:{name:"Dark Winter",type:"SMG (Named Exotic)",rarity:"exotic",weaponStats:{wtype:"SMG — Named Exotic",core1:"SMG Damage [LOCKED]",core2:"Critical Hit Chance [LOCKED — all SMGs]",attr3:"Reconfigure → DMG Out of Cover",talent:"LOCKED: Dark Winter — reload sends cryo pulse, freezing nearby enemies",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage. Optic: Critical Hit Chance",action:"Reconfigure 3rd attribute to DMG Out of Cover. Reload in cover before every room push to proc cryo freeze.",note:"Dark Winter cryo freeze is your main survival tool — use it proactively every reload, not reactively."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: SMGs in Roosevelt Island Stronghold on Heroic+.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache from Season Pass or Exotic Component crafting.",rate:"world"}
+    ]},
+    secondary:{name:"Ouroboros SMG",type:"SMG (Exotic)",rarity:"exotic",weaponStats:{wtype:"SMG — Exotic",core1:"SMG Damage [LOCKED]",core2:"Critical Hit Chance [LOCKED]",attr3:"Reconfigure → DMG Out of Cover",talent:"LOCKED: Exposed — 10 consecutive hits on same target = escalating damage bonus",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage",action:"Reconfigure → DMG Out of Cover. Use against tanky elites where sustained fire on single target procs Exposed.",note:"Ouroboros rewards focus fire on single targets. Switch to this for named enemies and bosses."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: SMGs in The Summit (Heroic).",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"},{name:"Firefly",variant:"Blinder Firefly",icon:"&#x1F41B;"}],
+  talents:[
+    {name:"Memento Armor Stacking",desc:"Kill chain builds armor up to +50% max — the longer the kill chain, the tankier you become"},
+    {name:"Striker Gamble + Press the Advantage",desc:"200 stack cap with chest, +1% weapon damage per hit up to +200% — farming speed is extreme at max stacks"},
+    {name:"Dark Winter Cryo Freeze",desc:"Reload = cryo pulse freezes nearby enemies — mandatory habit before every room entry"},
+    {name:"Survivalist Spec",desc:"Ammo on kill (never reload mid-fight), incendiary grenade for room clear, +10% status damage"}
+  ],
+  stats:{weaponDmg:90,armor:72,skillTier:1,critChance:60,critDmg:100,armorRegen:35}}
+
+  // ── EMPRESS SKILL HYBRID ──────────────────────────────────────
+  ,{id:20,season:"current",patch:"Y7S3",name:"Empress Skill Hybrid",spec:"technician",specLabel:"Technician",author:"GCROCK",creatorVerified:true,rating:8.6,stars:4,views:11400,saves:760,tags:["Skill","Hybrid","Solo","Heroic","Versatile"],difficulty:"Heroic",updated:"6 days ago",
+  summary:"Empress International brand set remains the meta foundation for skill builds in 2026. 3-piece gives +8% Skill Efficiency boosting ALL skill stats simultaneously. Mix with Refactor or Rigger pieces for ultimate hybrid.",
+  description:"Empress International 3-piece bonus gives +8% Skill Efficiency — a unique stat that simultaneously boosts Skill Damage, Skill Haste, Skill Duration, Skill Health, and Repair Skills. No single other brand or set provides this breadth of skill bonuses from 3 pieces. The hybrid version uses 3pc Empress + 2pc Wyvern Wear (Skill Damage brand bonus) + 1 piece Hana-U (Skill Haste). All 6 cores are Skill Tier. Result: Skill Tier 6 with best-in-class skill uptime. Capacitor rifle charges skills with every hit. Works in every content type.",
+  tips:["Empress 3pc Skill Efficiency boosts every skill stat at once — it's the most efficient 3-piece brand in the game","Run all 6 Skill Tier cores — Technician passive gets you to ST6 with only 5 cores","Capacitor: always fire between skill casts even if not aiming at enemies — charges Overcharge","Wyvern Wear 2pc: +10% Skill Damage brand bonus — mandatory second brand","Seeker Mine Airburst variant: best AoE skill damage for clearing rooms full of trash enemies"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Empress Mask",brand:"Empress International",rarity:"high-end",talent:"—",mods:["Skill Tier","Skill Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Empress Backpack",brand:"Empress International",rarity:"high-end",talent:"In-Sync — +35% skill damage for 8s after shooting while skills active",mods:["Skill Damage","Skill Haste"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Empress Chest",brand:"Empress International",rarity:"high-end",talent:"Kinetic Momentum — +15% weapon damage while skills active",mods:["Skill Damage","Armor"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Wyvern Wear Gloves",brand:"Wyvern Wear",rarity:"high-end",talent:"—",mods:["Skill Damage","Skill Tier"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Wyvern Wear Holster",brand:"Wyvern Wear",rarity:"high-end",talent:"—",mods:["Skill Tier","Skill Haste"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Hana-U Kneepads",brand:"Hana-U Corporation",rarity:"high-end",talent:"—",mods:["Skill Haste","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Capacitor",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Reconfigure → Skill Haste",talent:"LOCKED: Overcharge — weapon hits charge active skill, reducing cooldown",modslots:"Magazine: Skill Haste. All other slots: Skill Haste",action:"All mods: Skill Haste. Fire constantly between skill casts.",note:"On this build Capacitor exists purely to charge skills. Ignore weapon damage entirely."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown or Summit (Heroic).",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache — Season Pass reward or Exotic Components.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"},{name:"Striker Drone",variant:"Striker Drone",icon:"&#x1F916;"}],
+  talents:[
+    {name:"Empress 3pc Skill Efficiency",desc:"+8% Skill Efficiency = boosts Skill Damage, Haste, Duration, Health, and Repair simultaneously — best 3pc in game"},
+    {name:"In-Sync (Backpack)",desc:"+35% skill damage for 8s when shooting while skills are active — fire between every deployment"},
+    {name:"Overcharge (Capacitor)",desc:"Weapon hits reduce skill cooldowns — never stop shooting, even between encounters"},
+    {name:"Technician Passive",desc:"+1 Skill Tier from spec — reach ST6 with only 5 yellow cores instead of 6"}
+  ],
+  stats:{weaponDmg:35,armor:60,skillTier:6,critChance:20,critDmg:35,armorRegen:30}}
+
+  // ── CAPACITOR NinjaBike PvP HYBRID ────────────────────────────
+  ,{id:21,season:"current",patch:"Y7S3",name:"Capacitor NinjaBike PvP",spec:"technician",specLabel:"Technician",author:"Sgt. Greybeard",creatorVerified:true,rating:8.3,stars:4,views:9800,saves:620,tags:["PvP","Hybrid","Conflict","Dark Zone"],difficulty:"Heroic",updated:"1 week ago",
+  summary:"Hybrid PvP build — blends skill tier scaling with raw weapon burst via NinjaBike Messenger Backpack. Versatile and deadly at mid-range. One of the top Conflict builds in Y7S3.",
+  description:"NinjaBike Messenger Backpack is an exotic that removes all set and brand bonuses but allows you to equip any combination of gear without losing weapon damage bonuses. In PvP this means mixing high-roll brand pieces for crit and weapon damage while still accessing skill utility via Technician spec. Capacitor rifle charges your active skill with every hit, giving you consistent skill uptime without needing 6 Skill Tier cores. The result is a hybrid that has 3-4 Skill Tiers (enough for damage-dealing skills) combined with 60% Crit Chance cap and high weapon damage.",
+  tips:["NinjaBike removes all brand/set bonuses — every piece must be chosen for individual stat value, not set bonus","Aim for 60% Crit Chance cap first, then stack Crit Damage — same rule as all crit builds","Capacitor charges skills without needing ST6 — run 3-4 Skill Tier cores for damage-dealing skill variants","In Conflict: skill use is primarily utility (disruption, recon) not pure damage","Dark Zone: the hybrid nature means no obvious counter-build — hard to read and adapt against"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — group-wide crit buff after hitting 4 different enemies",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"NinjaBike Messenger",brand:"Exotic",rarity:"exotic",talent:"NinjaBike — removes brand/set bonuses, enables free gear mixing",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Providence Defense Chest",brand:"Providence Defense",rarity:"high-end",talent:"Glass Cannon — +25% weapon damage, -30% armor (PvP high-risk)",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Hana-U Gloves",brand:"Hana-U Corporation",rarity:"high-end",talent:"—",mods:["Weapon Dmg","Crit Chance"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Grupo Sombra Holster",brand:"Grupo Sombra S.A.",rarity:"high-end",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Overlord Armaments Kneepads",brand:"Overlord Armaments",rarity:"high-end",talent:"—",mods:["Weapon Dmg","Armor"]}
+  ],
+  weapons:{
+    primary:{name:"Capacitor",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Reconfigure → DMG Out of Cover or Skill Haste",talent:"LOCKED: Overcharge — charges active skill on hit",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage. Optic: Critical Hit Chance",action:"Reconfigure → DMG Out of Cover for PvP. Shoot constantly to maintain skill uptime.",note:"In PvP context, the skill charges are used for disruption (Blinder Firefly, Oxidizer) not raw damage. DMG Out of Cover matters more than Skill Haste here."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown (Heroic).",rate:"targeted"}
+    ]},
+    secondary:{name:"Chatterbox SMG",type:"SMG (Exotic)",rarity:"exotic",weaponStats:{wtype:"SMG — Exotic",core1:"SMG Damage [LOCKED]",core2:"Critical Hit Chance [LOCKED — all SMGs]",attr3:"Reconfigure → DMG Out of Cover",talent:"LOCKED: Box Magazine — kills refill magazine",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage",action:"Close range backup. Reconfigure → DMG Out of Cover.",note:"Box Magazine talent means you stay in the fight without forced reloads — ideal PvP close quarters."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: SMGs in Grand Washington Hotel.",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Firefly",variant:"Blinder Firefly",icon:"&#x1F41B;"},{name:"Chem Launcher",variant:"Oxidizer",icon:"&#x1F9EA;"}],
+  talents:[
+    {name:"NinjaBike Freedom",desc:"Removes brand set bonuses — every gear piece chosen purely for its rolled stats, no compromise"},
+    {name:"Overcharge (Capacitor)",desc:"Weapon hits charge skills even without ST6 — consistent skill uptime at 3-4 Skill Tiers"},
+    {name:"Coyote's Predator",desc:"Hit 4 different enemies: group-wide +10% crit for 10s — opener ability in multi-enemy PvP encounters"},
+    {name:"Glass Cannon (optional)",desc:"+25% weapon damage at the cost of -30% armor — high-risk PvP option, swap for safer chest in solo PvE"}
+  ],
+  stats:{weaponDmg:88,armor:50,skillTier:3,critChance:60,critDmg:110,armorRegen:20}}
 ];
 
 var currentSpec='all',activeTags=[],savedBuilds=new Set(),currentTab='builds',collapsed={};
