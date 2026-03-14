@@ -133,6 +133,8 @@ main{padding:22px;background:var(--bg)}
 .ctags{display:flex;flex-wrap:wrap;gap:4px}
 .ctag{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:.8px;padding:3px 7px;border:1px solid var(--border);color:var(--text3);text-transform:uppercase;border-radius:2px}
 .diff-tag{border-color:rgba(251,191,36,.3);color:var(--yellow);background:rgba(251,191,36,.06)}
+.ev-build-badge{font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:.8px;padding:3px 7px;border:1px solid rgba(74,222,128,.4);color:var(--green);background:rgba(74,222,128,.08);border-radius:2px;text-transform:uppercase}
+.new-badge{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:1px;padding:2px 6px;border:1px solid rgba(56,189,248,.4);color:var(--blue);background:rgba(56,189,248,.08);border-radius:2px;text-transform:uppercase}
 .bc-foot{padding:10px 15px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.15)}
 .bc-meta{display:flex;gap:12px}
 .mitem{display:flex;align-items:center;gap:4px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3)}
@@ -226,13 +228,38 @@ main{padding:22px;background:var(--bg)}
 .spec-opt.sel{background:var(--odim);border-color:var(--orange);color:var(--orange)}
 .ev-card{background:var(--panel);border:1px solid var(--border);padding:18px}
 .ev-card.live{border-left:3px solid var(--green)}
-.ev-card.soon{border-left:3px solid var(--yellow)}
-.ev-card.off{border-left:3px solid var(--border2);opacity:.6}
+.ev-card.soon{border-left:3px solid rgba(249,115,22,.3)}
+.ev-card.off{border-left:3px solid var(--border);opacity:.55}
+.ev-section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--orange);text-transform:uppercase}
+.ev-section-line{flex:1;height:1px;background:var(--border)}
+.ev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.ev-grid-past{opacity:.6}
 .cc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:16px}
 .cc-card{background:var(--panel);border:1px solid var(--border);padding:14px;transition:border-color .2s}
 .cc-card:hover{border-color:var(--border2)}
 .cc-top{display:flex;align-items:center;gap:12px}
 .cc-av{width:38px;height:38px;background:var(--bdim);border:1px solid var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--blue);flex-shrink:0}
+/* ── Progression Guide ── */
+.guide-phase{background:var(--panel);border:1px solid var(--border);margin-bottom:14px;overflow:hidden}
+.guide-phase-hdr{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.guide-phase-num{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:#000;background:var(--orange);padding:3px 8px;text-transform:uppercase}
+.guide-phase-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:1px;color:var(--text);flex:1}
+.guide-phase-tag{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:3px 8px;border:1px solid var(--border2);color:var(--text3);text-transform:uppercase}
+.guide-phase-body{padding:14px 16px;display:flex;flex-direction:column;gap:14px}
+.guide-item{display:flex;align-items:flex-start;gap:12px}
+.guide-item-icon{font-size:20px;flex-shrink:0;width:28px;text-align:center;margin-top:2px}
+.guide-item-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:.5px;color:var(--text);margin-bottom:3px}
+.guide-item-desc{font-size:12px;color:var(--text2);line-height:1.65}
+.guide-item-desc strong{color:var(--orange)}
+/* ── Onboarding Guide Banner ── */
+.guide-banner{background:var(--bg3);border:1px solid rgba(56,189,248,.25);border-left:3px solid var(--blue);padding:14px 16px;margin-bottom:18px}
+.guide-banner-inner{position:relative}
+.guide-title{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.guide-steps{display:flex;flex-direction:column;gap:7px}
+.guide-step{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text2);line-height:1.5}
+.guide-num{font-family:'Share Tech Mono',monospace;font-size:9px;background:var(--blue);color:#000;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.guide-dismiss{margin-top:12px;background:transparent;border:1px solid var(--border2);color:var(--text3);padding:5px 12px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.guide-dismiss:hover{border-color:var(--blue);color:var(--blue)}
 .notif{position:fixed;bottom:24px;right:24px;background:var(--bg2);border:1px solid var(--border2);border-left:3px solid var(--orange);padding:12px 20px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);z-index:500;transform:translateY(20px);opacity:0;transition:all .25s cubic-bezier(.4,0,.2,1);pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.5)}
 .notif.show{transform:translateY(0);opacity:1}
 /* MOBILE BOTTOM NAV */
@@ -479,6 +506,11 @@ main{padding:22px;background:var(--bg)}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
       <span class="mob-nav-lbl">Builds</span>
     </button>
+    <button class="mob-nav-item" id="mob-guide" onclick="setTab('guide')">
+      <div class="mob-nav-pip"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <span class="mob-nav-lbl">Guide</span>
+    </button>
     <button class="mob-nav-item" id="mob-saved" onclick="setTab('saved')">
       <div class="mob-nav-pip"></div>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
@@ -529,23 +561,27 @@ main{padding:22px;background:var(--bg)}
         <button class="spec-btn" onclick="setSpec('firewall',this)"><span class="sdot" style="background:#f87171"></span>Firewall<span class="scnt"></span></button>
         <button class="spec-btn" onclick="setSpec('gunner',this)"><span class="sdot" style="background:#fbbf24"></span>Gunner<span class="scnt"></span></button>
       </div>
-      <div class="sb-lbl">Playstyle</div>
+
+      <div class="sb-lbl">Activity</div>
+      <div class="tags" style="margin-bottom:14px">
+        <button class="tag" onclick="toggleTag(this,'Solo')">Solo</button>
+        <button class="tag" onclick="toggleTag(this,'Group')">Group</button>
+        <button class="tag" onclick="toggleTag(this,'Raid')">Raid</button>
+        <button class="tag" onclick="toggleTag(this,'Legendary')">Legendary</button>
+        <button class="tag" onclick="toggleTag(this,'Heroic')">Heroic</button>
+        <button class="tag" onclick="toggleTag(this,'Farming')">Farming</button>
+        <button class="tag" onclick="toggleTag(this,'PvP')">PvP</button>
+        <button class="tag" onclick="toggleTag(this,'Dark Zone')">Dark Zone</button>
+      </div>
+      <div class="sb-lbl">Build Type</div>
       <div class="tags" style="margin-bottom:14px">
         <button class="tag" onclick="toggleTag(this,'DPS')">DPS</button>
         <button class="tag" onclick="toggleTag(this,'Tank')">Tank</button>
         <button class="tag" onclick="toggleTag(this,'Healer')">Healer</button>
         <button class="tag" onclick="toggleTag(this,'Skill')">Skill</button>
         <button class="tag" onclick="toggleTag(this,'Status')">Status</button>
-        <button class="tag" onclick="toggleTag(this,'Solo')">Solo</button>
-        <button class="tag" onclick="toggleTag(this,'Raid')">Raid</button>
-        <button class="tag" onclick="toggleTag(this,'PvP')">PvP</button>
-        <button class="tag" onclick="toggleTag(this,'Farming')">Farming</button>
-      </div>
-      <div class="sb-lbl">Difficulty</div>
-      <div class="tags" style="margin-bottom:16px">
-        <button class="tag" onclick="toggleTag(this,'Heroic')">Heroic</button>
-        <button class="tag" onclick="toggleTag(this,'Legendary')">Legendary</button>
-        <button class="tag" onclick="toggleTag(this,'Challenging')">Challenging</button>
+        <button class="tag" onclick="toggleTag(this,'Hybrid')">Hybrid</button>
+        <button class="tag" onclick="toggleTag(this,'New')">&#x1F195; New Y7S3</button>
       </div>
       <button class="btn btn-primary" style="width:100%;padding:11px;clip-path:none" onclick="closeFilterDrawer()">Apply Filters</button>
     </div>
@@ -572,18 +608,30 @@ main{padding:22px;background:var(--bg)}
       <button class="spec-btn" onclick="setSpec('gunner',this)"><span class="sdot" style="background:#fbbf24"></span>Gunner<span class="scnt" id="cnt-gunner">0</span></button>
     </div>
   </div>
+
   <div class="sb">
-    <div class="sb-lbl">Playstyle</div>
+    <div class="sb-lbl">Activity</div>
+    <div class="tags">
+      <button class="tag" onclick="toggleTag(this,'Solo')">Solo</button>
+      <button class="tag" onclick="toggleTag(this,'Group')">Group</button>
+      <button class="tag" onclick="toggleTag(this,'Raid')">Raid</button>
+      <button class="tag" onclick="toggleTag(this,'Legendary')">Legendary</button>
+      <button class="tag" onclick="toggleTag(this,'Heroic')">Heroic</button>
+      <button class="tag" onclick="toggleTag(this,'Farming')">Farming</button>
+      <button class="tag" onclick="toggleTag(this,'PvP')">PvP</button>
+      <button class="tag" onclick="toggleTag(this,'Dark Zone')">Dark Zone</button>
+    </div>
+  </div>
+  <div class="sb">
+    <div class="sb-lbl">Build Type</div>
     <div class="tags">
       <button class="tag" onclick="toggleTag(this,'DPS')">DPS</button>
       <button class="tag" onclick="toggleTag(this,'Tank')">Tank</button>
       <button class="tag" onclick="toggleTag(this,'Healer')">Healer</button>
       <button class="tag" onclick="toggleTag(this,'Skill')">Skill</button>
       <button class="tag" onclick="toggleTag(this,'Status')">Status</button>
-      <button class="tag" onclick="toggleTag(this,'Solo')">Solo</button>
-      <button class="tag" onclick="toggleTag(this,'Raid')">Raid</button>
-      <button class="tag" onclick="toggleTag(this,'PvP')">PvP</button>
-      <button class="tag" onclick="toggleTag(this,'Farming')">Farming</button>
+      <button class="tag" onclick="toggleTag(this,'Hybrid')">Hybrid</button>
+      <button class="tag" onclick="toggleTag(this,'New')">&#x1F195; New Y7S3</button>
     </div>
   </div>
   <div class="sb">
@@ -638,15 +686,27 @@ main{padding:22px;background:var(--bg)}
 
 <script>
 var EVENTS=[
-  {name:"Assault Global Event",status:"live",time:"Live now - Ends Mar 13",desc:"Increased weapon damage at close range. Earn Global Event Stars and event caches."},
-  {name:"Tech Overdrive Modifier",status:"live",time:"Live now - Ends Mar 13",desc:"+3 Skill Tiers, +50% Skill Damage & Duration. Skill builds shine right now."},
-  {name:"10th Anniversary Event",status:"live",time:"Mar 3 - Apr 2, 2026",desc:"Realism Mode, returning global events, Event Pass with exclusive cosmetics and bonus XP."},
-  {name:"Proficiency EXP Event",status:"soon",time:"Starts Mar 13",desc:"Increased proficiency progress on all gear from any activity."},
-  {name:"Redline Overdrive + Ambush",status:"soon",time:"Starts Mar 17",desc:"Redline: +50% Crit Dmg, +25% CHC cap. Ambush: bonus damage when stationary or in cover."},
-  {name:"Optimization Surge",status:"soon",time:"Starts Mar 20",desc:"2x Optimization materials from all sources. Best time to min-max your builds."},
-  {name:"Assault + Countdown Surge",status:"soon",time:"Starts Mar 24",desc:"Assault returns. Countdown Surge: 2x Requisition currency on completion."},
-  {name:"Expertise Surge",status:"soon",time:"Starts Mar 27",desc:"2x Expertise upgrade materials from all sources."},
-  {name:"Year 8 Season 1: Rise Up",status:"soon",time:"Starts Apr 2, 2026",desc:"New season begins. New weapons, gear sets, and seasonal content."}
+  // ── PASSERADE (Y7S3 Mutiny — Jan-Mar 2026) ──
+  {name:"Assault Global Event",status:"off",time:"Jan 19 – Jan 26, 2026",desc:"Close-range damage multiplier up to 200%. Best for aggressive DPS builds like Striker and Heartbreaker.",bestBuilds:[1,22,25]},
+  {name:"Strike Global Event",status:"off",time:"Feb 3 – Feb 10, 2026",desc:"Kills trigger a delayed explosion. Stagger enemies with explosions. Best for Demolitionist and Survivalist.",bestBuilds:[1,2]},
+  {name:"Bloody Valentine — Reanimated",status:"off",time:"Feb 12 – Feb 26, 2026",desc:"Red-themed Reanimated event. Seasonal Modifiers AND Global Event active simultaneously. NPC Companion available. Exclusive Bloody Houndsman cosmetic.",bestBuilds:[3,27]},
+  {name:"Stretch Goals Season Pass Extension",status:"off",time:"Feb 17 – Apr 2, 2026",desc:"Tier 100+ bonus track. Free for all players. Earn extra rewards through gameplay only — no level skips.",bestBuilds:[]},
+  {name:"Climax Mission — Sheriff Shotgun",status:"off",time:"Feb 17 – Apr 2, 2026",desc:"Seasonal finale mission. Reward: Sheriff Exotic Super 90 Shotgun. Play it before Season ends Apr 2.",bestBuilds:[3,27]},
+  {name:"Ambush Global Event",status:"off",time:"Mar 3 – Mar 10, 2026",desc:"Damage multiplier up to 200% while stationary or in cover. Sniper and cover-heavy builds dominate.",bestBuilds:[10,26]},
+  {name:"5x XP Boost",status:"off",time:"Mar 3 – Mar 10, 2026",desc:"5x XP from all activities. Best time to level SHD Watch. Combine with Hotshot Headhunter farm.",bestBuilds:[29]},
+  {name:"10th Anniversary Event",status:"off",time:"Mar 3 – Apr 2, 2026",desc:"10-year celebration. Anniversary Event Pass, Realism Mode, exclusive cosmetics from Rainbow Six, Splinter Cell, Ghost Recon. Twitch Drops until Mar 10.",bestBuilds:[]},
+
+  // ── AKTIVA (vecka 14 mars 2026) ──
+  {name:"Redline Overdrive Modifier",status:"live",time:"Mar 14 – Mar 20, 2026",desc:"+50% Critical Damage, +25% Critical Hit Chance, +25% CHC cap (max 85%), +25% mag size, +25% reload speed. Best week to push Crit Damage builds.",bestBuilds:[1,2,22,25,26]},
+  {name:"Ambush Global Event (Return)",status:"live",time:"Mar 17 – Mar 24, 2026",desc:"Bonus damage while stationary or in cover — up to 200% multiplier. Sniper builds, turret skill builds, and cover-heavy DPS excel.",bestBuilds:[10,26,15]},
+
+  // ── KOMMANDE ──
+  {name:"Optimization Surge",status:"soon",time:"Mar 20 – Mar 24, 2026",desc:"2x Optimization materials from ALL sources. Best time in the season to min-max your builds. Stock up before Year 8.",bestBuilds:[]},
+  {name:"Assault Global Event (Return)",status:"soon",time:"Mar 24 – Mar 27, 2026",desc:"Close-range damage multiplier returns. Aggressive DPS builds shine.",bestBuilds:[1,22,25]},
+  {name:"Countdown Surge",status:"soon",time:"Mar 24 – Mar 27, 2026",desc:"2x Countdown Requisition currency on mission completion. Best time to buy Named items and Exotic Caches from the Countdown vendor.",bestBuilds:[]},
+  {name:"Expertise Surge",status:"soon",time:"Mar 27 – Apr 2, 2026",desc:"2x Expertise upgrade materials from all sources. Final push before Year 8 — max out Expertise on your best exotics.",bestBuilds:[]},
+  {name:"The Division Resurgence Mobile Launch",status:"soon",time:"Mar 31, 2026",desc:"Free-to-play mobile game launches worldwide. Play Resurgence to earn rewards in TD2 and vice versa.",bestBuilds:[]},
+  {name:"Year 8 Season 1 — Rise Up",status:"soon",time:"Apr 2, 2026",desc:"New season vs Black Tusk. New weapons, gear, builds. All current seasonal content ends. Complete Climax Mission and spend Stars/currency before this date.",bestBuilds:[]}
 ];
 
 var CREATORS=[
@@ -1296,12 +1356,276 @@ var BUILDS=[
     {name:"Glass Cannon (optional)",desc:"+25% weapon damage at the cost of -30% armor — high-risk PvP option, swap for safer chest in solo PvE"}
   ],
   stats:{weaponDmg:88,armor:50,skillTier:3,critChance:60,critDmg:110,armorRegen:20}}
+
+  // ── HEARTBREAKER COUNTDOWN DPS ────────────────────────────
+  ,{id:22,season:"current",patch:"Y7S3",name:"Heartbreaker Countdown DPS",spec:"technician",specLabel:"Technician",author:"RogueGold",creatorVerified:true,rating:9.1,stars:5,views:28400,saves:1980,tags:["DPS","Countdown","Group","Heroic","Raid"],difficulty:"Heroic",updated:"3 days ago",
+  summary:"The definitive Countdown build. Heartbreaker + Flatline talent + Technician Laser Pointer = constant stack uptime. ACS-12 shotgun stacks armor passively while you focus on killing.",
+  description:"Heartbreaker 4pc marks enemies on hit. When a marked enemy dies, you and each ally/skill that contributed gain stacks of +5% weapon damage and bonus armor. Flatline talent (on AR) adds +25% weapon damage when above 75% armor — Heartbreaker's armor bonus keeps you there permanently. Technician's Linked Laser Pointer pulses tagged enemies, triggering Heartbreaker stacks without needing kills. ACS-12 semi-auto shotgun builds stacks faster than any other secondary due to pellet count. Best-in-slot for 8-man Countdown runs — bring 4 of this build per team.",
+  tips:["ACS-12 shotgun: fire 2-3 shots at elites at the start of each fight to instantly build Heartbreaker stacks before switching to AR","Technician Laser Pointer pulses every tagged enemy — it counts as a hit for Heartbreaker stack generation","Flatline talent requires >75% armor to activate — Heartbreaker's bonus armor keeps you in the zone permanently","In Countdown: always cap Crit Chance at 60% before worrying about anything else","Group synergy: 4 Heartbreaker players share stacks on every kill — damage scales exponentially in full teams"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Catharsis Mask",brand:"Exotic",rarity:"exotic",talent:"Catharsis — releases healing burst when armor breaks; keep Incoming Repairs mods",mods:["Incoming Repairs","Crit Chance"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Heartbreaker Backpack",brand:"Heartbreaker",rarity:"gear-set",talent:"One for All — stack bonus from 3% to 5% weapon damage per kill",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Heartbreaker Chest",brand:"Heartbreaker",rarity:"gear-set",talent:"All for One — marks up to 8 enemies simultaneously (from 4)",mods:["Crit Chance","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Contractor's Gloves",brand:"Contractor's",rarity:"high-end",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Heartbreaker Holster",brand:"Heartbreaker",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Fox's Prayer Kneepads",brand:"Fox's Prayer",rarity:"high-end",talent:"—",mods:["Armor Regen","Crit Chance"]}
+  ],
+  weapons:{
+    primary:{name:"Kingbreaker AR",type:"Assault Rifle (Named)",rarity:"named",weaponStats:{wtype:"Assault Rifle — Named",core1:"AR Damage [LOCKED — named]",core2:"Health Damage [LOCKED — named]",attr3:"Rollable → DMG Out of Cover",talent:"LOCKED: Perfectly Flatline — +25% weapon damage when above 75% armor (perfect version of Flatline)",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage. Optic: Critical Hit Chance",action:"Roll DMG Out of Cover on 3rd attribute. Perfectly Flatline is permanently locked — do not attempt to change it.",note:"Kingbreaker has the PERFECT version of Flatline (+25% not +15%). This is the reason it is best-in-slot. Never swap this talent."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown on Challenging+. Highest confirmed rate for Kingbreaker.",rate:"targeted"},
+      {icon:"&#x1F3C6;",text:"Countdown Vendor: check weekly stock — Kingbreaker appears periodically.",rate:"targeted"}
+    ]},
+    secondary:{name:"ACS-12 Shotgun",type:"Semi-Auto Shotgun",rarity:"high-end",weaponStats:{wtype:"Semi-Auto Shotgun — High-End",core1:"Shotgun Damage [LOCKED]",core2:"Damage to Armor [LOCKED — all shotguns]",attr3:"Rollable → DMG Out of Cover or Weapon Damage %",talent:"Rollable → Flatline: +15% weapon damage above 75% armor. Alt: Perfectly Preserved",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage",action:"Roll Flatline talent + DMG Out of Cover. Use to rapidly stack Heartbreaker via pellet hits at fight start.",note:"ACS-12 is purely a stack-builder on this build. 3 shots = 15-18 Heartbreaker hits (multi-pellet). You will rarely fire it after the opening burst."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop: Shotguns at Heroic difficulty.",rate:"world"},
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Shotguns in any Heroic mission.",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Striker Drone",variant:"Striker Drone",icon:"&#x1F916;"},{name:"Reviver Hive",variant:"Reviver Hive",icon:"&#x1F41D;"}],
+  talents:[
+    {name:"Heartbreaker 4pc Stacks",desc:"Each kill grants +5% weapon damage stacks (One for All backpack). Up to 35 stacks = +175% weapon damage in full groups"},
+    {name:"Perfectly Flatline (Kingbreaker)",desc:"+25% weapon damage above 75% armor — Heartbreaker armor bonus keeps you here permanently"},
+    {name:"Catharsis Healing",desc:"Armor break triggers healing burst — survivability safety net in Countdown's high-pressure fights"},
+    {name:"Technician Laser Pointer",desc:"Pulses tagged enemies = counts as hits for Heartbreaker — stacks build even without kills"}
+  ],
+  stats:{weaponDmg:95,armor:70,skillTier:2,critChance:60,critDmg:120,armorRegen:40}}
+
+  // ── FOUNDRY BULWARK KEY TANK (RAID) ─────────────────────────
+  ,{id:23,season:"current",patch:"Y7S3",name:"Foundry Bulwark Key Tank",spec:"sharpshooter",specLabel:"Sharpshooter",author:"Sgt. Greybeard",creatorVerified:true,rating:8.8,stars:4,views:15600,saves:890,tags:["Tank","Raid","Group","Legendary"],difficulty:"Legendary",updated:"1 week ago",
+  summary:"The essential raid tank for Operation Iron Horse. 2.6M armor, shares 50% with teammates. Mandatory role for the Morozova fight. One of 2 tanks the raid requires.",
+  description:"Operation Iron Horse final boss requires exactly 2 tank builds. This Key Tank role: hold aggro on Colonel Morozova, collect keys from heavy enemies, share armor with the team. Foundry Bulwark 4pc provides explosive resistance and team armor sharing via Perfect Vanguard talent (Backpack): kills grant 15% of your max armor as bonus armor to nearby allies. With 2.6M total armor, that's 390K bonus armor per kill shared to every teammate. Sharpshooter spec passively boosts total armor by 10%. Aegis 2pc adds 15% bonus total armor. Result: unkillable while being the team's primary tank. Tardigrade Armor System chest is alternative for the Stagger Tank role.",
+  tips:["2 tanks needed for Morozova fight: Key Tank (this build) + Stagger Tank — coordinate who does which before the fight","Key Tank responsibility: collect KEYS from heavy enemies and open locks — stay mobile, don't hide in cover","Maintain aggro on Morozova at all times — if you lose aggro, use Shield to regain it immediately","Foundry Vanguard backpack: every kill shares 390K armor to every teammate at 2.6M armor","Explosive resistance is mandatory — Morozova's rocket fire kills tanks without it"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Foundry Bulwark Mask",brand:"Foundry Bulwark",rarity:"gear-set",talent:"—",mods:["Explosive Resistance","Armor"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Foundry Bulwark Backpack",brand:"Foundry Bulwark",rarity:"gear-set",talent:"Perfect Vanguard — kills grant 15% max armor as bonus to nearby allies",mods:["Armor","Repair Skills"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Foundry Bulwark Chest",brand:"Foundry Bulwark",rarity:"gear-set",talent:"Braced — reduces incoming damage by 20% while in cover",mods:["Armor","Explosive Resistance"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Aegis Gloves",brand:"Aegis",rarity:"gear-set",talent:"—",mods:["Armor","Hazard Protection"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Aegis Holster",brand:"Aegis",rarity:"gear-set",talent:"—",mods:["Armor","Explosive Resistance"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Foundry Bulwark Kneepads",brand:"Foundry Bulwark",rarity:"gear-set",talent:"—",mods:["Armor Regen","Hazard Protection"]}
+  ],
+  weapons:{
+    primary:{name:"Bullet King",type:"LMG (Exotic)",rarity:"exotic",weaponStats:{wtype:"Light Machine Gun — Exotic",core1:"LMG Damage [LOCKED — exotic]",core2:"DMG Out of Cover [LOCKED — all LMGs]",attr3:"Reconfigure → Weapon Damage %",talent:"LOCKED: Bullet King — magazine never needs to be reloaded (infinite ammo)",modslots:"Magazine: Extra Rounds. Muzzle: Accuracy or Stability",action:"Reconfigure 3rd attribute to Weapon Damage %. As tank your job is sustained suppression not burst — Bullet King's infinite ammo is perfect.",note:"Bullet King tank: never reload = always suppressing = always maintaining aggro. This is the reason it's used over other LMGs in raid."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: LMGs in American History Museum on Heroic.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache from Season Pass or Exotic Components.",rate:"world"}
+    ]},
+    secondary:{name:"Shield (Crusader or Deflector)",type:"Shield Skill (equipped as weapon slot)",rarity:"high-end",weaponStats:{wtype:"Shield — tank utility",core1:"N/A — Shield is a skill",core2:"N/A",attr3:"N/A",talent:"N/A",modslots:"N/A",action:"Equip Crusader Shield as your shield skill. Use it to regain aggro when Morozova targets a teammate.",note:"The shield is not in this slot literally — it is in your Skills. Equip Crusader Shield + Reviver Hive. The shield is your aggro-recovery tool."},drops:[
+      {icon:"&#x1F3B2;",text:"Shield is a skill, not a weapon. No farming needed.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Assault Turret",variant:"Assault Turret",icon:"&#x1F52B;"},{name:"Reviver Hive",variant:"Reviver Hive",icon:"&#x1F41D;"}],
+  talents:[
+    {name:"Perfect Vanguard (Backpack)",desc:"Kills share 15% of your 2.6M armor = 390K bonus armor per kill to every teammate — team stays alive"},
+    {name:"Foundry Bulwark 4pc",desc:"Explosive resistance + bonus armor on cover entry — essential survivability for Morozova rocket phase"},
+    {name:"Bullet King Infinite Ammo",desc:"Never reload = never lose aggro on Morozova — continuous suppression is your primary tank responsibility"},
+    {name:"Sharpshooter Spec",desc:"+10% total armor passive + Sniper signature for long-range key-run phase between waves"}
+  ],
+  stats:{weaponDmg:45,armor:100,skillTier:1,critChance:20,critDmg:30,armorRegen:55}}
+
+  // ── FUTURE INITIATIVE RAID HEALER ────────────────────────────
+  ,{id:24,season:"current",patch:"Y7S3",name:"Future Initiative Raid Healer",spec:"demolitionist",specLabel:"Demolitionist",author:"NothingButSkillz",creatorVerified:true,rating:9.0,stars:5,views:18900,saves:1340,tags:["Healer","Raid","Group","Legendary","Support"],difficulty:"Legendary",updated:"4 days ago",
+  summary:"The only viable full healer for Operation Iron Horse. 4pc Future Initiative + Alps + Murakami. Must keep tank alive vs Williams and coordinate team heals on Morozova split-phase.",
+  description:"Iron Horse healer is not optional — the raid requires constant team heals that no DPS build can provide as a side role. Future Initiative 4pc: healing a teammate triggers a burst that heals ALL nearby allies. Alps Integration backpack: +20% Repair Skills (heals stronger). Murakami Industries chest: +20% Skill Duration (longer heal uptime). Demolitionist spec is chosen for Incombustible talent: immunity to burn status from Morozova's fire attacks, which would otherwise interrupt heals. All 6 cores are blue (Skill Tier). Capacitor charges heal cooldowns between uses. One healer per 4-man group minimum.",
+  tips:["Incombustible (Demolitionist passive): immunity to burn — mandatory for Morozova fight where fire constantly interrupts non-Demo healers","Alps backpack: +20% Repair Skills — always choose Alps over any other backpack on this build","Murakami chest: +20% Skill Duration — longer heal clouds from Chem Launcher cover more distance","Heal the tank FIRST on Williams fight — tank going down = team wipe","Capacitor trick: shoot 10-15 rounds between Chem Launcher casts to charge Overcharge, cutting cooldown by ~2s"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Future Initiative Mask",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Tier","Repair Skills"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Alps Integration Backpack",brand:"Alps Integration",rarity:"high-end",talent:"—",mods:["Repair Skills","Skill Haste"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Murakami Industries Chest",brand:"Murakami Industries",rarity:"high-end",talent:"—",mods:["Skill Duration","Repair Skills"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Future Initiative Gloves",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Tier","Skill Haste"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Future Initiative Holster",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Tier","Skill Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Future Initiative Kneepads",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Haste","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Capacitor",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Reconfigure → Skill Haste",talent:"LOCKED: Overcharge — weapon hits reduce skill cooldowns",modslots:"All mods: Skill Haste or Repair Skills",action:"Reconfigure → Skill Haste. All mods: Repair Skills. Fire between every Chem Launcher cast to charge Overcharge.",note:"On a healer, Capacitor is a cooldown reducer. Shoot the ground between heals — you do not need to aim at enemies."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown or Summit (Heroic).",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Chem Launcher",variant:"Heal",icon:"&#x1F48A;"},{name:"Reviver Hive",variant:"Reviver Hive",icon:"&#x1F41D;"}],
+  talents:[
+    {name:"Future Initiative 4pc",desc:"Healing any teammate triggers AoE heal burst to all nearby allies — one Chem Launcher heals the whole group"},
+    {name:"Alps +20% Repair Skills",desc:"Heals hit harder — mandatory for keeping the tank alive against Williams and Morozova"},
+    {name:"Murakami +20% Skill Duration",desc:"Heal Chem Launcher clouds last longer — more area coverage in Morozova split phase"},
+    {name:"Incombustible (Demolitionist)",desc:"Burn immunity — Iron Horse fire attacks cannot interrupt your heals. Only spec with this."}
+  ],
+  stats:{weaponDmg:20,armor:60,skillTier:6,critChance:10,critDmg:20,armorRegen:30}}
+
+  // ── STRIKER MEMENTO LEGENDARY SOLO ───────────────────────────
+  ,{id:25,season:"current",patch:"Y7S3",name:"Striker Memento Legendary Solo",spec:"demolitionist",specLabel:"Demolitionist",author:"Kamikazevondoom",creatorVerified:true,rating:9.2,stars:5,views:32100,saves:2280,tags:["DPS","Legendary","Solo","Tank"],difficulty:"Legendary",updated:"2 days ago",
+  summary:"The top solo Legendary build in 2026. Striker stacks + Memento armor scaling = you become harder to kill the more you kill. Frontline playstyle. Carries solo Strongholds consistently.",
+  description:"Striker's Gamble 4pc stacks up to 200 hits of +1% weapon damage (with Press the Advantage chest) = +200% weapon damage at max. Memento backpack: each kill adds armor trophy stacks up to +50% max armor. The result: as fights get longer and kill chains extend, you simultaneously deal more damage AND become harder to kill. Demolitionist spec provides incendiary grenades for room clearing, Striker Drone signature, and +10% explosive damage passive. Crusader Shield skill absorbs incoming damage and lets you walk through cover to maintain Striker stacks without breaking stride. Best Legendary mission loadout in the current meta.",
+  tips:["Enter every room already at 100+ Striker stacks by fighting the approach enemies — don't walk into a boss room at zero stacks","Memento decays if you stop killing — keep moving, never hide in cover for more than 3-4 seconds","Crusader Shield: deploy it when pushing into a new room as a moving cover — it maintains your Striker stacks","Reviver Hive = your solo safety net — place it before every elite fight, not during","Demolitionist Incendiary Grenade clears trash clusters instantly — saves ammo and maintains kill momentum for Memento stacks"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — group-wide crit buff after hitting 4 different enemies",mods:["Weapon Dmg","Crit Chance"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Memento",brand:"Exotic",rarity:"exotic",talent:"Memento — kills grant stacking armor trophies up to +50% max armor",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Striker Chest",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Press the Advantage — Striker stack cap extends to 200",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Striker Gloves",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Striker Holster",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Striker Kneepads",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Armor Regen","Crit Chance"]}
+  ],
+  weapons:{
+    primary:{name:"St. Elmo's Engine",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Reconfigure → DMG Out of Cover",talent:"LOCKED: Actum Est — every 100 hits loads shock ammo for next mag",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage. Optic: Critical Hit Chance",action:"Reconfigure → DMG Out of Cover. Shock procs from Actum Est stun groups — use to reset rooms.",note:"In Legendary, shock stun from St. Elmo's saves lives — it interrupts enemy ability use and buys you time to reposition."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown (Heroic). Most reliable source.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache — Season Pass or Exotic Components at Crafting Station.",rate:"world"}
+    ]},
+    secondary:{name:"Rock n' Roll LMG",type:"LMG (Named)",rarity:"named",weaponStats:{wtype:"Light Machine Gun — Named",core1:"LMG Damage [LOCKED — named]",core2:"DMG Out of Cover [LOCKED — all LMGs]",attr3:"Rollable → Critical Hit Damage",talent:"LOCKED: Perfectly Measured — top half of mag: +20% fire rate. Bottom half: +20% weapon damage",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage",action:"Roll Critical Hit Damage on 3rd attribute. Let the mag drain naturally to activate both halves of Perfectly Measured.",note:"Rock n' Roll is a named — talent is locked. Fire top half quickly for fire rate burst, then slow down to get max damage on the bottom half."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: LMGs in Bank HQ Stronghold on Heroic.",rate:"targeted"},
+      {icon:"&#x1F3C6;",text:"Countdown vendor rotation — check weekly.",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Reviver Hive",variant:"Reviver Hive",icon:"&#x1F41D;"},{name:"Assault Turret",variant:"Assault Turret",icon:"&#x1F52B;"}],
+  talents:[
+    {name:"Striker Gamble 200 Stacks",desc:"Press the Advantage chest: 200 stack cap at +1% per hit (Risk Management backpack) = +200% weapon damage at max — the core damage loop"},
+    {name:"Memento Armor Trophy Stacking",desc:"Each kill adds armor trophy stacks up to +50% max armor — sustain scales with aggression, not defensiveness"},
+    {name:"Coyote's Predator",desc:"Hit 4 different enemies: group-wide +10% crit for 10s — powerful opener in multi-enemy Legendary rooms"},
+    {name:"Demolitionist Incendiary Grenade",desc:"Clears trash clusters and burns named enemies — maintains Memento stack momentum through tough rooms"}
+  ],
+  stats:{weaponDmg:96,armor:75,skillTier:1,critChance:60,critDmg:115,armorRegen:35}}
+
+  // ── DIAMONDBACK NEGOTIATOR 100% CRIT ─────────────────────────
+  ,{id:26,season:"current",patch:"Y7S3",name:"Diamondback 100% Crit Build",spec:"sharpshooter",specLabel:"Sharpshooter",author:"GCROCK",creatorVerified:true,rating:8.7,stars:4,views:13200,saves:870,tags:["DPS","Heroic","Solo","Group","New"],difficulty:"Heroic",updated:"5 days ago",
+  summary:"Diamondback exotic rifle guarantees a critical hit on the next shot after a kill. Combined with Negotiator's Dilemma spreading 100% of crit damage to marked enemies — every shot crits, every crit spreads. Insane AoE damage.",
+  description:"Diamondback exotic rifle: after every kill, the next shot is a guaranteed critical hit with +100% damage bonus. Negotiator's Dilemma 4pc: Hostile Negotiations marks enemies on crit. When a marked enemy takes damage, 60% spreads to all other marked enemies (100% with Critical Measures chest). Combined: kill → guaranteed crit → marks new enemy → crit spreads to all marked targets → chain kills. Critical Hit Chance cap at 60% becomes trivial because Diamondback guarantees crits on kills. Sharpshooter provides +10% headshot damage and Sniper signature for long-range priority target elimination.",
+  tips:["Diamondback kill chain: kill one enemy → shoot another instantly (guaranteed crit) → that crit marks them → all marked enemies take spread damage","Critical Measures chest (Negotiator's): spread damage jumps from 60% to 100% — this chest is mandatory","You do NOT need 60% Crit Chance on gear — Diamondback guarantees crits. Stack Crit Damage instead","Best in rooms with 5+ enemies — chain crits spread to all marked targets simultaneously","Diamondback drops exclusively from Roosevelt Island Stronghold on Challenge+"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Negotiator's Mask",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Negotiator's Backpack",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"Target Rich Environment — marks 3 additional enemies (5 total)",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Negotiator's Chest",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"Critical Measures — damage spread jumps from 60% to 100%",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Negotiator's Gloves",brand:"Negotiator's Dilemma",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Grupo Sombra Holster",brand:"Grupo Sombra S.A.",rarity:"high-end",talent:"—",mods:["Weapon Dmg","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Ceska Vyroba s.r.o. Kneepads",brand:"Ceska Vyroba",rarity:"high-end",talent:"—",mods:["Crit Chance","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Diamondback",type:"Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Rifle — Exotic",core1:"Rifle Damage [LOCKED — exotic]",core2:"Critical Hit Chance [LOCKED — exotic]",attr3:"Reconfigure → DMG Out of Cover or Headshot Damage",talent:"LOCKED: Lucky Shot — after every kill, next shot guaranteed crit with +100% damage",modslots:"Magazine: Extra Rounds. Muzzle: Headshot Damage. Optic: Critical Hit Damage",action:"Reconfigure → DMG Out of Cover. Do NOT roll Crit Chance — Lucky Shot guarantees crits. Stack Crit Damage in all mods.",note:"Diamondback is a semi-auto rifle. Fire discipline matters — one guaranteed crit wasted on a trash enemy is a miss. Always target elites or named enemies with your kill-guaranteed-crit."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Rifles in Roosevelt Island Stronghold on Challenge/Heroic. Only source.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache (once blueprint unlocked via Roosevelt Island clear).",rate:"world"}
+    ]},
+    secondary:{name:"Lexington Event Horizon AR",type:"Assault Rifle (Named)",rarity:"named",weaponStats:{wtype:"Assault Rifle — Named",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Rollable → DMG Out of Cover",talent:"LOCKED: Perfectly Unhinged — consecutive hits build stacking damage multiplier",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage",action:"Roll DMG Out of Cover. Use as backup when Diamondback is reloading.",note:"Perfectly Unhinged rewards staying on target — good AR to maintain Negotiator's marks while Diamondback is on cooldown."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Bank HQ Stronghold (named weapon drops here).",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"},{name:"Striker Drone",variant:"Striker Drone",icon:"&#x1F916;"}],
+  talents:[
+    {name:"Diamondback Lucky Shot",desc:"After every kill: next shot is guaranteed crit with +100% damage — time your shots to always use the guaranteed crit on an elite"},
+    {name:"Critical Measures (Chest)",desc:"100% damage spread to all marked enemies on crit — entire rooms take full crit damage simultaneously"},
+    {name:"Target Rich Environment (Backpack)",desc:"5 enemies marked simultaneously — more marks = more spread targets = more total AoE damage"},
+    {name:"Negotiator's Dilemma 4pc",desc:"Hostile Negotiations: crits mark enemies, kills generate crit stacks — the Diamondback + ND loop is self-sustaining"}
+  ],
+  stats:{weaponDmg:88,armor:55,skillTier:1,critChance:55,critDmg:130,armorRegen:25}}
+
+  // ── ECLIPSE STATUS LEGENDARY ─────────────────────────────────
+  ,{id:27,season:"current",patch:"Y7S3",name:"Eclipse Protocol Legendary",spec:"firewall",specLabel:"Firewall",author:"TuxedoBandido",creatorVerified:true,rating:8.8,stars:4,views:11800,saves:810,tags:["Status","Legendary","Solo","Group","Countdown"],difficulty:"Legendary",updated:"6 days ago",
+  summary:"Status effects carry Legendary content. Eclipse Protocol Spread auto-transfers status to entire rooms. Scorpio applies 4 status effects in one shot. Firewall passive adds +25% skill damage when you have a status on yourself.",
+  description:"Eclipse Protocol Legendary variant focuses on immunity and infinite status uptime rather than raw DPS. Legendary has waves of enemies with high armor — status effects bypass armor scaling entirely. Vile Mask adds stacking poison DoT to every status-affected enemy. Spread talent auto-transfers to all enemies within 8m. Chem Launcher Oxidizer corrodes elite armor, reducing it over time for DPS teammates. Firewall spec grants: Flamethrower signature (instant AoE burn), burn immunity (Incombustible passive), and +25% skill damage while you have a status effect on yourself — stand in your own fire for the buff. Best team contribution in Legendary: 1 Eclipse player buffs the entire team by marking/corroding every enemy.",
+  tips:["Firewall passive +25% skill damage requires a status on YOURSELF — activate by standing briefly in your own Oxidizer cloud","Oxidizer Chem Launcher corrodes elite armor over time — start every elite fight with an Oxidizer cloud at their feet","Spread talent (chest): status auto-transfers within 8m — position so Spread chain can reach all clustered enemies","Legendary immunity: Hazard Protection mods reduce status effect duration on you — run them on non-Firewall builds in your team","Scorpio 4-status tagging: fire once at the group, let Spread chain it, then let Vile poison stack across everyone"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Vile Mask",brand:"Exotic",rarity:"exotic",talent:"Vile — all status-affected enemies take stacking poison DoT",mods:["Status Effect","Hazard Protection"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Eclipse Protocol Backpack",brand:"Eclipse Protocol",rarity:"gear-set",talent:"Vindictive — applying status grants +20% damage to all allies for 5s",mods:["Status Effect","Skill Damage"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Eclipse Protocol Chest",brand:"Eclipse Protocol",rarity:"gear-set",talent:"Spread — status auto-transfers to enemies within 8m on status hit",mods:["Status Effect","Armor"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Eclipse Protocol Gloves",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Status Effect","Weapon Dmg"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Eclipse Protocol Holster",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Status Effect","Armor"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Eclipse Protocol Kneepads",brand:"Eclipse Protocol",rarity:"gear-set",talent:"—",mods:["Hazard Protection","Armor Regen"]}
+  ],
+  weapons:{
+    primary:{name:"Scorpio",type:"Shotgun (Exotic)",rarity:"exotic",weaponStats:{wtype:"Shotgun — Exotic",core1:"Shotgun Damage [LOCKED]",core2:"Damage to Armor [LOCKED — all shotguns]",attr3:"Reconfigure → Weapon Damage % or DMG Out of Cover",talent:"LOCKED: Parasitic — single shot applies burn, bleed, blind, and shock simultaneously",modslots:"Muzzle: Critical Hit Damage or Accuracy. Underbarrel: Stability",action:"Reconfigure → Weapon Damage %. Fire Scorpio once per group of enemies to apply all 4 status effects. Let Spread do the rest.",note:"Scorpio applies all 4 status types in 1 shot. Combined with Spread, one Scorpio shot can status-tag an entire Legendary room. You do not need to shoot every enemy individually."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Shotguns in Manning National Zoo Stronghold (Heroic). Best farm.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache or Exotic Components at Crafting Station.",rate:"world"}
+    ]},
+    secondary:{name:"FAMAS 2010 AR",type:"Assault Rifle",rarity:"high-end",weaponStats:{wtype:"Assault Rifle — High-End",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Rollable → DMG Out of Cover",talent:"Rollable → Pestilent: status hit = +5% weapon damage for 5s stacking 5x",modslots:"Magazine: Extra Rounds. Muzzle: Critical Hit Damage",action:"Roll DMG Out of Cover + Pestilent talent. Fire between Scorpio shots to maintain Pestilent stacks.",note:"Pestilent talent rewards having enemies with status effects — Eclipse always has that covered. Every FAMAS shot is at +25% weapon damage minimum."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop: Assault Rifles at Heroic difficulty.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Chem Launcher",variant:"Oxidizer",icon:"&#x1F9EA;"},{name:"Firefly",variant:"Blinder Firefly",icon:"&#x1F41B;"}],
+  talents:[
+    {name:"Eclipse Spread (Chest)",desc:"Status auto-transfers to enemies within 8m — 1 Scorpio shot can status-tag an entire Legendary room via chain"},
+    {name:"Vindictive (Backpack)",desc:"Applying any status grants all allies +20% damage for 5s — constant proc means team always has the buff"},
+    {name:"Vile Mask Poison DoT",desc:"Every status-affected enemy takes stacking poison damage — passive damage on the entire room indefinitely"},
+    {name:"Firewall +25% Skill Damage",desc:"Having a status effect on yourself triggers passive — stand in your Oxidizer cloud for permanent skill damage buff"}
+  ],
+  stats:{weaponDmg:60,armor:65,skillTier:3,critChance:40,critDmg:70,armorRegen:45}}
+
+  // ── ONGOING DIRECTIVE TEAM AMMO SUPPORT ──────────────────────
+  ,{id:28,season:"current",patch:"Y7S3",name:"Ongoing Directive Team Ammo",spec:"survivalist",specLabel:"Survivalist",author:"Patrick Wolf",creatorVerified:true,rating:8.5,stars:4,views:9400,saves:650,tags:["Support","Group","Raid","Heroic","Legendary"],difficulty:"Heroic",updated:"1 week ago",
+  summary:"Underused support build that makes your whole team do more damage. Ongoing Directive drops Hollow-Point ammo on status kills — Hollow-Point ammo causes bleed and amplifies weapon damage for any teammate who picks it up.",
+  description:"Ongoing Directive 4pc: status effect kills drop Hollow-Point ammo packs. Any teammate who picks up Hollow-Point ammo deals bonus weapon damage and applies bleed on hit. In an 8-man raid, one OD player can keep the entire team supplied with Hollow-Point ammo indefinitely via status effect + kill chains. Bluescreen LMG applies status effects (shock + blind) on hit — perfect OD trigger weapon. Vanguard backpack talent: kills grant 15% of your armor as bonus armor to teammates. Combined result: you are simultaneously a team DPS amplifier and team survivability support. Underrated in the meta — most teams don't bring one and notice the DPS difference immediately.",
+  tips:["Hollow-Point ammo packs only benefit teammates who pick them up — in raid, call out 'ammo' on comms when you drop a pack","Bluescreen LMG applies status effects on hit even without Eclipse gear — it is the best OD trigger weapon in the game","Vanguard talent (backpack): every kill gives teammates 15% of your armor — stack armor for maximum effect","Status kills = ammo drop = teammate DPS buff — your job is to maintain status on as many enemies as possible","Group content: position in the center of the group so dropped Hollow-Point packs are reachable by everyone"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Ongoing Directive Mask",brand:"Ongoing Directive",rarity:"gear-set",talent:"—",mods:["Status Effect","Weapon Dmg"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Ongoing Directive Backpack",brand:"Ongoing Directive",rarity:"gear-set",talent:"Vanguard — kills grant 15% of your armor as bonus armor to nearby allies",mods:["Status Effect","Armor"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Ongoing Directive Chest",brand:"Ongoing Directive",rarity:"gear-set",talent:"Braced — -20% incoming damage while in cover",mods:["Status Effect","Weapon Dmg"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Ongoing Directive Gloves",brand:"Ongoing Directive",rarity:"gear-set",talent:"—",mods:["Status Effect","Weapon Dmg"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Gila Guard Holster",brand:"Gila Guard",rarity:"high-end",talent:"—",mods:["Armor","Hazard Protection"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Gila Guard Kneepads",brand:"Gila Guard",rarity:"high-end",talent:"—",mods:["Armor Regen","Armor"]}
+  ],
+  weapons:{
+    primary:{name:"Bluescreen LMG",type:"LMG (Exotic)",rarity:"exotic",weaponStats:{wtype:"Light Machine Gun — Exotic",core1:"LMG Damage [LOCKED — exotic]",core2:"DMG Out of Cover [LOCKED — all LMGs]",attr3:"Reconfigure → Status Effect or Critical Hit Damage",talent:"LOCKED: Bluescreen — hits apply shock and blind status effects continuously",modslots:"Magazine: Extra Rounds. Muzzle: Accuracy or Stability",action:"Reconfigure → Status Effect % to maximize OD proc chance. Fire continuously — every hit potentially applies shock or blind, every kill drops Hollow-Point ammo.",note:"Bluescreen applies status on hit WITHOUT needing Eclipse or Status Effect attribute scaling. Even with 0% Status Effect gear, Bluescreen applies status for OD procs."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: LMGs in Potomac Event Center or Tidal Basin on Heroic.",rate:"targeted"},
+      {icon:"&#x1F4E6;",text:"Exotic Cache from Season Pass or Exotic Components.",rate:"world"}
+    ]},
+    secondary:{name:"FAMAS 2010 or any AR",type:"Assault Rifle",rarity:"high-end",weaponStats:{wtype:"Assault Rifle — High-End",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Rollable → DMG Out of Cover",talent:"Rollable → Pestilent: +5% weapon damage per status hit stacking 5x",modslots:"Magazine: Extra Rounds.",action:"Roll Pestilent + DMG Out of Cover. Use when Bluescreen needs to reload.",note:"Backup AR purpose: maintain kills during Bluescreen reload. Pestilent keeps weapon damage up via status uptime."},drops:[
+      {icon:"&#x1F3B2;",text:"World drop at Heroic difficulty.",rate:"world"}
+    ]}
+  },
+  skills:[{name:"Chem Launcher",variant:"Oxidizer",icon:"&#x1F9EA;"},{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"}],
+  talents:[
+    {name:"Ongoing Directive 4pc Hollow-Point",desc:"Status kills drop Hollow-Point ammo — teammates who pick it up deal bonus weapon damage and apply bleed on hit"},
+    {name:"Vanguard (Backpack)",desc:"Kills share 15% of your armor as bonus armor to allies — builds team survivability passively through your kill chain"},
+    {name:"Bluescreen Status Application",desc:"Applies shock + blind on hit without needing Status Effect gear — reliable OD proc trigger in all situations"},
+    {name:"Survivalist Spec",desc:"Ammo on kill passive, incendiary grenade for room clearing, +10% status damage to keep OD loop active"}
+  ],
+  stats:{weaponDmg:70,armor:72,skillTier:2,critChance:35,critDmg:60,armorRegen:40}}
+
+  // ── HOTSHOT HEADHUNTER XP FARMER ─────────────────────────────
+  ,{id:29,season:"current",patch:"Y7S3",name:"Hotshot Headhunter XP Farm",spec:"sharpshooter",specLabel:"Sharpshooter",author:"Kamikazevondoom",creatorVerified:true,rating:8.9,stars:4,views:22300,saves:1560,tags:["Farming","Solo","XP","SHD","Heroic"],difficulty:"Heroic",updated:"3 days ago",
+  summary:"Best SHD XP farming build in 2026. White Death MMR one-shots everything in Heroic open world. Hotshot gear set + Headhunter talent = chain headshot kills with massive XP gain per minute.",
+  description:"Hotshot 4pc: headshot kills grant +10% total weapon damage stacking up to +50% (5 stacks, 10s duration). Headhunter backpack talent: a precision kill triggers Headhunter — next bodyshot counts as a headshot too. Combined with White Death MMR (named, LOCKED Determined talent: headshot kill = next bodyshot is a headshot), the chain becomes: headshot kill → Headhunter triggers → next shot is a headshot → another kill → chain continues indefinitely. In Heroic open world with 5 directives active, each kill chain generates massive XP. Best route: Capitol Building area Control Points + Propaganda Speakers on repeat.",
+  tips:["Always activate 5 Directives before farming — 5 directives = 2x XP multiplier on every kill","White Death LOCKED Determined talent: headshot kill = next bodyshot counts as headshot too — fire fast after kills to chain it","Hotshot stacks decay after 10s — maintain kill chain, don't stop between rooms","Best farming route: Capitol Hill → Lincoln Memorial → Jefferson Trade Center loop (dense Control Points)","Sharpshooter Spotter signature skill: pulses all nearby enemies — guarantees headshot hit confirmation on marked targets"],
+  gear:[
+    {type:"MASK",icon:"&#x1FA96;",name:"Hotshot Mask",brand:"Hotshot",rarity:"gear-set",talent:"—",mods:["Headshot Damage","Weapon Dmg"]},
+    {type:"BACKPACK",icon:"&#x1F392;",name:"Hotshot Backpack",brand:"Hotshot",rarity:"gear-set",talent:"Headhunter — precision kill: next bodyshot also counts as headshot",mods:["Headshot Damage","Weapon Dmg"]},
+    {type:"CHEST",icon:"&#x1F9BA;",name:"Hotshot Chest",brand:"Hotshot",rarity:"gear-set",talent:"Textbook — headshot kills add +10% weapon damage stack up to 50%",mods:["Weapon Dmg","Headshot Damage"]},
+    {type:"GLOVES",icon:"&#x1F9E4;",name:"Hotshot Gloves",brand:"Hotshot",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Headshot Damage"]},
+    {type:"HOLSTER",icon:"&#x1FA73;",name:"Hotshot Holster",brand:"Hotshot",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Headshot Damage"]},
+    {type:"KNEEPADS",icon:"&#x1F9B5;",name:"Hotshot Kneepads",brand:"Hotshot",rarity:"gear-set",talent:"—",mods:["Armor Regen","Headshot Damage"]}
+  ],
+  weapons:{
+    primary:{name:"White Death MMR",type:"Marksman Rifle (Named)",rarity:"named",weaponStats:{wtype:"Marksman Rifle — Named",core1:"MMR Damage [LOCKED — named]",core2:"Headshot Damage [LOCKED — all MMRs]",attr3:"Rollable → DMG Out of Cover",talent:"LOCKED: Determined — headshot kill = next bodyshot counts as headshot (the entire farm chain relies on this)",modslots:"Magazine: Headshot Damage. Muzzle: Headshot Damage. Optic: Headshot Damage. Underbarrel: Stability",action:"Roll DMG Out of Cover on 3rd attribute. ALL 4 mod slots: Headshot Damage. Determined is locked — never try to change it.",note:"White Death is the only named MMR with Determined permanently. Every other MMR requires you to roll Determined yourself. White Death saves a roll."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Marksman Rifles in District Union Arena Stronghold.",rate:"targeted"},
+      {icon:"&#x1F3C6;",text:"Countdown vendor — check weekly MMR stock.",rate:"targeted"}
+    ]},
+    secondary:{name:"St. Elmo's Engine AR",type:"Assault Rifle (Exotic)",rarity:"exotic",weaponStats:{wtype:"Assault Rifle — Exotic (close range backup)",core1:"AR Damage [LOCKED]",core2:"Health Damage [LOCKED]",attr3:"Reconfigure → DMG Out of Cover",talent:"LOCKED: Actum Est — shock rounds every 100 hits",modslots:"Magazine: Extra Rounds.",action:"Standard St. Elmo's setup. Switch to AR when enemies close distance.",note:"MMR is useless at close range. St. Elmo's AR handles anything within 15m — shock procs are a bonus."},drops:[
+      {icon:"&#x1F3C6;",text:"Targeted Loot: Assault Rifles in Countdown (Heroic).",rate:"targeted"}
+    ]}
+  },
+  skills:[{name:"Seeker Mine",variant:"Airburst",icon:"&#x1F4A3;"},{name:"Reviver Hive",variant:"Reviver Hive",icon:"&#x1F41D;"}],
+  talents:[
+    {name:"Hotshot Textbook + Headhunter Chain",desc:"Headshot kill → +10% weapon damage stack + Headhunter triggers (next bodyshot = headshot) → another kill → perpetual chain"},
+    {name:"White Death Determined (LOCKED)",desc:"Headshot kill = next bodyshot also counted as headshot — the backbone of the XP farm kill chain"},
+    {name:"5 Directives XP Multiplier",desc:"Always activate all 5 Directives before farming — doubles XP per kill. The farm build is strong enough to handle them easily"},
+    {name:"Sharpshooter Spotter Signature",desc:"Pulses nearby enemies and marks them — instant headshot confirmation on all marked targets in the radius"}
+  ],
+  stats:{weaponDmg:85,armor:50,skillTier:1,critChance:30,critDmg:80,armorRegen:25}}
 ];
 
 var currentSpec='all',activeTags=[],savedBuilds=new Set(),currentTab='builds',collapsed={};
 var newSpecSel='';
 
 function specCol(s){return{demolitionist:'#f97316',sharpshooter:'#60a5fa',survivalist:'#4ade80',technician:'#a78bfa',firewall:'#f87171',gunner:'#fbbf24'}[s]||'#8a9ab5';}
+
+// Event relevance — Tech Overdrive = +3 Skill Tiers → skill builds shine
+function eventBadge(b){
+  var liveEvents=EVENTS.filter(function(e){return e.status==='live';});
+  if(!liveEvents.length) return '';
+  var badges=[];
+  // Tech Overdrive active — skill builds get +3 free skill tiers
+  var techOverdrive=liveEvents.some(function(e){return e.name.toLowerCase().includes('tech');});
+  if(techOverdrive&&(b.tags.includes('Skill')||b.stats.skillTier>=3)){
+    badges.push('<span class="ev-build-badge" title="Tech Overdrive: +3 Skill Tiers active">&#x26A1; Event Boost</span>');
+  }
+  // Assault Global Event — weapon damage builds
+  var assaultEvent=liveEvents.some(function(e){return e.name.toLowerCase().includes('assault');});
+  if(assaultEvent&&b.stats.weaponDmg>=80){
+    badges.push('<span class="ev-build-badge" title="Assault Global Event: bonus weapon damage modifiers">&#x1F3AF; Event Pick</span>');
+  }
+  return badges.join('');
+}
 function starsHTML(n){return Array.from({length:5},function(_,i){return '<div class="star'+(i<n?'':' e')+'"></div>';}).join('');}
 function fmtN(n){return n>=1000?(n/1000).toFixed(1)+'K':n;}
 function showNotif(msg){var el=document.getElementById('notif');el.textContent=msg;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2600);}
@@ -1369,9 +1693,12 @@ document.addEventListener('keydown',function(e){
 
 function setTab(t){
   currentTab=t;
-  ['builds','saved','events','creators'].forEach(function(x){
+  window.scrollTo({top:0,behavior:'smooth'});
+  ['builds','saved','events','creators','guide'].forEach(function(x){
     var el=document.getElementById('tab-'+x);
     if(el) el.classList.toggle('active',x===t);
+    var mel=document.getElementById('mob-'+x);
+    if(mel) mel.classList.toggle('active',x===t);
   });
   renderMain();
 }
@@ -1388,11 +1715,22 @@ function toggleTag(el,t){
 }
 function applyFilters(){if(currentTab==='builds')renderMain();}
 function getFiltered(){
-  var q=document.getElementById('searchInput').value.toLowerCase().trim();
+  var si=document.getElementById('searchInput');
+  var q=(si?si.value:'').toLowerCase().trim();
   return BUILDS.filter(function(b){
     if(currentSpec!=='all'&&b.spec!==currentSpec) return false;
-    if(q&&!b.name.toLowerCase().includes(q)&&!b.author.toLowerCase().includes(q)&&!b.gear.some(function(g){return g.brand.toLowerCase().includes(q)||g.name.toLowerCase().includes(q);})) return false;
-    if(activeTags.length&&!activeTags.every(function(t){return b.tags.includes(t)||b.difficulty===t;})) return false;
+    if(q){
+      var haystack=[b.name,b.author,b.spec,b.specLabel,b.difficulty,
+        b.weapons.primary.name,b.weapons.primary.type,
+        b.weapons.secondary?b.weapons.secondary.name:'',
+        b.tags.join(' '),b.summary
+      ].join(' ').toLowerCase();
+      var gearStr=b.gear.map(function(g){return g.brand+' '+g.name;}).join(' ').toLowerCase();
+      if(!haystack.includes(q)&&!gearStr.includes(q)) return false;
+    }
+    if(activeTags.length&&!activeTags.every(function(t){
+      return b.tags.includes(t)||b.difficulty===t||(t==='Dark Zone'&&b.tags.includes('PvP'));
+    })) return false;
     return true;
   });
 }
@@ -1423,6 +1761,7 @@ function renderMain(){
   if(currentTab==='saved'){renderSaved(main);return;}
   if(currentTab==='events'){renderEvents(main);return;}
   if(currentTab==='creators'){renderCreators(main);return;}
+  if(currentTab==='guide'){renderGuide(main);return;}
   var sortVal=document.getElementById('mainSort')?document.getElementById('mainSort').value:'top';
   var filtered=getFiltered();
   var sorted=sortBuilds(sortVal,filtered);
@@ -1461,7 +1800,7 @@ function buildCard(b){
     +'<div style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.6">'+b.summary+'</div>'
     +'<div class="gear-row">'+b.gear.map(function(g){return '<div class="gs"><div class="gs-icon">'+g.icon+'</div><div class="gs-slot">'+g.type+'</div><div class="gs-name '+(g.rarity==='exotic'?'exotic':g.rarity==='named'?'named':'')+'">'+g.brand.substring(0,16)+'</div></div>';}).join('')+'</div>'
     +'<div class="cs"><div class="cp"><div class="cp-v" style="color:'+col+'">'+b.stats.weaponDmg+'%</div><div class="cp-l">Weapon DMG</div></div><div class="cp"><div class="cp-v" style="color:var(--yellow)">'+b.stats.critChance+'%</div><div class="cp-l">Crit Chance</div></div><div class="cp"><div class="cp-v" style="color:var(--purple)">'+b.stats.skillTier+'</div><div class="cp-l">Skill Tier</div></div></div>'
-    +'<div class="ctags">'+b.tags.filter(function(t){return t!==b.difficulty;}).map(function(t){return '<span class="ctag">'+t+'</span>';}).join('')+'<span class="ctag diff-tag">'+b.difficulty+'</span></div>'
+    +'<div class="ctags" style="gap:4px;margin-top:8px">'+b.tags.filter(function(t){return t!==b.difficulty&&t!=='New';}).map(function(t){return '<span class="ctag">'+t+'</span>';}).join('')+'<span class="ctag diff-tag">'+b.difficulty+'</span>'+(b.tags.includes('New')?'<span class="new-badge">&#x1F195; New</span>':'')+eventBadge(b)+'</div>'
     +'</div>'
     +'<div class="bc-foot"><div class="bc-meta"><span class="mitem">&#x1F441; '+fmtN(b.views)+'</span><span class="mitem">&#x1F516; '+b.saves+'</span></div>'
     +'<div class="bc-acts" onclick="event.stopPropagation()">'
