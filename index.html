@@ -153,17 +153,17 @@ main{padding:22px;background:var(--bg)}
 .empty p{color:var(--text3);font-size:12px;margin-top:6px}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:300;display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(5px)}
 .overlay.open{opacity:1;pointer-events:all}
-.modal{background:var(--bg2);border:1px solid var(--border);width:100%;max-width:960px;margin:auto;position:relative;transform:translateY(22px);transition:transform .25s cubic-bezier(.4,0,.2,1);overflow-x:hidden}
+.modal{background:var(--bg2);border:1px solid var(--border);width:100%;max-width:960px;margin:auto;position:relative;transform:translateY(22px);transition:transform .25s cubic-bezier(.4,0,.2,1);overflow:visible}
 .overlay.open .modal{transform:translateY(0)}
 
 /* Mobile back bar */
 .mob-back-bar{display:none}
-.mh{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;background:linear-gradient(135deg,var(--panel),var(--bg2));position:relative;overflow:hidden}
-.mh-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(26,34,50,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(26,34,50,.3) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
-.mh-left{position:relative;z-index:1}
-.mspec{display:inline-flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 9px;border:1px solid;margin-bottom:8px}
-.mtitle{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;letter-spacing:2px;text-transform:uppercase;line-height:1}
-.msub{color:var(--text2);font-size:13px;margin-top:5px}
+.mh{padding:18px 22px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;background:linear-gradient(135deg,var(--panel),var(--bg2));position:relative;overflow:visible}
+.mh-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(26,34,50,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(26,34,50,.3) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;overflow:hidden;border-radius:inherit}
+.mh-left{position:relative;z-index:1;flex:1;min-width:0}
+.mspec{display:inline-flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 9px;border:1px solid;margin-bottom:10px;white-space:normal;word-break:break-word;max-width:100%;position:relative;z-index:1}
+.mtitle{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;letter-spacing:2px;text-transform:uppercase;line-height:1;position:relative;z-index:1}
+.msub{color:var(--text2);font-size:13px;margin-top:6px;position:relative;z-index:1}
 .mclose{background:transparent;border:1px solid var(--border);color:var(--text3);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;flex-shrink:0;position:relative;z-index:1}
 .mclose:hover{border-color:var(--red);color:var(--red)}
 .mbody{padding:22px;display:grid;grid-template-columns:1fr 300px;gap:22px}
@@ -239,6 +239,101 @@ main{padding:22px;background:var(--bg)}
 .cc-card:hover{border-color:var(--border2)}
 .cc-top{display:flex;align-items:center;gap:12px}
 .cc-av{width:38px;height:38px;background:var(--bdim);border:1px solid var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--blue);flex-shrink:0}
+
+/* ── Build Editor ── */
+.editor-wrap{display:flex;flex-direction:column;height:100%;max-height:90vh;overflow:hidden}
+.editor-steps{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--bg2);flex-shrink:0;overflow-x:auto;scrollbar-width:none}
+.editor-steps::-webkit-scrollbar{display:none}
+.estep{flex-shrink:0;padding:12px 16px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);background:transparent;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.estep.active{color:var(--orange);border-bottom-color:var(--orange)}
+.estep.done{color:var(--green)}
+.estep:active{background:rgba(255,255,255,.04)}
+.editor-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px}
+.editor-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-top:1px solid var(--border);background:var(--bg2);flex-shrink:0;gap:10px}
+.editor-footer-info{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:1px}
+
+/* Editor sections */
+.esec{margin-bottom:24px}
+.esec-title{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.esec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.efield{margin-bottom:14px}
+.efield label{display:block;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.efield label span.req{color:var(--orange)}
+.einput{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 12px;font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;transition:border-color .15s;box-sizing:border-box}
+.einput:focus{border-color:var(--orange)}
+.einput::placeholder{color:var(--text3)}
+.eselect{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 12px;font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aaec8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.eselect:focus{border-color:var(--orange)}
+.etextarea{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 12px;font-family:'Rajdhani',sans-serif;font-size:13px;outline:none;resize:vertical;min-height:70px;box-sizing:border-box;line-height:1.5}
+.etextarea:focus{border-color:var(--orange)}
+.etextarea::placeholder{color:var(--text3)}
+.egrid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.egrid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+
+/* Spec selector in editor */
+.espec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.espec-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:10px 8px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;text-align:center;-webkit-tap-highlight-color:transparent}
+.espec-btn.sel{border-color:var(--orange);color:var(--orange);background:var(--odim)}
+.espec-btn:active{background:var(--odim)}
+
+/* Content type chips */
+.echips{display:flex;flex-wrap:wrap;gap:6px}
+.echip{background:transparent;border:1px solid var(--border);color:var(--text3);padding:5px 10px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;border-radius:2px}
+.echip.sel{border-color:var(--orange);color:var(--orange);background:var(--odim)}
+
+/* Gear slot cards in editor */
+.gear-editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gear-slot-card{background:var(--bg3);border:1px solid var(--border);padding:12px;cursor:pointer;transition:border-color .15s}
+.gear-slot-card.filled{border-color:var(--border2)}
+.gear-slot-card.editing{border-color:var(--orange)}
+.gear-slot-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.gear-slot-icon{font-size:18px}
+.gear-slot-label{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3)}
+.gear-slot-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;line-height:1.2}
+.gear-slot-name.exotic{color:var(--gold)}
+.gear-slot-name.named{color:var(--blue)}
+.gear-slot-empty{font-size:12px;color:var(--text3);font-style:italic}
+.gear-slot-sub{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--text3);margin-top:2px}
+
+/* Weapon card in editor */
+.weapon-editor-card{background:var(--bg3);border:1px solid var(--border);padding:14px;margin-bottom:12px}
+.weapon-editor-title{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:12px}
+
+/* Rarity selector */
+.erarity{display:flex;gap:6px}
+.erarity-btn{flex:1;background:transparent;border:1px solid var(--border);color:var(--text3);padding:6px 4px;font-family:'Share Tech Mono',monospace;font-size:7.5px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-align:center;transition:all .15s}
+.erarity-btn.sel.exotic{border-color:var(--gold);color:var(--gold);background:rgba(245,158,11,.1)}
+.erarity-btn.sel.named{border-color:var(--blue);color:var(--blue);background:rgba(56,189,248,.1)}
+.erarity-btn.sel.high-end{border-color:var(--green);color:var(--green);background:rgba(74,222,128,.08)}
+
+/* Preview */
+.preview-section{background:var(--bg3);border:1px solid var(--border);padding:16px;margin-bottom:12px}
+.preview-section-title{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.preview-gear-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.preview-gear-item{padding:8px 10px;background:var(--bg2);border:1px solid var(--border)}
+.preview-gear-slot{font-family:'Share Tech Mono',monospace;font-size:7px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.preview-gear-name{font-size:13px;font-weight:700;color:var(--text)}
+.preview-gear-name.exotic{color:var(--gold)}
+.preview-gear-name.named{color:var(--blue)}
+.preview-gear-detail{font-size:11px;color:var(--text3);margin-top:2px}
+.core-balance{display:flex;gap:8px;margin-top:8px}
+.core-dot{width:14px;height:14px;border-radius:50%;display:inline-block}
+
+/* Inline gear slot editor panel */
+.gear-inline-editor{background:var(--panel);border:1px solid var(--orange);padding:14px;margin-top:8px;display:none}
+.gear-inline-editor.open{display:block}
+
+/* Steps progress on mobile */
+@media(max-width:760px){
+  .egrid2{grid-template-columns:1fr}
+  .egrid3{grid-template-columns:1fr 1fr}
+  .gear-editor-grid{grid-template-columns:1fr 1fr}
+  .espec-grid{grid-template-columns:repeat(2,1fr)}
+  .editor-body{padding:14px}
+  .editor-footer{padding:12px 14px}
+  .preview-gear-grid{grid-template-columns:1fr 1fr}
+}
+
 /* ── Progression Guide ── */
 .guide-phase{background:var(--panel);border:1px solid var(--border);margin-bottom:14px;overflow:hidden}
 .guide-phase-hdr{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);flex-wrap:wrap}
@@ -375,7 +470,8 @@ main{padding:22px;background:var(--bg)}
   .modal{max-width:100%;margin:0;border-left:none;border-right:none;border-bottom:none;border-radius:16px 16px 0 0;max-height:92vh;display:flex;flex-direction:column;overflow:hidden}
   .overlay{padding:0;align-items:flex-end;overflow:hidden}
   .overlay.open .modal{transform:translateY(0)}
-  #detailModal{overflow-y:auto;-webkit-overflow-scrolling:touch}
+  #detailModal{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+  #detailModal .mh{overflow:visible}
   .mob-back-bar{display:flex;align-items:center;gap:10px;padding:14px 16px 12px;border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:10;border-radius:16px 16px 0 0;min-height:56px}
   .mob-drag-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;position:absolute;top:8px;left:50%;transform:translateX(-50%)}
   .mob-back-btn{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);border:1px solid var(--border2);border-radius:20px;color:var(--text);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:7px 14px 7px 10px;-webkit-tap-highlight-color:transparent;min-width:70px;white-space:nowrap}
@@ -395,7 +491,7 @@ main{padding:22px;background:var(--bg)}
   .modal-tab-content{display:none;padding:16px 14px 40px}
   .modal-tab-content.active{display:block}
   .mbody{padding:0;display:block}
-  .mh{padding:12px 14px 14px}
+  .mh{padding:12px 14px 16px;overflow:visible}
   .mtitle{font-size:22px}
   .msub{font-size:11px;margin-top:3px}
   .mspec{font-size:8px;padding:3px 8px;margin-bottom:8px;white-space:normal;word-break:break-word;max-width:100%}
@@ -646,39 +742,9 @@ main{padding:22px;background:var(--bg)}
   <div class="modal" id="detailModal"></div>
 </div>
 
-<div class="overlay" id="createOverlay" onclick="if(event.target===this)closeOverlay('createOverlay')">
-  <div class="modal cmodal">
-    <div class="mh">
-      <div class="mh-grid"></div>
-      <div class="mh-left"><div class="mtitle">Create Build</div><div class="msub">Share your build with the community</div></div>
-      <button class="mclose" onclick="closeOverlay('createOverlay')">&#x2715;</button>
-    </div>
-    <div style="padding:20px">
-      <div class="f2">
-        <div class="fg"><label class="flbl">Build Name</label><input class="finput" id="nb-name" placeholder="e.g. Striker St. Elmo's DPS"></div>
-        <div class="fg"><label class="flbl">Difficulty</label><select class="fsel" id="nb-diff"><option>Challenging</option><option selected>Heroic</option><option>Legendary</option></select></div>
-      </div>
-      <div class="fg">
-        <label class="flbl">Specialization</label>
-        <div class="spec-grid">
-          <button class="spec-opt" onclick="pickSpec(this,'Demolitionist')">&#x1F4A5; Demolitionist</button>
-          <button class="spec-opt" onclick="pickSpec(this,'Sharpshooter')">&#x1F3AF; Sharpshooter</button>
-          <button class="spec-opt" onclick="pickSpec(this,'Survivalist')">&#x1F3D5;&#xFE0F; Survivalist</button>
-          <button class="spec-opt" onclick="pickSpec(this,'Technician')">&#x1F527; Technician</button>
-          <button class="spec-opt" onclick="pickSpec(this,'Firewall')">&#x1F525; Firewall</button>
-          <button class="spec-opt" onclick="pickSpec(this,'Gunner')">&#x1F52B; Gunner</button>
-        </div>
-      </div>
-      <div class="f2">
-        <div class="fg"><label class="flbl">Primary Weapon</label><input class="finput" placeholder="e.g. St. Elmo's Engine (AR)"></div>
-        <div class="fg"><label class="flbl">Secondary Weapon</label><input class="finput" placeholder="e.g. Scorpio (Shotgun)"></div>
-      </div>
-      <div class="fg"><label class="flbl">Description</label><textarea class="fta" placeholder="Explain your build, rotation, tips..."></textarea></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:6px">
-        <button class="btn btn-ghost" onclick="closeOverlay('createOverlay')">Cancel</button>
-        <button class="btn btn-primary" onclick="submitBuild()">Publish Build</button>
-      </div>
-    </div>
+<div class="overlay" id="createOverlay">
+  <div class="modal cmodal" id="editorModal">
+    <!-- Editor injected by JS -->
   </div>
 </div>
 
@@ -1700,6 +1766,9 @@ function setTab(t){
     var mel=document.getElementById('mob-'+x);
     if(mel) mel.classList.toggle('active',x===t);
   });
+  // Show/hide sidebar — hide on non-builds tabs
+  var aside=document.querySelector('aside');
+  if(aside) aside.style.display=(t==='builds')?'':'none';
   renderMain();
 }
 function setSpec(s,el){
@@ -1981,22 +2050,523 @@ function toggleSaveModal(id){
   else{savedBuilds.add(id);btn.innerHTML='&#x2713; Saved';btn.className='btn btn-save';showNotif('Saved!');}
   renderMain();
 }
-function openCreate(){openOverlay('createOverlay');}
-function pickSpec(el,s){
-  newSpecSel=s;
-  document.querySelectorAll('.spec-opt').forEach(function(b){b.classList.remove('sel');});
-  el.classList.add('sel');
+
+// ═══════════════════════════════════════════════════════
+// BUILD EDITOR — datamodell + 6-stegs editor
+// ═══════════════════════════════════════════════════════
+
+var EDITOR_STEP = 0;
+var EDITOR_STEPS = ['Basic','Weapons','Skills','Gear','Summary','Preview'];
+
+// Live draft — reset on open
+var DRAFT = {};
+
+function draftReset(){
+  DRAFT = {
+    buildName:'', author:'', patch:'Y7S3',
+    specialization:'', playstyle:'', difficulty:'Heroic',
+    contentType:[],
+    weapons:{
+      primary:  {name:'',type:'',rarity:'high-end',talent:'',attribute3:'',mods:'',notes:''},
+      secondary:{name:'',type:'',rarity:'high-end',talent:'',attribute3:'',mods:'',notes:''},
+      sidearm:  {name:'',type:'',rarity:'high-end',notes:''}
+    },
+    skills:[
+      {name:'',variant:'',mod:'',notes:''},
+      {name:'',variant:'',mod:'',notes:''}
+    ],
+    gear:{
+      mask:     {itemName:'',brand:'',gearSet:'',rarity:'high-end',core:'',attr1:'',attr2:'',mod:'',talent:'',notes:''},
+      backpack: {itemName:'',brand:'',gearSet:'',rarity:'high-end',core:'',attr1:'',attr2:'',mod:'',talent:'',notes:''},
+      chest:    {itemName:'',brand:'',gearSet:'',rarity:'high-end',core:'',attr1:'',attr2:'',mod:'',talent:'',notes:''},
+      gloves:   {itemName:'',brand:'',gearSet:'',rarity:'high-end',core:'',attr1:'',attr2:'',mod:'',talent:'',notes:''},
+      holster:  {itemName:'',brand:'',gearSet:'',rarity:'high-end',core:'',attr1:'',attr2:'',mod:'',talent:'',notes:''},
+      kneepads: {itemName:'',brand:'',gearSet:'',rarity:'high-end',core:'',attr1:'',attr2:'',mod:'',talent:'',notes:''}
+    },
+    summary:'', howToPlay:'',
+    strengths:'', weaknesses:'', substitutions:'',
+    rating:0, views:0, saves:0,
+    createdAt: new Date().toISOString(),
+    userCreated: true
+  };
 }
-function submitBuild(){
-  var name=document.getElementById('nb-name').value.trim();
-  if(!name){showNotif('Enter a build name!');return;}
-  if(!newSpecSel){showNotif('Select a specialization!');return;}
-  showNotif('"'+name+'" published!');
+
+function openCreate(){
+  draftReset();
+  EDITOR_STEP = 0;
+  renderEditor();
+  openOverlay('createOverlay');
+}
+
+function pickSpec(el,s){ /* legacy — not used */ }
+
+// ── Render editor shell ──
+function renderEditor(){
+  var m = document.getElementById('editorModal');
+  m.innerHTML = ''
+    + '<div class="editor-wrap">'
+    + editorHeader()
+    + '<div class="editor-steps" id="editorSteps">'
+    + EDITOR_STEPS.map(function(s,i){
+        var cls = 'estep' + (i===EDITOR_STEP?' active':'') + (i<EDITOR_STEP?' done':'');
+        return '<button class="'+cls+'" onclick="editorGoTo('+i+')">'+(i<EDITOR_STEP?'&#x2713; ':'')+s+'</button>';
+      }).join('')
+    + '</div>'
+    + '<div class="editor-body" id="editorBody">'
+    + editorStepContent(EDITOR_STEP)
+    + '</div>'
+    + '<div class="editor-footer">'
+    + '<button class="btn btn-ghost" onclick="'+(EDITOR_STEP===0?"closeOverlay('createOverlay')":'editorPrev()')+'">'+( EDITOR_STEP===0?'Cancel':'&#x2190; Back')+'</button>'
+    + '<span class="editor-footer-info">Step '+(EDITOR_STEP+1)+' of '+EDITOR_STEPS.length+'</span>'
+    + (EDITOR_STEP < EDITOR_STEPS.length-1
+        ? '<button class="btn btn-primary" onclick="editorNext()">Next &#x2192;</button>'
+        : '<button class="btn btn-primary" onclick="editorSave()">&#x2713; Save Build</button>')
+    + '</div></div>';
+}
+
+function editorHeader(){
+  return '<div class="mh" style="border-bottom:1px solid var(--border)">'
+    + '<div class="mh-grid"></div>'
+    + '<div class="mh-left"><div class="mtitle" style="font-size:20px">Create Build</div>'
+    + '<div class="msub">'+(DRAFT.buildName||'New build')+'</div></div>'
+    + '<button class="mclose" onclick="closeOverlay(\'createOverlay\')">&#x2715;</button>'
+    + '</div>';
+}
+
+function editorGoTo(i){
+  editorSaveCurrent();
+  if(i > EDITOR_STEP){
+    // Allow forward jump only if current step is valid
+    var err = editorValidate(EDITOR_STEP);
+    if(err && i > EDITOR_STEP + 1){ showNotif(err); return; }
+  }
+  EDITOR_STEP = i;
+  renderEditor();
+}
+function editorNext(){
+  editorSaveCurrent();
+  var err = editorValidate(EDITOR_STEP);
+  if(err){ showNotif(err); return; }
+  EDITOR_STEP = Math.min(EDITOR_STEP+1, EDITOR_STEPS.length-1);
+  renderEditor();
+  document.getElementById('editorBody').scrollTop = 0;
+}
+function editorPrev(){
+  editorSaveCurrent();
+  EDITOR_STEP = Math.max(EDITOR_STEP-1, 0);
+  renderEditor();
+}
+function editorValidate(step){
+  if(step===0){
+    if(!DRAFT.buildName.trim()) return 'Enter a build name';
+    if(!DRAFT.specialization) return 'Select a specialization';
+    if(!DRAFT.playstyle) return 'Select a playstyle';
+    if(!DRAFT.contentType.length) return 'Select at least one content type';
+  }
+  if(step===1){
+    if(!DRAFT.weapons.primary.name.trim()) return 'Enter primary weapon name';
+    if(!DRAFT.weapons.primary.type.trim()) return 'Enter primary weapon type';
+  }
+  return null;
+}
+
+// ── Save current step fields back to DRAFT ──
+function editorSaveCurrent(){
+  var b = document.getElementById('editorBody');
+  if(!b) return;
+  // Generic: read all [data-draft] inputs
+  b.querySelectorAll('[data-draft]').forEach(function(el){
+    var path = el.getAttribute('data-draft').split('.');
+    var obj = DRAFT;
+    for(var i=0;i<path.length-1;i++) obj = obj[path[i]];
+    obj[path[path.length-1]] = el.value;
+  });
+}
+
+// ── Step content ──
+function editorStepContent(step){
+  if(step===0) return editorStep0();
+  if(step===1) return editorStep1();
+  if(step===2) return editorStep2();
+  if(step===3) return editorStep3();
+  if(step===4) return editorStep4();
+  if(step===5) return editorStep5();
+  return '';
+}
+
+// ─── STEP 0: Basic Info ───
+function editorStep0(){
+  var specs = [
+    {k:'demolitionist',label:'Demolitionist',col:'#f97316'},
+    {k:'sharpshooter', label:'Sharpshooter', col:'#60a5fa'},
+    {k:'survivalist',  label:'Survivalist',  col:'#4ade80'},
+    {k:'technician',   label:'Technician',   col:'#a78bfa'},
+    {k:'firewall',     label:'Firewall',     col:'#f87171'},
+    {k:'gunner',       label:'Gunner',       col:'#fbbf24'}
+  ];
+  var playstyles = ['DPS','Tank','Healer','Skill','Status','Hybrid'];
+  var contentTypes = ['Solo','Group','Heroic','Legendary','Countdown','Summit','Raid','PvP','Dark Zone','Farming'];
+  var difficulties = ['Challenging','Heroic','Legendary'];
+
+  return '<div class="esec"><div class="esec-title">Basic Info</div>'
+    + eField('Build Name','buildName',DRAFT.buildName,'e.g. Striker St. Elmo\'s DPS',true)
+    + eField('Author / Creator Tag','author',DRAFT.author,'Your name or tag')
+    + '</div>'
+    + '<div class="esec"><div class="esec-title">Specialization</div>'
+    + '<div class="espec-grid">'
+    + specs.map(function(s){
+        return '<button class="espec-btn'+(DRAFT.specialization===s.k?' sel':'')+'" '
+          +'style="'+(DRAFT.specialization===s.k?'border-color:'+s.col+';color:'+s.col+';background:'+s.col+'18':'')+'"'
+          +' onclick="eDraftSet(\'specialization\',\''+s.k+'\');document.querySelectorAll(\'.espec-btn\').forEach(function(b){b.classList.remove(\'sel\');b.style.cssText=\'\';});this.classList.add(\'sel\');this.style.borderColor=\''+s.col+'\';this.style.color=\''+s.col+'\';this.style.background=\''+s.col+'18\'">'+s.label+'</button>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="esec"><div class="esec-title">Playstyle</div>'
+    + '<div class="echips">'
+    + playstyles.map(function(p){
+        return '<button class="echip'+(DRAFT.playstyle===p?' sel':'')+'" onclick="eDraftSet(\'playstyle\',\''+p+'\');document.querySelectorAll(\'.echip[data-pl]\').forEach(function(b){b.classList.remove(\'sel\');});this.classList.add(\'sel\')" data-pl="1">'+p+'</button>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="esec"><div class="esec-title">Content Type <span style="color:var(--text3);font-size:7px;letter-spacing:0">(select all that apply)</span></div>'
+    + '<div class="echips">'
+    + contentTypes.map(function(c){
+        return '<button class="echip'+(DRAFT.contentType.includes(c)?' sel':'')+'" onclick="eToggleContent(this,\''+c+'\')" data-ct="1">'+c+'</button>';
+      }).join('')
+    + '</div></div>'
+    + '<div class="esec"><div class="esec-title">Difficulty</div>'
+    + '<div class="echips">'
+    + difficulties.map(function(d){
+        return '<button class="echip'+(DRAFT.difficulty===d?' sel':'')+'" onclick="eDraftSet(\'difficulty\',\''+d+'\');document.querySelectorAll(\'.echip[data-diff]\').forEach(function(b){b.classList.remove(\'sel\');});this.classList.add(\'sel\')" data-diff="1">'+d+'</button>';
+      }).join('')
+    + '</div></div>';
+}
+
+// ─── STEP 1: Weapons ───
+function editorStep1(){
+  return eWeaponBlock('Primary Weapon','weapons.primary',DRAFT.weapons.primary,true)
+    + eWeaponBlock('Secondary Weapon','weapons.secondary',DRAFT.weapons.secondary,false)
+    + '<div class="weapon-editor-card"><div class="weapon-editor-title">Sidearm</div>'
+    + eField('Weapon Name','weapons.sidearm.name',DRAFT.weapons.sidearm.name,'e.g. Any pistol with Skill Tier mod')
+    + eField('Type','weapons.sidearm.type',DRAFT.weapons.sidearm.type,'e.g. Pistol — High-End')
+    + eField('Notes','weapons.sidearm.notes',DRAFT.weapons.sidearm.notes,'e.g. Slot a Skill Tier mod to reach ST6','','textarea')
+    + '</div>';
+}
+
+function eWeaponBlock(title, prefix, w, required){
+  return '<div class="weapon-editor-card">'
+    + '<div class="weapon-editor-title">'+title+(required?' <span style="color:var(--orange)">*</span>':'')+'</div>'
+    + '<div class="egrid2">'
+    + eField('Weapon Name',prefix+'.name',w.name,'e.g. St. Elmo\'s Engine')
+    + eField('Type / Class',prefix+'.type',w.type,'e.g. Assault Rifle (Exotic)')
+    + '</div>'
+    + '<div class="efield"><label>Rarity</label>'
+    + '<div class="erarity">'
+    + ['high-end','named','exotic'].map(function(r){
+        return '<button class="erarity-btn '+r+(w.rarity===r?' sel':'')+'" onclick="eDraftSet(\''+prefix+'.rarity\',\''+r+'\');this.closest(\'.erarity\').querySelectorAll(\'.erarity-btn\').forEach(function(b){b.classList.remove(\'sel\');});this.classList.add(\'sel\')">'+r.charAt(0).toUpperCase()+r.slice(1).replace('-',' ')+'</button>';
+      }).join('')
+    + '</div></div>'
+    + eField('Talent',prefix+'.talent',w.talent,'e.g. Actum Est (LOCKED — exotic) or Frenzy (rollable)')
+    + eField('3rd Attribute',prefix+'.attribute3',w.attribute3,'e.g. DMG Out of Cover (reconfigure/roll this)')
+    + eField('Mod Slots',prefix+'.mods',w.mods,'e.g. Mag: Extra Rounds | Muzzle: Crit Hit Dmg')
+    + eField('Notes',prefix+'.notes',w.notes,'e.g. Fire semi-auto only for headshot multiplier','','textarea')
+    + '</div>';
+}
+
+// ─── STEP 2: Skills ───
+function editorStep2(){
+  var skillNames = ['Assault Turret','Striker Drone','Reviver Hive','Chem Launcher','Seeker Mine','Firefly','Ballistic Shield','Pulse','Snowball'];
+  return '<div class="esec"><div class="esec-title">Skill 1</div>'
+    + '<div class="egrid2">'
+    + eField('Skill Name','skills.0.name',DRAFT.skills[0].name,'e.g. Striker Drone')
+    + eField('Variant','skills.0.variant',DRAFT.skills[0].variant,'e.g. Striker — auto-attacks target')
+    + '</div>'
+    + eField('Skill Mod / Attribute','skills.0.mod',DRAFT.skills[0].mod,'e.g. Skill Damage, Skill Haste')
+    + eField('Notes','skills.0.notes',DRAFT.skills[0].notes,'e.g. Deploy near enemies to trigger Refactor 4pc bonus','','textarea')
+    + '</div>'
+    + '<div class="esec"><div class="esec-title">Skill 2</div>'
+    + '<div class="egrid2">'
+    + eField('Skill Name','skills.1.name',DRAFT.skills[1].name,'e.g. Reviver Hive')
+    + eField('Variant','skills.1.variant',DRAFT.skills[1].variant,'e.g. Reviver — auto-revives downed allies')
+    + '</div>'
+    + eField('Skill Mod / Attribute','skills.1.mod',DRAFT.skills[1].mod,'e.g. Skill Haste')
+    + eField('Notes','skills.1.notes',DRAFT.skills[1].notes,'e.g. Place before every elite fight, not during','','textarea')
+    + '</div>';
+}
+
+// ─── STEP 3: Gear ───
+var GEAR_SLOTS = [
+  {k:'mask',     label:'Mask',      icon:'&#x1FA96;', hasTalent:false},
+  {k:'backpack', label:'Backpack',  icon:'&#x1F392;', hasTalent:true},
+  {k:'chest',    label:'Chest',     icon:'&#x1F9BA;', hasTalent:true},
+  {k:'gloves',   label:'Gloves',    icon:'&#x1F9E4;', hasTalent:false},
+  {k:'holster',  label:'Holster',   icon:'&#x1FA73;', hasTalent:false},
+  {k:'kneepads', label:'Kneepads',  icon:'&#x1F9B5;', hasTalent:false}
+];
+var ACTIVE_GEAR_SLOT = null;
+
+function editorStep3(){
+  var html = '<div class="esec"><div class="esec-title">Armor Slots <span style="color:var(--text3);font-size:7px">— click a slot to expand</span></div>'
+    + '<div class="gear-editor-grid">';
+  GEAR_SLOTS.forEach(function(s){
+    var g = DRAFT.gear[s.k];
+    var filled = g.itemName.trim();
+    var isActive = ACTIVE_GEAR_SLOT === s.k;
+    html += '<div class="gear-slot-card'+(filled?' filled':'')+(isActive?' editing':'')+'" onclick="eToggleGearSlot(\''+s.k+'\')">'
+      + '<div class="gear-slot-hdr">'
+      + '<span class="gear-slot-icon">'+s.icon+'</span>'
+      + '<span class="gear-slot-label">'+s.label+'</span>'
+      + (filled?'<span style="margin-left:auto;font-family:\'Share Tech Mono\',monospace;font-size:7px;color:var(--green)">&#x2713;</span>':'')
+      + '</div>'
+      + (filled
+          ? '<div class="gear-slot-name '+(g.rarity==='exotic'?'exotic':g.rarity==='named'?'named':'')+'">'+(g.itemName||'')+'</div>'
+            + '<div class="gear-slot-sub">'+(g.brand||g.gearSet||'')+(g.core?' &middot; '+g.core:'')+'</div>'
+          : '<div class="gear-slot-empty">Click to fill</div>')
+      + '</div>';
+    // Inline editor panel
+    html += '<div class="gear-inline-editor'+(isActive?' open':'')+'" id="gslot-'+s.k+'" onclick="event.stopPropagation()">'
+      + '<div class="egrid2">'
+      + eField('Item Name','gear.'+s.k+'.itemName',g.itemName,'e.g. Striker\'s Backpack')
+      + eField('Brand / Gear Set','gear.'+s.k+'.gearSet',g.gearSet,'e.g. Striker\'s Battlegear')
+      + '</div>'
+      + '<div class="efield"><label>Rarity</label><div class="erarity">'
+      + ['high-end','named','exotic'].map(function(r){
+          return '<button class="erarity-btn '+r+(g.rarity===r?' sel':'')+'" onclick="eDraftSet(\'gear.'+s.k+'.rarity\',\''+r+'\');this.closest(\'.erarity\').querySelectorAll(\'.erarity-btn\').forEach(function(b){b.classList.remove(\'sel\');});this.classList.add(\'sel\')">'+r.charAt(0).toUpperCase()+r.slice(1).replace('-',' ')+'</button>';
+        }).join('')
+      + '</div></div>'
+      + '<div class="egrid3">'
+      + eField('Core Attribute','gear.'+s.k+'.core',g.core,'e.g. Weapon Damage (red)')
+      + eField('Attribute 1','gear.'+s.k+'.attr1',g.attr1,'e.g. Crit Hit Chance')
+      + eField('Attribute 2','gear.'+s.k+'.attr2',g.attr2,'e.g. Crit Hit Damage')
+      + '</div>'
+      + eField('Mod Slot','gear.'+s.k+'.mod',g.mod,'e.g. Crit Hit Damage mod')
+      + (s.hasTalent ? eField('Talent','gear.'+s.k+'.talent',g.talent,'e.g. Risk Management — Striker stacks scale to +1%') : '')
+      + eField('Notes','gear.'+s.k+'.notes',g.notes,'e.g. Mandatory — this talent drives the whole build','','textarea')
+      + '<button class="btn btn-ghost" style="width:100%;margin-top:4px" onclick="eToggleGearSlot(null)">Done &#x2713;</button>'
+      + '</div>';
+  });
+  html += '</div></div>';
+  // Core balance calculator
+  html += '<div class="esec"><div class="esec-title">Core Balance <span style="color:var(--text3);font-size:7px">— fill in cores above to auto-calculate</span></div>'
+    + '<div style="display:flex;gap:16px;align-items:center">'
+    + eCoreCounter('Red','#f87171','red')
+    + eCoreCounter('Blue','#a78bfa','blue')
+    + eCoreCounter('Yellow','#fbbf24','yellow')
+    + '</div>'
+    + '<div style="font-size:11px;color:var(--text3);margin-top:8px">Red = weapon damage cores. Blue = skill tier cores. Yellow = armor cores. Enter manually or derive from gear above.</div>'
+    + '</div>';
+  return html;
+}
+
+function eCoreCounter(label, col, key){
+  var val = DRAFT['core_'+key]||0;
+  return '<div style="text-align:center">'
+    + '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:28px;font-weight:900;color:'+col+'">'+val+'</div>'
+    + '<div style="font-family:\'Share Tech Mono\',monospace;font-size:7.5px;color:var(--text3);letter-spacing:1px;margin:3px 0">'+label.toUpperCase()+'</div>'
+    + '<div style="display:flex;gap:4px;justify-content:center">'
+    + '<button style="width:28px;height:28px;background:var(--bg3);border:1px solid var(--border);color:var(--text);cursor:pointer;font-size:16px" onclick="eDraftSet(\'core_'+key+'\',Math.max(0,(DRAFT.core_'+key+'||0)-1));this.closest(\'.esec\').replaceWith(document.createRange().createContextualFragment(editorStep3().match(/<div class=\\"esec\\">.*?Core Balance.*?<\\/div>.*?<\\/div>/s)[0]))">−</button>'
+    + '<button style="width:28px;height:28px;background:var(--bg3);border:1px solid var(--border);color:var(--text);cursor:pointer;font-size:16px" onclick="eDraftSet(\'core_'+key+'\',Math.min(6,(DRAFT.core_'+key+'||0)+1));this.closest(\'.esec\').replaceWith(document.createRange().createContextualFragment(editorStep3().match(/<div class=\\"esec\\">.*?Core Balance.*?<\\/div>.*?<\\/div>/s)[0]))">+</button>'
+    + '</div></div>';
+}
+
+function eToggleGearSlot(key){
+  editorSaveCurrent();
+  ACTIVE_GEAR_SLOT = (ACTIVE_GEAR_SLOT === key) ? null : key;
+  // Re-render just the gear step
+  document.getElementById('editorBody').innerHTML = editorStep3();
+}
+
+// ─── STEP 4: Summary & Gameplay ───
+function editorStep4(){
+  return '<div class="esec"><div class="esec-title">Build Overview</div>'
+    + eField('Short Summary','summary',DRAFT.summary,'1-2 sentences. What makes this build work?','','textarea')
+    + eField('How to Play / Rotation','howToPlay',DRAFT.howToPlay,'Step-by-step: what to do first, skill rotation, positioning...','','textarea')
+    + '</div>'
+    + '<div class="esec"><div class="esec-title">Strengths</div>'
+    + eField('','strengths',DRAFT.strengths,'e.g. Highest DPS in meta, great for solo Legendary, handles all range...','','textarea')
+    + '</div>'
+    + '<div class="esec"><div class="esec-title">Weaknesses</div>'
+    + eField('','weaknesses',DRAFT.weaknesses,'e.g. Requires Coyote\'s exotic, stacks reset on death, weak vs status effects...','','textarea')
+    + '</div>'
+    + '<div class="esec"><div class="esec-title">Substitutions</div>'
+    + eField('','substitutions',DRAFT.substitutions,'e.g. No Coyote\'s? Use Vile Mask instead. No Kingbreaker? Any named AR with Flatline works...','','textarea')
+    + '</div>';
+}
+
+// ─── STEP 5: Preview ───
+function editorStep5(){
+  var col = specCol(DRAFT.specialization) || 'var(--orange)';
+  var gearKeys = ['mask','backpack','chest','gloves','holster','kneepads'];
+  var gearLabels = {mask:'Mask',backpack:'Backpack',chest:'Chest',gloves:'Gloves',holster:'Holster',kneepads:'Kneepads'};
+  var gearIcons = {mask:'&#x1FA96;',backpack:'&#x1F392;',chest:'&#x1F9BA;',gloves:'&#x1F9E4;',holster:'&#x1FA73;',kneepads:'&#x1F9B5;'};
+
+  var html = '<div style="background:var(--bg3);border-left:3px solid '+col+';padding:14px;margin-bottom:16px">'
+    + '<div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">'+( DRAFT.specialization||'—').toUpperCase()+' &middot; '+(DRAFT.difficulty||'—')+'</div>'
+    + '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:24px;font-weight:900;color:var(--text);line-height:1.1">'+(DRAFT.buildName||'Untitled Build')+'</div>'
+    + '<div style="font-size:13px;color:var(--text2);margin-top:6px;line-height:1.5">'+(DRAFT.summary||'—')+'</div>'
+    + '<div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px">'
+    + DRAFT.contentType.map(function(c){return '<span style="font-family:\'Share Tech Mono\',monospace;font-size:8px;padding:2px 8px;border:1px solid var(--border);color:var(--text3);border-radius:2px">'+c+'</span>';}).join('')
+    + '</div></div>'
+
+    // Weapons
+    + '<div class="preview-section"><div class="preview-section-title">Weapons</div>'
+    + [DRAFT.weapons.primary, DRAFT.weapons.secondary].map(function(w,i){
+        if(!w.name) return '';
+        return '<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)">'
+          + '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:16px;font-weight:700;color:'+(w.rarity==='exotic'?'var(--gold)':w.rarity==='named'?'var(--blue)':'var(--text)')+'">'+w.name+'</div>'
+          + '<div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:var(--text3);margin-top:2px">'+(w.type||'')+'</div>'
+          + (w.talent?'<div style="font-size:12px;color:var(--text2);margin-top:4px">Talent: '+w.talent+'</div>':'')
+          + (w.attribute3?'<div style="font-size:12px;color:var(--text2)">3rd Attr: '+w.attribute3+'</div>':'')
+          + (w.mods?'<div style="font-size:12px;color:var(--text2)">Mods: '+w.mods+'</div>':'')
+          + '</div>';
+      }).join('')
+    + '</div>'
+
+    // Skills
+    + '<div class="preview-section"><div class="preview-section-title">Skills</div>'
+    + DRAFT.skills.map(function(s){
+        if(!s.name) return '';
+        return '<div style="margin-bottom:6px"><span style="font-weight:700;color:var(--text)">'+s.name+'</span>'
+          + (s.variant?' <span style="color:var(--text3);font-size:12px">— '+s.variant+'</span>':'')
+          + (s.notes?'<div style="font-size:11px;color:var(--text3);margin-top:1px">'+s.notes+'</div>':'')
+          + '</div>';
+      }).join('')
+    + '</div>'
+
+    // Gear
+    + '<div class="preview-section"><div class="preview-section-title">Gear — All 6 Slots</div>'
+    + '<div class="preview-gear-grid">'
+    + gearKeys.map(function(k){
+        var g = DRAFT.gear[k];
+        var empty = !g.itemName.trim();
+        return '<div class="preview-gear-item">'
+          + '<div class="preview-gear-slot">'+gearIcons[k]+' '+gearLabels[k]+'</div>'
+          + '<div class="preview-gear-name'+(g.rarity==='exotic'?' exotic':g.rarity==='named'?' named':'')+'">'+(empty?'—':g.itemName)+'</div>'
+          + (g.gearSet&&!empty?'<div class="preview-gear-detail">'+g.gearSet+'</div>':'')
+          + (g.core&&!empty?'<div class="preview-gear-detail" style="color:var(--text3)">Core: '+g.core+'</div>':'')
+          + (g.talent&&!empty?'<div class="preview-gear-detail" style="color:var(--orange)">'+g.talent+'</div>':'')
+          + '</div>';
+      }).join('')
+    + '</div></div>'
+
+    // Gameplay
+    + (DRAFT.howToPlay?'<div class="preview-section"><div class="preview-section-title">How to Play</div><div style="font-size:13px;color:var(--text2);line-height:1.7">'+DRAFT.howToPlay+'</div></div>':'')
+    + (DRAFT.strengths||DRAFT.weaknesses?'<div class="preview-section"><div class="preview-section-title">Strengths &amp; Weaknesses</div>'
+      + (DRAFT.strengths?'<div style="font-size:12px;color:var(--green);margin-bottom:6px"><strong>+</strong> '+DRAFT.strengths+'</div>':'')
+      + (DRAFT.weaknesses?'<div style="font-size:12px;color:#f87171"><strong>−</strong> '+DRAFT.weaknesses+'</div>':'')
+      + '</div>':'')
+    + (DRAFT.substitutions?'<div class="preview-section"><div class="preview-section-title">Substitutions</div><div style="font-size:12px;color:var(--text2);line-height:1.6">'+DRAFT.substitutions+'</div></div>':'')
+
+    + '<div style="padding:12px;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.25);font-size:12px;color:var(--green);margin-top:8px">&#x2713; Ready to save. This build will be stored in your browser.</div>';
+  return html;
+}
+
+// ── Helpers ──
+function eField(label, draftKey, val, placeholder, extraClass, type){
+  var tag = (type==='textarea') ? 'textarea' : 'input';
+  var cls = (type==='textarea') ? 'etextarea' : 'einput';
+  var inputStr = (type==='textarea')
+    ? '<textarea class="'+cls+' '+( extraClass||'')+'" data-draft="'+draftKey+'" placeholder="'+(placeholder||'')+'">'+escHtml(val||'')+'</textarea>'
+    : '<input class="'+cls+' '+(extraClass||'')+'" data-draft="'+draftKey+'" value="'+escHtml(val||'')+'" placeholder="'+(placeholder||'')+'">';
+  return '<div class="efield">'+(label?'<label>'+label+'</label>':'')+inputStr+'</div>';
+}
+
+function escHtml(s){
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function eDraftSet(path, val){
+  var parts = path.split('.');
+  var obj = DRAFT;
+  for(var i=0;i<parts.length-1;i++){
+    if(obj[parts[i]]===undefined) obj[parts[i]]={};
+    obj = obj[parts[i]];
+  }
+  obj[parts[parts.length-1]] = val;
+}
+
+function eToggleContent(btn, val){
+  var idx = DRAFT.contentType.indexOf(val);
+  if(idx>=0) DRAFT.contentType.splice(idx,1);
+  else DRAFT.contentType.push(val);
+  btn.classList.toggle('sel');
+}
+
+// ── Save build to local storage + render on page ──
+function editorSave(){
+  editorSaveCurrent();
+  var err = editorValidate(0);
+  if(err){ showNotif(err); EDITOR_STEP=0; renderEditor(); return; }
+
+  // Convert DRAFT to BUILDS-compatible object and push
+  var newId = Date.now();
+  var gearSlots = GEAR_SLOTS.map(function(s){
+    var g = DRAFT.gear[s.k];
+    return {
+      type: s.label.toUpperCase(), icon: s.icon,
+      name: g.itemName||'—', brand: g.gearSet||g.brand||'—',
+      rarity: g.rarity||'high-end',
+      talent: g.talent||'—',
+      mods: [g.mod||'—', g.attr1||'—'].filter(function(x){return x&&x!=='—';})
+    };
+  });
+  var b = {
+    id: newId, season:'current', patch: DRAFT.patch||'Y7S3',
+    name: DRAFT.buildName,
+    spec: DRAFT.specialization,
+    specLabel: DRAFT.specialization.charAt(0).toUpperCase()+DRAFT.specialization.slice(1),
+    author: DRAFT.author||'Community',
+    creatorVerified: false,
+    rating: 0, stars: 0, views: 0, saves: 0,
+    tags: DRAFT.contentType.concat([DRAFT.playstyle, DRAFT.difficulty]).filter(Boolean),
+    difficulty: DRAFT.difficulty||'Heroic',
+    updated: 'Just now',
+    summary: DRAFT.summary||'Community build.',
+    description: DRAFT.howToPlay||DRAFT.summary||'',
+    tips: DRAFT.strengths ? DRAFT.strengths.split('\n').filter(Boolean) : [],
+    gear: gearSlots,
+    weapons: {
+      primary: {
+        name: DRAFT.weapons.primary.name||'—',
+        type: DRAFT.weapons.primary.type||'—',
+        rarity: DRAFT.weapons.primary.rarity||'high-end',
+        drops: []
+      },
+      secondary: DRAFT.weapons.secondary.name ? {
+        name: DRAFT.weapons.secondary.name,
+        type: DRAFT.weapons.secondary.type||'—',
+        rarity: DRAFT.weapons.secondary.rarity||'high-end',
+        drops: []
+      } : null
+    },
+    skills: DRAFT.skills.filter(function(s){return s.name;}).map(function(s){
+      return {name:s.name, variant:s.variant||s.name, icon:'&#x1F527;'};
+    }),
+    talents: [],
+    stats:{weaponDmg:0,armor:0,skillTier:0,critChance:0,critDmg:0,armorRegen:0},
+    _draft: DRAFT  // preserve full draft for future editing
+  };
+
+  BUILDS.push(b);
+
+  // Save to localStorage
+  try {
+    var saved = JSON.parse(localStorage.getItem('div2-user-builds')||'[]');
+    saved.push(b);
+    localStorage.setItem('div2-user-builds', JSON.stringify(saved));
+  } catch(e){}
+
   closeOverlay('createOverlay');
-  document.getElementById('nb-name').value='';
-  newSpecSel='';
-  document.querySelectorAll('.spec-opt').forEach(function(b){b.classList.remove('sel');});
+  setTab('builds');
+  showNotif('"'+b.name+'" saved!');
 }
+
+// Load user builds on startup
+(function(){
+  try {
+    var saved = JSON.parse(localStorage.getItem('div2-user-builds')||'[]');
+    saved.forEach(function(b){ if(!BUILDS.find(function(x){return x.id===b.id;})) BUILDS.push(b); });
+  } catch(e){}
+})();
+
 
 renderEvWidget();
 renderMain();
