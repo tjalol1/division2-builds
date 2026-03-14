@@ -320,8 +320,7 @@ main{padding:22px;background:var(--bg)}
 .core-dot{width:14px;height:14px;border-radius:50%;display:inline-block}
 
 /* Inline gear slot editor panel */
-.gear-inline-editor{background:var(--panel);border:1px solid var(--orange);padding:14px;margin-top:8px;display:none}
-.gear-inline-editor.open{display:block}
+.gear-inline-editor{background:var(--panel);border:1px solid var(--orange);border-top:3px solid var(--orange);padding:16px;margin-top:10px}
 
 /* Steps progress on mobile */
 @media(max-width:760px){
@@ -569,6 +568,7 @@ main{padding:22px;background:var(--bg)}
     <li><a id="tab-saved" onclick="setTab('saved')">Saved</a></li>
     <li><a id="tab-events" onclick="setTab('events')">Events</a></li>
     <li><a id="tab-creators" onclick="setTab('creators')">Creators</a></li>
+    <li><a id="tab-guide" onclick="setTab('guide')">&#x1F4D6; Guide</a></li>
   </ul>
   <div class="nav-actions">
     <div class="nav-sep"></div>
@@ -1899,6 +1899,51 @@ function renderEvents(main){
     +'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">'+soon.map(function(e){return '<div class="ev-card soon"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div class="evdot soon"></div><span style="font-family:\'Share Tech Mono\',monospace;font-size:9px;letter-spacing:2px;color:var(--yellow)">SOON</span></div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:700">'+e.name+'</div><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text3);margin:4px 0 8px">'+e.time+'</div><div style="font-size:12px;color:var(--text2);line-height:1.5">'+e.desc+'</div></div>';}).join('')+'</div>';
 }
 
+
+function renderGuide(main){
+  function gPhase(num,title,tag,items){
+    return '<div class="guide-phase"><div class="guide-phase-hdr"><span class="guide-phase-num">'+num+'</span><span class="guide-phase-title">'+title+'</span><span class="guide-phase-tag">'+tag+'</span></div><div class="guide-phase-body">'+items.map(function(it){return '<div class="guide-item"><div class="guide-item-icon">'+it[0]+'</div><div><div class="guide-item-title">'+it[1]+'</div><div class="guide-item-desc">'+it[2]+'</div></div></div>';}).join('')+'</div></div>';
+  }
+  main.innerHTML=''
+  +'<div style="margin-bottom:24px"><h2 style="font-size:32px;font-weight:900;letter-spacing:2px;text-transform:uppercase;line-height:1;margin:0">Progression Guide</h2><p style="font-size:13px;color:var(--text2);margin:6px 0 0">Blueprints, activities and farming priorities for Year 7 Season 3</p></div>'
+  +gPhase('Phase 1','Get to Heroic — First Build','New / Returning',[
+    ['&#x1F3AF;','Complete Campaign + Warlords of New York','Reach level 40. WONY is required for all endgame — Countdown, Summit, Legendary are locked behind it.'],
+    ['&#x1F527;','Upgrade Crafting Bench to max','Talk to Inaya al-Khaliq in the White House (ground floor). Donate SHD materials. Required to craft Named and Exotic items.'],
+    ['&#x1F4CB;','Buy all Base of Operations blueprints','Buy from Inaya and both Settlement vendors (Theater + Campus). Fast-travel between them to reset stock.'],
+    ['&#x1F3C6;','First build: Hotshot Headhunter or Heartbreaker','Farm Countdown on Challenging with Marksman Rifles targeted for White Death MMR. Once you have it Heroic open world is easy.']
+  ])
+  +gPhase('Phase 2','Countdown Farming Loop','Core Endgame',[
+    ['&#x23F1;','Countdown — best loot activity in the game','Set targeted loot to the gear set or weapon type you need. Heroic for Exotic drops. Countdown currency buys Named items and Exotic Caches.'],
+    ['&#x1F4E6;','Exotic Cache priority order','1. Weekly SHD Requisition Project (White House upstairs). 2. Countdown vendor currency. 3. Global Event Stars shop. 4. Season Pass reward track.'],
+    ['&#x1F9EA;','Priority exotics to farm first','<strong>St. Elmo&#x27;s Engine</strong> — works in every DPS build. <strong>Coyote&#x27;s Mask</strong> — Jefferson Trade Center final boss. <strong>Memento</strong> — Countdown backpacks. <strong>Capacitor</strong> — craft after Summit blueprint unlock.'],
+    ['&#x1F4C5;','Weekly checklist','&#x2713; SHD Requisition Project<br>&#x2713; 30 Summit floors<br>&#x2713; Global Event Stars shop<br>&#x2713; Priority Objectives tab']
+  ])
+  +gPhase('Phase 3','Retaliation & Exotic Blueprints','Specific Exotics',[
+    ['&#x2694;&#xFE0F;','Retaliation — best source for specific blueprints','Fill the Retaliation meter per faction by defeating their enemies in open world. Liberate Control Points and defeat Kill Squads for an Exotic blueprint.'],
+    ['&#x1F4CB;','Blueprint priority by faction','<strong>Hyenas</strong> → Overdogs Gloves. <strong>True Sons</strong> → Tardigrade Armor (raid tank). <strong>Outcasts</strong> → Vile Mask. <strong>Black Tusk</strong> → Named items. <strong>Rikers</strong> → Scorpio components.'],
+    ['&#x1F528;','Crafting exotics — what you need','Exotic Components (deconstruct unwanted exotics) + Blueprint + Field Recon Data + max crafting bench.'],
+    ['&#x1F504;','Reconfiguring exotics','Change the 3rd attribute at Crafting Station. Core 1 and 2 are permanently locked. Best target: DMG Out of Cover on most weapon exotics.']
+  ])
+  +gPhase('Phase 4','SHD Watch & Optimization','Long Term',[
+    ['&#x231A;','SHD Watch — why it matters','Every 100 levels unlocks a permanent passive bonus. All bonuses unlock at level 1000. Farm XP continuously — most impactful long-term system.'],
+    ['&#x26A1;','Best XP farm: 5 Directives + Heroic open world','Activate all 5 Directives (2x XP). Route: Capitol Hill → Lincoln Memorial → Jefferson Trade Center → White House. ~15 min per loop, ~2-3 SHD levels.'],
+    ['&#x1F527;','Tinkering & Optimization','Max out core attributes via Tinkering. Roll 3rd attribute via Recalibration Station. A fully Tinkered build outperforms a poorly rolled one by 20-40%.']
+  ])
+  +gPhase('Phase 5','Raids','Endgame Group',[
+    ['&#x1F6AA;','Raid requirements','8 players. Discovery Mode to learn mechanics. Normal/Challenge Mode drops <strong>Eagle Bearer AR</strong> (Dark Hours) and <strong>The Ravenous Shotgun</strong> (Iron Horse).'],
+    ['&#x1F4CB;','Iron Horse role distribution','2x Key Tank (Foundry Bulwark). 1x Healer (Future Initiative). 5x DPS (Striker/Heartbreaker/Negotiator builds). All gear 500+ optimized.']
+  ])
+  +'<div class="tips-box" style="margin-top:8px"><div style="monospace;font-size:9px;color:var(--orange);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Quick Reference</div>'
+  +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:12px;color:var(--text2)">'
+  +'<div><strong style="color:var(--text)">Best XP:</strong> Heroic + 5 Directives</div>'
+  +'<div><strong style="color:var(--text)">Best loot:</strong> Countdown Heroic</div>'
+  +'<div><strong style="color:var(--text)">Exotic Components:</strong> Deconstruct unwanted</div>'
+  +'<div><strong style="color:var(--text)">Weekly cache:</strong> SHD Requisition Project</div>'
+  +'<div><strong style="color:var(--text)">SHD cap:</strong> Level 1000</div>'
+  +'<div><strong style="color:var(--text)">First exotic:</strong> St. Elmo&#x27;s Engine AR</div>'
+  +'</div></div>';
+}
+
 function renderCreators(main){
   main.innerHTML='<div style="margin-bottom:20px"><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:28px;font-weight:900;letter-spacing:2px;text-transform:uppercase">Content Creators</div><div style="font-size:13px;color:var(--text2);margin-top:4px">The Division 2\'s most trusted build guides and news channels</div></div>'
     +'<div class="cc-grid">'+CREATORS.map(function(c){
@@ -2174,12 +2219,24 @@ function editorValidate(step){
 function editorSaveCurrent(){
   var b = document.getElementById('editorBody');
   if(!b) return;
-  // Generic: read all [data-draft] inputs
   b.querySelectorAll('[data-draft]').forEach(function(el){
-    var path = el.getAttribute('data-draft').split('.');
+    var raw = el.getAttribute('data-draft');
+    var parts = raw.split('.');
     var obj = DRAFT;
-    for(var i=0;i<path.length-1;i++) obj = obj[path[i]];
-    obj[path[path.length-1]] = el.value;
+    for(var i=0;i<parts.length-1;i++){
+      var key = parts[i];
+      // Handle numeric indices for arrays (e.g. skills.0.name)
+      var next = parts[i+1];
+      if(!isNaN(parseInt(key))){
+        // already navigated above
+      }
+      if(obj[key]===undefined){
+        obj[key] = isNaN(parseInt(next)) ? {} : [];
+      }
+      obj = obj[key];
+    }
+    var lastKey = parts[parts.length-1];
+    obj[lastKey] = el.value;
   });
 }
 
@@ -2502,10 +2559,17 @@ function editorSave(){
     var g = DRAFT.gear[s.k];
     return {
       type: s.label.toUpperCase(), icon: s.icon,
-      name: g.itemName||'—', brand: g.gearSet||g.brand||'—',
+      name: g.itemName||'—',
+      brand: g.gearSet||g.brand||'—',
+      gearSet: g.gearSet||'',
       rarity: g.rarity||'high-end',
+      core: g.core||'',
+      attr1: g.attr1||'',
+      attr2: g.attr2||'',
+      mod: g.mod||'',
       talent: g.talent||'—',
-      mods: [g.mod||'—', g.attr1||'—'].filter(function(x){return x&&x!=='—';})
+      notes: g.notes||'',
+      mods: [g.mod, g.attr1, g.attr2].filter(Boolean)
     };
   });
   var b = {
@@ -2528,12 +2592,39 @@ function editorSave(){
         name: DRAFT.weapons.primary.name||'—',
         type: DRAFT.weapons.primary.type||'—',
         rarity: DRAFT.weapons.primary.rarity||'high-end',
+        talent: DRAFT.weapons.primary.talent||'',
+        attribute3: DRAFT.weapons.primary.attribute3||'',
+        mods: DRAFT.weapons.primary.mods||'',
+        notes: DRAFT.weapons.primary.notes||'',
+        weaponStats: {
+          wtype: DRAFT.weapons.primary.type||'',
+          core1: 'See notes',
+          core2: 'See notes',
+          attr3: DRAFT.weapons.primary.attribute3||'—',
+          talent: DRAFT.weapons.primary.talent||'—',
+          modslots: DRAFT.weapons.primary.mods||'—',
+          action: DRAFT.weapons.primary.notes||'',
+          note: ''
+        },
         drops: []
       },
       secondary: DRAFT.weapons.secondary.name ? {
         name: DRAFT.weapons.secondary.name,
         type: DRAFT.weapons.secondary.type||'—',
         rarity: DRAFT.weapons.secondary.rarity||'high-end',
+        talent: DRAFT.weapons.secondary.talent||'',
+        attribute3: DRAFT.weapons.secondary.attribute3||'',
+        mods: DRAFT.weapons.secondary.mods||'',
+        weaponStats: {
+          wtype: DRAFT.weapons.secondary.type||'',
+          core1: 'See notes',
+          core2: 'See notes',
+          attr3: DRAFT.weapons.secondary.attribute3||'—',
+          talent: DRAFT.weapons.secondary.talent||'—',
+          modslots: DRAFT.weapons.secondary.mods||'—',
+          action: DRAFT.weapons.secondary.notes||'',
+          note: ''
+        },
         drops: []
       } : null
     },
