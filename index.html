@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f97316">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>DIV2BUILDS</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;900&family=Inter:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="menu-btn" id="mobileFilterToggle" aria-label="Toggle filters">☰</button>
+      <a class="brand" href="#builds">
+        <img src="icons/icon-192.png" alt="DIV2BUILDS logo" class="brand-logo">
+        <div>
+          <div class="brand-word">DIV2<span>BUILDS</span></div>
+          <div class="brand-sub">The Division 2 build platform</div>
+        </div>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <button data-view="builds" class="nav-link is-active">Builds</button>
+        <button data-view="explorer" class="nav-link">Explorer</button>
+        <button data-view="ai" class="nav-link">AI Lab</button>
+        <button data-view="inspector" class="nav-link">Inspector</button>
+        <button data-view="guide" class="nav-link">Guide</button>
+      </nav>
+      <div class="topbar-actions">
+        <button class="ghost-btn" id="savedBtn">Saved <span id="savedCount">0</span></button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-title">Build Filters</div>
+          <button class="sidebar-close" id="closeSidebar">✕</button>
+        </div>
+        <label class="field-label" for="searchInput">Search</label>
+        <input id="searchInput" class="text-input" type="search" placeholder="Striker, St. Elmo, Scorpio...">
+
+        <label class="field-label" for="specFilter">Specialization</label>
+        <select id="specFilter" class="select-input">
+          <option value="all">All specs</option>
+        </select>
+
+        <label class="field-label" for="playstyleFilter">Playstyle</label>
+        <select id="playstyleFilter" class="select-input">
+          <option value="all">All playstyles</option>
+        </select>
+
+        <label class="field-label" for="activityFilter">Activity</label>
+        <select id="activityFilter" class="select-input">
+          <option value="all">All activities</option>
+        </select>
+
+        <label class="field-label" for="sourceFilter">Source</label>
+        <select id="sourceFilter" class="select-input">
+          <option value="all">All sources</option>
+          <option value="curated">Curated</option>
+          <option value="ai-generated">AI generated</option>
+        </select>
+
+        <div class="sidebar-block">
+          <div class="field-label">Quick facts</div>
+          <div class="mini-stats" id="miniStats"></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">Rebuilt foundation</p>
+            <h1>Cleaner structure. Better data. Less fake depth.</h1>
+            <p class="hero-copy">This version moves the project away from a giant one-file UI shell and into a data-driven static app with real builds, an item explorer, an AI build lab, and a heuristic build inspector.</p>
+          </div>
+          <div class="hero-metrics" id="heroMetrics"></div>
+        </section>
+
+        <section id="view-builds" class="view is-active">
+          <div class="section-header">
+            <div>
+              <h2>Build library</h2>
+              <p>Build cards now come from JSON instead of a hardcoded mega-array in HTML.</p>
+            </div>
+            <button class="primary-btn" data-view-jump="ai">Generate AI build</button>
+          </div>
+          <div class="cards-grid" id="buildGrid"></div>
+          <div class="empty-state hidden" id="buildEmpty">
+            <h3>No builds match</h3>
+            <p>Change a filter or clear your search.</p>
+          </div>
+        </section>
+
+        <section id="view-explorer" class="view">
+          <div class="section-header">
+            <div>
+              <h2>Item explorer</h2>
+              <p>Weapons, talents, gear sets, brands, exotics, skills and gear pieces all live in one place.</p>
+            </div>
+            <select id="explorerType" class="select-input slim"></select>
+          </div>
+          <input id="explorerSearch" class="text-input explorer-search" type="search" placeholder="Search item database">
+          <div class="explorer-grid" id="explorerGrid"></div>
+        </section>
+
+        <section id="view-ai" class="view">
+          <div class="section-header">
+            <div>
+              <h2>AI build lab</h2>
+              <p>Generates from the local item database and always labels output as AI generated.</p>
+            </div>
+          </div>
+          <div class="panel form-panel">
+            <div class="form-grid">
+              <label><span>Specialization</span><select id="aiSpec" class="select-input"></select></label>
+              <label><span>Playstyle</span><select id="aiPlaystyle" class="select-input"></select></label>
+              <label><span>Activity</span><select id="aiActivity" class="select-input"></select></label>
+              <label><span>Weapon family</span><select id="aiWeapon" class="select-input"></select></label>
+            </div>
+            <button class="primary-btn" id="generateAiBtn">Generate build</button>
+          </div>
+          <div id="aiOutput"></div>
+        </section>
+
+        <section id="view-inspector" class="view">
+          <div class="section-header">
+            <div>
+              <h2>Build inspector</h2>
+              <p>Heuristic analysis, not a fake simulator. It scores what the build appears to be good at and where it will probably struggle.</p>
+            </div>
+          </div>
+          <div class="panel form-panel">
+            <label><span>Paste build JSON or plain text notes</span>
+              <textarea id="inspectorInput" class="textarea-input" placeholder='Paste a build JSON or write something like: "Striker, St. Elmo, 6 red, Reviver Hive, Heroic solo"'></textarea>
+            </label>
+            <div class="inline-actions">
+              <button class="primary-btn" id="inspectBtn">Inspect build</button>
+              <button class="ghost-btn" id="loadSampleInspector">Load sample build</button>
+            </div>
+          </div>
+          <div id="inspectorOutput"></div>
+        </section>
+
+        <section id="view-guide" class="view">
+          <div class="section-header">
+            <div>
+              <h2>Project guide</h2>
+              <p>This section explains what changed and why.</p>
+            </div>
+          </div>
+          <div class="guide-grid">
+            <article class="panel">
+              <h3>What got fixed</h3>
+              <ul class="guide-list">
+                <li>Removed the all-in-one giant HTML approach and split code into data, styles and app logic.</li>
+                <li>Added a real <code>builds.json</code> and expanded <code>items.json</code> with gear pieces used by the sample builds.</li>
+                <li>Added source labels so AI builds stop pretending to be verified meta.</li>
+                <li>Switched the PWA files to relative paths so GitHub uploads are less fragile.</li>
+              </ul>
+            </article>
+            <article class="panel">
+              <h3>What still needs real content</h3>
+              <ul class="guide-list">
+                <li>More builds. Right now the foundation is stronger than the content volume.</li>
+                <li>A larger item database if you want serious explorer depth.</li>
+                <li>Human review on top AI builds before treating them as meta recommendations.</li>
+              </ul>
+            </article>
+            <article class="panel">
+              <h3>Best next move</h3>
+              <ul class="guide-list">
+                <li>Keep adding real item entries, not more empty navigation.</li>
+                <li>Add a create/edit build form only after the item schema is stable.</li>
+                <li>Use this as the clean base for GitHub Pages.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="detailDialog" class="detail-dialog">
+    <div id="detailContent"></div>
+  </dialog>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>

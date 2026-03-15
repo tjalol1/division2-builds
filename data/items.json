@@ -1,0 +1,588 @@
+{
+  "_comment": "Division 2 Item Database — Minimum Viable Dataset",
+  "_version": "1.0.0",
+  "_patch": "Y7S3",
+  "weapons": [
+    {
+      "id": "ar-st-elmos-engine",
+      "name": "St. Elmo's Engine",
+      "family": "ar",
+      "rarity": "exotic",
+      "isExotic": true,
+      "isNamed": false,
+      "core1": "AR Damage",
+      "core2": "Health Damage",
+      "attr3Options": [
+        "DMG to Targets Out of Cover",
+        "Crit Hit Damage",
+        "Headshot Damage"
+      ],
+      "attr3Default": "DMG to Targets Out of Cover",
+      "talentId": "talent-actum-est",
+      "talentLocked": true,
+      "modSlots": [
+        "magazine",
+        "muzzle",
+        "optic",
+        "underbarrel"
+      ],
+      "primaryDrop": "Targeted Loot: Assault Rifles in Countdown (Heroic)",
+      "shortNote": "Reconfigure 3rd attribute to DMG Out of Cover. All mod slots: Critical Hit Damage."
+    },
+    {
+      "id": "ar-kingbreaker",
+      "name": "Kingbreaker",
+      "family": "ar",
+      "rarity": "named",
+      "isExotic": false,
+      "isNamed": true,
+      "core1": "AR Damage",
+      "core2": "Health Damage",
+      "attr3Options": [
+        "DMG to Targets Out of Cover",
+        "Crit Hit Damage"
+      ],
+      "attr3Default": "DMG to Targets Out of Cover",
+      "talentId": "talent-perfectly-flatline",
+      "talentLocked": true,
+      "modSlots": [
+        "magazine",
+        "muzzle",
+        "optic"
+      ],
+      "primaryDrop": "Targeted Loot: Assault Rifles in Countdown (Challenging+)",
+      "shortNote": "Roll DMG Out of Cover as 3rd attribute. Talent is permanently locked — never try to change it."
+    },
+    {
+      "id": "lmg-iron-lung",
+      "name": "Iron Lung",
+      "family": "lmg",
+      "rarity": "exotic",
+      "isExotic": true,
+      "isNamed": false,
+      "core1": "LMG Damage",
+      "core2": "DMG to Targets Out of Cover",
+      "attr3Options": [
+        "Crit Hit Damage",
+        "Weapon Damage"
+      ],
+      "attr3Default": "Crit Hit Damage",
+      "talentId": "talent-iron-lung",
+      "talentLocked": true,
+      "modSlots": [
+        "magazine",
+        "muzzle",
+        "underbarrel"
+      ],
+      "primaryDrop": "Targeted Loot: LMGs in Grand Washington Hotel (Heroic)",
+      "shortNote": "LMG Core2 is always DMG Out of Cover — do not reconfigure to it. Roll Crit Hit Damage as 3rd attribute instead."
+    },
+    {
+      "id": "shotgun-scorpio",
+      "name": "Scorpio",
+      "family": "shotgun",
+      "rarity": "exotic",
+      "isExotic": true,
+      "isNamed": false,
+      "core1": "Shotgun Damage",
+      "core2": "Damage to Armor",
+      "attr3Options": [
+        "Weapon Damage %",
+        "DMG to Targets Out of Cover"
+      ],
+      "attr3Default": "Weapon Damage %",
+      "talentId": "talent-parasitic",
+      "talentLocked": true,
+      "modSlots": [
+        "muzzle",
+        "underbarrel"
+      ],
+      "primaryDrop": "Targeted Loot: Shotguns in Manning National Zoo (Heroic)",
+      "shortNote": "One shot applies burn, bleed, blind, and shock. Use with Eclipse Protocol Spread to chain status to entire rooms."
+    },
+    {
+      "id": "lmg-gr9",
+      "name": "GR9",
+      "family": "lmg",
+      "rarity": "high-end",
+      "isExotic": false,
+      "isNamed": false,
+      "core1": "LMG Damage",
+      "core2": "DMG to Targets Out of Cover",
+      "attr3Options": [
+        "Crit Hit Damage",
+        "Damage to Armor",
+        "Magazine Size"
+      ],
+      "attr3Default": "Crit Hit Damage",
+      "talentId": "talent-frenzy",
+      "talentLocked": false,
+      "modSlots": [
+        "magazine",
+        "muzzle",
+        "optic",
+        "underbarrel"
+      ],
+      "primaryDrop": "Targeted Loot: LMGs",
+      "shortNote": "Use Frenzy or Optimist. Roll Crit Hit Damage on the third attribute because Out of Cover is already built in."
+    }
+  ],
+  "weaponTalents": [
+    {
+      "id": "talent-actum-est",
+      "name": "Actum Est",
+      "description": "Every 100 hits with this weapon loads the next magazine with shock rounds that stun targets briefly on hit.",
+      "isLocked": true,
+      "lockedToWeaponId": "ar-st-elmos-engine",
+      "category": "weapon"
+    },
+    {
+      "id": "talent-perfectly-flatline",
+      "name": "Perfectly Flatline",
+      "description": "While above 75% total armor, weapon damage is increased by 25%.",
+      "isLocked": true,
+      "lockedToWeaponId": "ar-kingbreaker",
+      "category": "weapon"
+    },
+    {
+      "id": "talent-flatline",
+      "name": "Flatline",
+      "description": "While above 75% total armor, weapon damage is increased by 15%.",
+      "isLocked": false,
+      "category": "weapon"
+    },
+    {
+      "id": "talent-frenzy",
+      "name": "Frenzy",
+      "description": "Reloading from empty grants +25% weapon damage and +25% fire rate for 10 seconds.",
+      "isLocked": false,
+      "category": "weapon"
+    },
+    {
+      "id": "talent-iron-lung",
+      "name": "Iron Lung",
+      "description": "Sustained fire builds stacks that increase weapon damage and provide armor repair.",
+      "isLocked": true,
+      "lockedToWeaponId": "lmg-iron-lung",
+      "category": "weapon"
+    },
+    {
+      "id": "talent-parasitic",
+      "name": "Parasitic",
+      "description": "Each shot simultaneously applies burn, bleed, blind, and shock status effects.",
+      "isLocked": true,
+      "lockedToWeaponId": "shotgun-scorpio",
+      "category": "weapon"
+    }
+  ],
+  "chestTalents": [
+    {
+      "id": "talent-press-the-advantage",
+      "name": "Press the Advantage",
+      "description": "Increases the Striker's Gamble stack cap from 100 to 200.",
+      "gearSetId": "set-strikers-battlegear",
+      "category": "chest"
+    },
+    {
+      "id": "talent-spread",
+      "name": "Spread",
+      "description": "When you apply a status effect to an enemy, the effect automatically transfers to all enemies within 8m.",
+      "gearSetId": "set-eclipse-protocol",
+      "category": "chest"
+    },
+    {
+      "id": "talent-kinetic-momentum",
+      "name": "Kinetic Momentum",
+      "description": "While your skills are active, your weapon damage is increased by 15%.",
+      "gearSetId": null,
+      "category": "chest"
+    },
+    {
+      "id": "talent-shielded-vigilance",
+      "name": "Shielded Vigilance",
+      "description": "Entering cover grants +20% weapon damage for 4 seconds.",
+      "gearSetId": null,
+      "category": "chest"
+    },
+    {
+      "id": "talent-all-for-one",
+      "name": "All for One",
+      "description": "Increases the maximum number of simultaneously marked enemies from 4 to 8.",
+      "gearSetId": "set-negotiators-dilemma",
+      "category": "chest"
+    }
+  ],
+  "backpackTalents": [
+    {
+      "id": "talent-risk-management",
+      "name": "Risk Management",
+      "description": "Increases the Striker's Gamble damage bonus per stack from 0.65% to 1% per hit.",
+      "gearSetId": "set-strikers-battlegear",
+      "category": "backpack"
+    },
+    {
+      "id": "talent-vindictive",
+      "name": "Vindictive",
+      "description": "When you apply a status effect, all allies within 20m gain +20% weapon damage for 5 seconds.",
+      "gearSetId": "set-eclipse-protocol",
+      "category": "backpack"
+    },
+    {
+      "id": "talent-in-sync",
+      "name": "In-Sync",
+      "description": "Shooting while your skills are active grants +35% skill damage for 8 seconds.",
+      "gearSetId": null,
+      "category": "backpack"
+    },
+    {
+      "id": "talent-vanguard",
+      "name": "Vanguard",
+      "description": "Kills grant bonus armor to nearby allies equal to 15% of your max armor.",
+      "gearSetId": null,
+      "category": "backpack"
+    },
+    {
+      "id": "talent-memento",
+      "name": "Memento (Exotic)",
+      "description": "Kills grant stacking trophy armor bonus up to +50% of max armor. Stacks decay when not killing.",
+      "gearSetId": null,
+      "category": "backpack"
+    },
+    {
+      "id": "talent-one-for-all",
+      "name": "One for All",
+      "description": "Increases the Heartbreaker stack bonus from 3% to 5% weapon damage per kill stack.",
+      "gearSetId": "set-heartbreaker",
+      "category": "backpack"
+    },
+    {
+      "id": "talent-predator",
+      "name": "Predator",
+      "description": "Hit 4 different enemies within 4 seconds to grant all allies +10% Critical Hit Chance for 10 seconds.",
+      "gearSetId": null,
+      "category": "mask"
+    },
+    {
+      "id": "talent-vile",
+      "name": "Vile",
+      "description": "All status-affected enemies take additional damage over time. Best when you keep statuses rolling constantly.",
+      "gearSetId": null,
+      "category": "mask"
+    }
+  ],
+  "gearSets": [
+    {
+      "id": "set-strikers-battlegear",
+      "name": "Striker's Battlegear",
+      "bonus2pc": "+5% Weapon Damage",
+      "bonus3pc": "+10% Weapon Damage",
+      "bonus4pc": "Striker's Gamble: +0.65% weapon damage per hit, up to 100 stacks (+65% total). Stacks reset on reload.",
+      "chestTalentId": "talent-press-the-advantage",
+      "backpackTalentId": "talent-risk-management",
+      "playstyle": "dps",
+      "identity": "Sustained fire DPS. Stack hits to scale weapon damage. Reward: aggression and continuous fire."
+    },
+    {
+      "id": "set-heartbreaker",
+      "name": "Heartbreaker",
+      "bonus2pc": "+10% Weapon Damage",
+      "bonus3pc": "+10% Weapon Damage",
+      "bonus4pc": "Hostile Takeover: hitting an enemy marks them. When a marked enemy dies, gain +3% weapon damage and +2% armor (up to 35 stacks). Each contributing ally/skill adds a stack.",
+      "chestTalentId": "talent-all-for-one",
+      "backpackTalentId": "talent-one-for-all",
+      "playstyle": "dps",
+      "identity": "Kill-chain DPS. Stacks from kills by you AND allies. Best in group content."
+    },
+    {
+      "id": "set-eclipse-protocol",
+      "name": "Eclipse Protocol",
+      "bonus2pc": "+15% Status Effect Damage",
+      "bonus3pc": "+15% Status Effect Duration",
+      "bonus4pc": "Spread: status effects auto-transfer to enemies within 8m. Each new status application refreshes duration.",
+      "chestTalentId": "talent-spread",
+      "backpackTalentId": "talent-vindictive",
+      "playstyle": "status",
+      "identity": "AoE status effect machine. One shot statuses an entire room via Spread."
+    },
+    {
+      "id": "set-negotiators-dilemma",
+      "name": "Negotiator's Dilemma",
+      "bonus2pc": "+10% Weapon Damage",
+      "bonus3pc": "+10% Weapon Damage",
+      "bonus4pc": "Hostile Negotiations: critting an enemy marks them. Damage to a marked enemy spreads 60% to all other marked enemies.",
+      "chestTalentId": "talent-all-for-one",
+      "backpackTalentId": "talent-risk-management",
+      "playstyle": "dps",
+      "identity": "Crit-chain AoE. Every crit spreads damage to all marked targets simultaneously."
+    },
+    {
+      "id": "set-refactor",
+      "name": "Refactor",
+      "bonus2pc": "+10% Skill Damage",
+      "bonus3pc": "+10% Weapon Damage",
+      "bonus4pc": "Shooting enemies within 5m of your deployed skills deals +100% bonus damage.",
+      "chestTalentId": "talent-kinetic-momentum",
+      "backpackTalentId": "talent-in-sync",
+      "playstyle": "hybrid",
+      "identity": "Hybrid weapon/skill DPS. Fight near your deployed skills for massive damage bonus."
+    }
+  ],
+  "brandSets": [
+    {
+      "id": "brand-wyvern-wear",
+      "name": "Wyvern Wear",
+      "bonus1pc": "+10% Skill Damage",
+      "bonus2pc": "+10% Skill Haste",
+      "bonus3pc": "+10% Skill Duration",
+      "identity": "Primary skill damage brand. Mandatory 2pc for any skill build."
+    },
+    {
+      "id": "brand-hana-u",
+      "name": "Hana-U Corporation",
+      "bonus1pc": "+10% Skill Haste",
+      "bonus2pc": "+10% Repair Skills",
+      "bonus3pc": "+10% Skill Duration",
+      "identity": "Skill cooldown and haste. Pairs with Wyvern Wear for max skill uptime."
+    },
+    {
+      "id": "brand-contractors",
+      "name": "Contractor's",
+      "bonus1pc": "+10% Weapon Handling",
+      "bonus2pc": "+10% Weapon Damage",
+      "bonus3pc": "+10% Headshot Damage",
+      "identity": "Clean weapon damage. Used when gear set fills 4 slots and 2 free slots need weapon damage."
+    },
+    {
+      "id": "brand-grupos-sombra",
+      "name": "Grupo Sombra S.A.",
+      "bonus1pc": "+10% Reload Speed",
+      "bonus2pc": "+10% Ammo Capacity",
+      "bonus3pc": "+10% Weapon Damage",
+      "identity": "Utility weapon brand. Pairs well with LMG builds for extended fire."
+    }
+  ],
+  "exotics": [
+    {
+      "id": "exotic-coyotes-mask",
+      "name": "Coyote's Mask",
+      "slot": "mask",
+      "talentId": "talent-predator",
+      "uniqueEffect": "Predator: hit 4 different enemies within 4 seconds to grant all group members +10% critical hit chance for 10 seconds.",
+      "primaryAcquisition": "Jefferson Trade Center Stronghold final boss (Challenge+)",
+      "playstyle": [
+        "dps"
+      ]
+    },
+    {
+      "id": "exotic-memento",
+      "name": "Memento",
+      "slot": "backpack",
+      "talentId": "talent-memento",
+      "uniqueEffect": "Kills grant stacking trophy armor bonus up to +50% of max armor. Stacks decay when not in a kill chain.",
+      "primaryAcquisition": "Targeted Loot: Backpacks in Countdown (Heroic)",
+      "playstyle": [
+        "dps",
+        "hybrid"
+      ]
+    },
+    {
+      "id": "exotic-vile-mask",
+      "name": "Vile Mask",
+      "slot": "mask",
+      "talentId": "talent-vile",
+      "uniqueEffect": "Vile: All status-affected enemies take stacking poison damage over time. Stacks up to 10 times.",
+      "primaryAcquisition": "Retaliation: Outcasts faction blueprint",
+      "playstyle": [
+        "status"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill-striker-drone",
+      "name": "Striker Drone",
+      "parentSkill": "Drone",
+      "description": "Tracks your designated target and deals continuous weapon damage automatically.",
+      "role": "offense"
+    },
+    {
+      "id": "skill-assault-turret",
+      "name": "Assault Turret",
+      "parentSkill": "Turret",
+      "description": "Deploys a stationary turret that automatically fires at all enemies in range.",
+      "role": "offense"
+    },
+    {
+      "id": "skill-reviver-hive",
+      "name": "Reviver Hive",
+      "parentSkill": "Hive",
+      "description": "Deploys on the ground and auto-revives downed allies within its radius.",
+      "role": "support"
+    },
+    {
+      "id": "skill-chem-launcher-heal",
+      "name": "Chem Launcher (Heal)",
+      "parentSkill": "Chem Launcher",
+      "description": "Fires a canister that explodes with a healing cloud on impact, repairing armor of all allies inside.",
+      "role": "support"
+    },
+    {
+      "id": "skill-chem-launcher-oxidizer",
+      "name": "Chem Launcher (Oxidizer)",
+      "parentSkill": "Chem Launcher",
+      "description": "Fires a canister that explodes with a corrosive cloud, continuously reducing enemy armor.",
+      "role": "offense"
+    },
+    {
+      "id": "skill-seeker-mine-airburst",
+      "name": "Seeker Mine (Airburst)",
+      "parentSkill": "Seeker Mine",
+      "description": "Rolls toward enemies and detonates with multiple submunitions in a large AoE explosion.",
+      "role": "offense"
+    }
+  ],
+  "gearItems": [
+    {
+      "id": "item-strikers-mask",
+      "name": "Striker's Mask",
+      "slot": "mask",
+      "rarity": "gear-set",
+      "gearSetId": "set-strikers-battlegear",
+      "brandOrSet": "Striker's Battlegear"
+    },
+    {
+      "id": "item-strikers-chest",
+      "name": "Striker's Chest",
+      "slot": "chest",
+      "rarity": "gear-set",
+      "gearSetId": "set-strikers-battlegear",
+      "brandOrSet": "Striker's Battlegear",
+      "defaultTalentId": "talent-press-the-advantage"
+    },
+    {
+      "id": "item-strikers-backpack",
+      "name": "Striker's Backpack",
+      "slot": "backpack",
+      "rarity": "gear-set",
+      "gearSetId": "set-strikers-battlegear",
+      "brandOrSet": "Striker's Battlegear",
+      "defaultTalentId": "talent-risk-management"
+    },
+    {
+      "id": "item-strikers-gloves",
+      "name": "Striker's Gloves",
+      "slot": "gloves",
+      "rarity": "gear-set",
+      "gearSetId": "set-strikers-battlegear",
+      "brandOrSet": "Striker's Battlegear"
+    },
+    {
+      "id": "item-eclipse-chest",
+      "name": "Eclipse Chest",
+      "slot": "chest",
+      "rarity": "gear-set",
+      "gearSetId": "set-eclipse-protocol",
+      "brandOrSet": "Eclipse Protocol",
+      "defaultTalentId": "talent-spread"
+    },
+    {
+      "id": "item-eclipse-backpack",
+      "name": "Eclipse Backpack",
+      "slot": "backpack",
+      "rarity": "gear-set",
+      "gearSetId": "set-eclipse-protocol",
+      "brandOrSet": "Eclipse Protocol",
+      "defaultTalentId": "talent-vindictive"
+    },
+    {
+      "id": "item-eclipse-gloves",
+      "name": "Eclipse Gloves",
+      "slot": "gloves",
+      "rarity": "gear-set",
+      "gearSetId": "set-eclipse-protocol",
+      "brandOrSet": "Eclipse Protocol"
+    },
+    {
+      "id": "item-eclipse-holster",
+      "name": "Eclipse Holster",
+      "slot": "holster",
+      "rarity": "gear-set",
+      "gearSetId": "set-eclipse-protocol",
+      "brandOrSet": "Eclipse Protocol"
+    },
+    {
+      "id": "item-eclipse-kneepads",
+      "name": "Eclipse Kneepads",
+      "slot": "kneepads",
+      "rarity": "gear-set",
+      "gearSetId": "set-eclipse-protocol",
+      "brandOrSet": "Eclipse Protocol"
+    },
+    {
+      "id": "item-refactor-mask",
+      "name": "Refactor Mask",
+      "slot": "mask",
+      "rarity": "gear-set",
+      "gearSetId": "set-refactor",
+      "brandOrSet": "Refactor"
+    },
+    {
+      "id": "item-refactor-chest",
+      "name": "Refactor Chest",
+      "slot": "chest",
+      "rarity": "gear-set",
+      "gearSetId": "set-refactor",
+      "brandOrSet": "Refactor",
+      "defaultTalentId": "talent-kinetic-momentum"
+    },
+    {
+      "id": "item-refactor-gloves",
+      "name": "Refactor Gloves",
+      "slot": "gloves",
+      "rarity": "gear-set",
+      "gearSetId": "set-refactor",
+      "brandOrSet": "Refactor"
+    },
+    {
+      "id": "item-refactor-holster",
+      "name": "Refactor Holster",
+      "slot": "holster",
+      "rarity": "gear-set",
+      "gearSetId": "set-refactor",
+      "brandOrSet": "Refactor"
+    },
+    {
+      "id": "item-hana-u-backpack",
+      "name": "Hana-U Backpack",
+      "slot": "backpack",
+      "rarity": "high-end",
+      "brandSetId": "brand-hana-u",
+      "brandOrSet": "Hana-U Corporation",
+      "defaultTalentId": "talent-in-sync"
+    },
+    {
+      "id": "item-wyvern-kneepads",
+      "name": "Wyvern Wear Kneepads",
+      "slot": "kneepads",
+      "rarity": "high-end",
+      "brandSetId": "brand-wyvern-wear",
+      "brandOrSet": "Wyvern Wear"
+    },
+    {
+      "id": "item-grupos-holster",
+      "name": "Grupo Sombra Holster",
+      "slot": "holster",
+      "rarity": "high-end",
+      "brandSetId": "brand-grupos-sombra",
+      "brandOrSet": "Grupo Sombra S.A."
+    },
+    {
+      "id": "item-grupos-kneepads",
+      "name": "Grupo Sombra Kneepads",
+      "slot": "kneepads",
+      "rarity": "high-end",
+      "brandSetId": "brand-grupos-sombra",
+      "brandOrSet": "Grupo Sombra S.A."
+    }
+  ]
+}
