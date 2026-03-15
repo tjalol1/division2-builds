@@ -22,12 +22,3 @@ This package is ready to upload to a GitHub repository or GitHub Pages project.
 - `manifest.json`
 - `sw.js`
 
-## Upload to GitHub
-1. Create a new repo
-2. Upload every file and folder from this package
-3. Enable GitHub Pages for the root or `/docs` depending on your setup
-4. If your repo uses a subpath, this package is already using relative paths, so it should still work
-
-## Honest limitation
-This is a much better foundation, but it is still a static app with a small dataset.
-The next serious step is to grow the item database and then build a proper create/edit build flow.
