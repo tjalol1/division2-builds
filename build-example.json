@@ -1,0 +1,226 @@
+{
+  "_comment": "Example: Striker St. Elmo's DPS — fully ID-referenced build",
+
+  "id": "build-001",
+  "slug": "striker-st-elmos-dps-y7s3",
+  "buildName": "St. Elmo's Striker DPS",
+  "shortSummary": "Striker 4pc with St. Elmo's Engine. Hit the 200-stack cap for +200% weapon damage. Highest sustained DPS in Y7S3 meta.",
+  "description": "Striker's Gamble stacks +1% weapon damage per hit (Risk Management backpack) up to 200 stacks with Press the Advantage chest. St. Elmo's shock rounds from Actum Est stun groups. Coyote's Mask provides group-wide crit buff. Goal: reach 60% Crit Chance cap, then stack Crit Damage.",
+
+  "specialization": "demolitionist",
+  "playstyle": "dps",
+  "difficulty": "heroic",
+  "activityType": ["solo", "group", "heroic", "legendary", "countdown"],
+  "patchVersion": "Y7S3",
+  "sourceType": "curated",
+
+  "author": "Kamikazevondoom",
+  "creatorVerified": true,
+
+  "rating": 9.4,
+  "views": 28400,
+  "saves": 1980,
+
+  "tags": ["DPS", "Heroic", "Legendary", "Solo", "Group"],
+  "beginnerFriendly": false,
+  "soloFriendly": true,
+  "groupFriendly": true,
+
+  "gear": {
+    "mask": {
+      "itemId": "exotic-coyotes-mask",
+      "itemName": "Coyote's Mask",
+      "brand": "Exotic",
+      "rarity": "exotic",
+      "isExotic": true,
+      "isNamed": false,
+      "core": "Weapon Damage",
+      "attr1": "Crit Hit Chance",
+      "attr2": "Crit Hit Damage",
+      "mod": "Crit Hit Damage",
+      "talentId": null,
+      "notes": "Hit 4 different enemies for group-wide +10% CHC for 10s. Fire into groups as your opener."
+    },
+    "chest": {
+      "itemId": "item-strikers-chest",
+      "itemName": "Striker's Chest",
+      "brand": "Striker's Battlegear",
+      "gearSetId": "set-strikers-battlegear",
+      "rarity": "gear-set",
+      "isExotic": false,
+      "isNamed": false,
+      "core": "Weapon Damage",
+      "attr1": "Crit Hit Damage",
+      "attr2": "Crit Hit Damage",
+      "mod": "Weapon Damage",
+      "talentId": "talent-press-the-advantage",
+      "notes": "Press the Advantage extends stack cap to 200. Mandatory — do not swap this talent."
+    },
+    "backpack": {
+      "itemId": "item-strikers-backpack",
+      "itemName": "Striker's Backpack",
+      "brand": "Striker's Battlegear",
+      "gearSetId": "set-strikers-battlegear",
+      "rarity": "gear-set",
+      "isExotic": false,
+      "isNamed": false,
+      "core": "Weapon Damage",
+      "attr1": "Crit Hit Damage",
+      "attr2": "Crit Hit Chance",
+      "mod": "Weapon Damage",
+      "talentId": "talent-risk-management",
+      "notes": "Risk Management scales each stack from 0.65% to 1%. At 200 stacks = +200% weapon damage total."
+    },
+    "gloves": {
+      "itemId": "item-strikers-gloves",
+      "itemName": "Striker's Gloves",
+      "brand": "Striker's Battlegear",
+      "gearSetId": "set-strikers-battlegear",
+      "rarity": "gear-set",
+      "isExotic": false,
+      "isNamed": false,
+      "core": "Weapon Damage",
+      "attr1": "Crit Hit Chance",
+      "attr2": "Crit Hit Damage",
+      "mod": "Weapon Damage",
+      "talentId": null,
+      "notes": null
+    },
+    "holster": {
+      "itemId": "item-grupos-holster",
+      "itemName": "Grupo Sombra Holster",
+      "brand": "Grupo Sombra S.A.",
+      "gearSetId": null,
+      "rarity": "high-end",
+      "isExotic": false,
+      "isNamed": false,
+      "core": "Weapon Damage",
+      "attr1": "Crit Hit Damage",
+      "attr2": "Armor",
+      "mod": "Weapon Damage",
+      "talentId": null,
+      "notes": "Grupo Sombra 2pc with Kneepads gives +10% Weapon Damage brand bonus."
+    },
+    "kneepads": {
+      "itemId": "item-grupos-kneepads",
+      "itemName": "Grupo Sombra Kneepads",
+      "brand": "Grupo Sombra S.A.",
+      "gearSetId": null,
+      "rarity": "high-end",
+      "isExotic": false,
+      "isNamed": false,
+      "core": "Armor",
+      "attr1": "Armor Regen",
+      "attr2": "Crit Hit Chance",
+      "mod": "Weapon Damage",
+      "talentId": null,
+      "notes": null
+    }
+  },
+
+  "weapons": {
+    "primary": {
+      "weaponId": "ar-st-elmos-engine",
+      "weaponName": "St. Elmo's Engine",
+      "weaponType": "Assault Rifle (Exotic)",
+      "rarity": "exotic",
+      "talentId": "talent-actum-est",
+      "talentName": "Actum Est",
+      "talentIsLocked": true,
+      "attribute3": "DMG to Targets Out of Cover",
+      "mods": "Magazine: Extra Rounds | Muzzle: Crit Hit Damage | Optic: Crit Hit Damage",
+      "setupSteps": [
+        "Reconfigure 3rd attribute to DMG to Targets Out of Cover at the Crafting Station.",
+        "Set all mod slots to Critical Hit Damage.",
+        "Max out Core1 (AR Damage) via Tinkering — this is your primary damage stat."
+      ],
+      "drops": [
+        {
+          "source": "Targeted Loot: Assault Rifles in Countdown (Heroic)",
+          "rate": "targeted",
+          "note": "Set AR as your targeted loot type before launching."
+        },
+        {
+          "source": "Exotic Cache from Season Pass reward track",
+          "rate": "world",
+          "note": "Fastest guaranteed route if you have Season Pass."
+        }
+      ],
+      "notes": "Shock from Actum Est stuns groups every 100 hits — use it to reset rooms in Legendary."
+    },
+    "secondary": {
+      "weaponId": "lmg-gr9",
+      "weaponName": "GR9 LMG",
+      "weaponType": "Light Machine Gun",
+      "rarity": "high-end",
+      "talentId": "talent-frenzy",
+      "talentName": "Frenzy",
+      "talentIsLocked": false,
+      "attribute3": "Crit Hit Damage",
+      "mods": "Magazine: Extra Rounds | Muzzle: Crit Hit Damage",
+      "setupSteps": [
+        "Roll Frenzy talent via Recalibration or Tinkering.",
+        "Roll Crit Hit Damage as 3rd attribute — LMG Core2 is already DMG Out of Cover (locked), no need to add it.",
+        "Reload from empty before entering rooms to proc Frenzy (+25% fire rate and damage for 10s)."
+      ],
+      "drops": [
+        {
+          "source": "World drop: LMGs at Heroic difficulty",
+          "rate": "world",
+          "note": "Any Heroic mission with LMG targeted loot."
+        }
+      ],
+      "notes": "LMG Core2 is always DMG Out of Cover on every LMG — do not waste a recalibration trying to roll it."
+    }
+  },
+
+  "skills": {
+    "skill1": {
+      "skillId": "skill-striker-drone",
+      "skillName": "Striker Drone",
+      "notes": "Set on your primary target. Adds hits toward Striker stacks without you spending ammo."
+    },
+    "skill2": {
+      "skillId": "skill-reviver-hive",
+      "skillName": "Reviver Hive",
+      "notes": "Place before every elite fight, not during. Your solo safety net."
+    }
+  },
+
+  "coreBalance": {
+    "red": 6,
+    "blue": 0,
+    "yellow": 0
+  },
+
+  "howToPlay": "Pre-stack Striker stacks on approach enemies before entering a new room — never walk into a boss fight at zero stacks. Fire continuously — every break resets stack building. Use Coyote's Mask opener by firing into groups of 4+ enemies first. Drone handles your primary elite, you clean up the rest. Reload when safe, not under fire — Frenzy on the LMG requires a full magazine for maximum effect.",
+
+  "strengths": [
+    "Highest sustained DPS in Y7S3 meta at full 200 stacks",
+    "Shock from St. Elmo's provides free CC every 100 hits",
+    "Works solo and in group — stacks in solo, stacks multiply in group",
+    "Coyote's Mask buffs the entire team"
+  ],
+
+  "weaknesses": [
+    "Requires 3 exotic items — Coyote's Mask, St. Elmo's Engine, and Memento if substituted",
+    "Stacks reset on death — losing stacks in Legendary requires rebuilding",
+    "Full potential requires 200 stacks, takes ~4-5 seconds of continuous fire to reach"
+  ],
+
+  "substitutions": [
+    "No Coyote's Mask? Use Vile Mask — slightly less damage but adds status effect synergy.",
+    "No Kingbreaker? Any named AR with Flatline talent works, just at 15% instead of 25%.",
+    "No St. Elmo's? Use Lexington Event Horizon (named AR) with Perfectly Unhinged — different playstyle, lower ceiling."
+  ],
+
+  "tips": [
+    "Pre-stack on approach enemies — enter every room at 100+ stacks minimum",
+    "60% Crit Chance cap first, then stack Crit Damage",
+    "Drone handles the elite, you clean trash — let drone sustain your stacks",
+    "Reviver Hive: place before the fight, not reactively"
+  ],
+
+  "createdAt": "2026-01-15T00:00:00Z",
+  "updatedAt": "2026-03-10T00:00:00Z"
+}
