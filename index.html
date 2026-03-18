@@ -579,7 +579,7 @@ main{padding:22px;background:var(--bg)}
     <li><a id="tab-builds" class="active" onclick="setTab('builds')">Builds</a></li>
     <li><a id="tab-saved" onclick="setTab('saved')">Saved</a></li>
     <li><a id="tab-guide" onclick="setTab('guide')">Guide</a></li>
-    <li><a id="tab-events" style="display:none" onclick="setTab('events')">Events</a></li>
+    <li><a id="tab-events" onclick="setTab('events')">Events</a></li>
     <li><a id="tab-creators" style="display:none" onclick="setTab('creators')">Creators</a></li>
   </ul>
   <div class="nav-actions">
@@ -624,7 +624,7 @@ main{padding:22px;background:var(--bg)}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
       <span class="mob-nav-lbl">Saved</span>
     </button>
-    <button class="mob-nav-item" id="mob-events" onclick="setTab('events')" style="display:none">
+    <button class="mob-nav-item" id="mob-events" onclick="setTab('events')">
       <div class="mob-nav-pip"></div>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       <span class="mob-nav-lbl">Events</span>
@@ -763,29 +763,56 @@ main{padding:22px;background:var(--bg)}
 <div class="notif" id="notif"></div>
 
 <script>
-var EVENTS=[
-  // ── PASSERADE (Y7S3 Mutiny — Jan-Mar 2026) ──
-  {name:"Assault Global Event",status:"off",time:"Jan 19 – Jan 26, 2026",desc:"Close-range damage multiplier up to 200%. Best for aggressive DPS builds like Striker and Heartbreaker.",bestBuilds:[1,22,25]},
-  {name:"Strike Global Event",status:"off",time:"Feb 3 – Feb 10, 2026",desc:"Kills trigger a delayed explosion. Stagger enemies with explosions. Best for Demolitionist and Survivalist.",bestBuilds:[1,2]},
-  {name:"Bloody Valentine — Reanimated",status:"off",time:"Feb 12 – Feb 26, 2026",desc:"Red-themed Reanimated event. Seasonal Modifiers AND Global Event active simultaneously. NPC Companion available. Exclusive Bloody Houndsman cosmetic.",bestBuilds:[3,27]},
-  {name:"Stretch Goals Season Pass Extension",status:"off",time:"Feb 17 – Apr 2, 2026",desc:"Tier 100+ bonus track. Free for all players. Earn extra rewards through gameplay only — no level skips.",bestBuilds:[]},
-  {name:"Climax Mission — Sheriff Shotgun",status:"off",time:"Feb 17 – Apr 2, 2026",desc:"Seasonal finale mission. Reward: Sheriff Exotic Super 90 Shotgun. Play it before Season ends Apr 2.",bestBuilds:[3,27]},
-  {name:"Ambush Global Event",status:"off",time:"Mar 3 – Mar 10, 2026",desc:"Damage multiplier up to 200% while stationary or in cover. Sniper and cover-heavy builds dominate.",bestBuilds:[10,26]},
-  {name:"5x XP Boost",status:"off",time:"Mar 3 – Mar 10, 2026",desc:"5x XP from all activities. Best time to level SHD Watch. Combine with Hotshot Headhunter farm.",bestBuilds:[29]},
-  {name:"10th Anniversary Event",status:"off",time:"Mar 3 – Apr 2, 2026",desc:"10-year celebration. Anniversary Event Pass, Realism Mode, exclusive cosmetics from Rainbow Six, Splinter Cell, Ghost Recon. Twitch Drops until Mar 10.",bestBuilds:[]},
+// ── Hjälpfunktion: beräkna event-status automatiskt från datum ──
+function calcEventStatus(start, end){
+  var now = new Date();
+  var s = new Date(start);
+  var e = end ? new Date(end) : new Date(start);
+  // Lägg till en dag på slutdatum (inkluderande)
+  e.setDate(e.getDate() + 1);
+  if(now >= s && now < e) return 'live';
+  if(now < s){
+    // Visa som "soon" om det startar inom 14 dagar
+    var diff = (s - now) / (1000*60*60*24);
+    if(diff <= 14) return 'soon';
+    return 'off';
+  }
+  return 'off';
+}
 
-  // ── AKTIVA (vecka 14 mars 2026) ──
-  {name:"Redline Overdrive Modifier",status:"live",time:"Mar 14 – Mar 20, 2026",desc:"+50% Critical Damage, +25% Critical Hit Chance, +25% CHC cap (max 85%), +25% mag size, +25% reload speed. Best week to push Crit Damage builds.",bestBuilds:[1,2,22,25,26]},
-  {name:"Ambush Global Event (Return)",status:"live",time:"Mar 17 – Mar 24, 2026",desc:"Bonus damage while stationary or in cover — up to 200% multiplier. Sniper builds, turret skill builds, and cover-heavy DPS excel.",bestBuilds:[10,26,15]},
-
-  // ── KOMMANDE ──
-  {name:"Optimization Surge",status:"soon",time:"Mar 20 – Mar 24, 2026",desc:"2x Optimization materials from ALL sources. Best time in the season to min-max your builds. Stock up before Year 8.",bestBuilds:[]},
-  {name:"Assault Global Event (Return)",status:"soon",time:"Mar 24 – Mar 27, 2026",desc:"Close-range damage multiplier returns. Aggressive DPS builds shine.",bestBuilds:[1,22,25]},
-  {name:"Countdown Surge",status:"soon",time:"Mar 24 – Mar 27, 2026",desc:"2x Countdown Requisition currency on mission completion. Best time to buy Named items and Exotic Caches from the Countdown vendor.",bestBuilds:[]},
-  {name:"Expertise Surge",status:"soon",time:"Mar 27 – Apr 2, 2026",desc:"2x Expertise upgrade materials from all sources. Final push before Year 8 — max out Expertise on your best exotics.",bestBuilds:[]},
-  {name:"The Division Resurgence Mobile Launch",status:"soon",time:"Mar 31, 2026",desc:"Free-to-play mobile game launches worldwide. Play Resurgence to earn rewards in TD2 and vice versa.",bestBuilds:[]},
-  {name:"Year 8 Season 1 — Rise Up",status:"soon",time:"Apr 2, 2026",desc:"New season vs Black Tusk. New weapons, gear, builds. All current seasonal content ends. Complete Climax Mission and spend Stars/currency before this date.",bestBuilds:[]}
+// Datum-format: 'YYYY-MM-DD'
+var EVENTS_RAW=[
+  {name:"Assault Global Event",          start:"2026-01-19",end:"2026-01-26",desc:"Close-range damage multiplier up to 200%. Best for aggressive DPS builds like Striker and Heartbreaker.",bestBuilds:[1,22,25]},
+  {name:"Strike Global Event",           start:"2026-02-03",end:"2026-02-10",desc:"Kills trigger a delayed explosion. Stagger enemies with explosions. Best for Demolitionist and Survivalist.",bestBuilds:[1,2]},
+  {name:"Bloody Valentine — Reanimated", start:"2026-02-12",end:"2026-02-26",desc:"Red-themed Reanimated event. Seasonal Modifiers AND Global Event active simultaneously. NPC Companion available.",bestBuilds:[3,27]},
+  {name:"Stretch Goals Season Pass",     start:"2026-02-17",end:"2026-04-02",desc:"Tier 100+ bonus track. Free for all players. Earn extra rewards through gameplay only — no level skips.",bestBuilds:[]},
+  {name:"Climax Mission — Sheriff Shotgun",start:"2026-02-17",end:"2026-04-02",desc:"Seasonal finale mission. Reward: Sheriff Exotic Super 90 Shotgun. Play it before Season ends Apr 2.",bestBuilds:[3,27]},
+  {name:"Ambush Global Event",           start:"2026-03-03",end:"2026-03-10",desc:"Damage multiplier up to 200% while stationary or in cover. Sniper and cover-heavy builds dominate.",bestBuilds:[10,26]},
+  {name:"5x XP Boost",                   start:"2026-03-03",end:"2026-03-10",desc:"5x XP from all activities. Best time to level SHD Watch. Combine with Hotshot Headhunter farm.",bestBuilds:[29]},
+  {name:"10th Anniversary Event",        start:"2026-03-03",end:"2026-04-02",desc:"10-year celebration. Anniversary Event Pass, Realism Mode, exclusive cosmetics. Twitch Drops until Mar 10.",bestBuilds:[]},
+  {name:"Redline Overdrive Modifier",    start:"2026-03-14",end:"2026-03-20",desc:"+50% Critical Damage, +25% Critical Hit Chance, +25% CHC cap (max 85%), +25% mag size, +25% reload speed.",bestBuilds:[1,2,22,25,26]},
+  {name:"Ambush Global Event (Return)",  start:"2026-03-17",end:"2026-03-24",desc:"Bonus damage while stationary or in cover — up to 200% multiplier. Sniper, turret and cover-heavy DPS excel.",bestBuilds:[10,26,15]},
+  {name:"Optimization Surge",            start:"2026-03-20",end:"2026-03-24",desc:"2x Optimization materials from ALL sources. Best time in the season to min-max your builds.",bestBuilds:[]},
+  {name:"Assault + Countdown Surge",     start:"2026-03-24",end:"2026-03-27",desc:"Close-range damage multiplier + 2x Countdown Requisition currency. Aggressive DPS builds shine.",bestBuilds:[1,22,25]},
+  {name:"Expertise Surge",               start:"2026-03-27",end:"2026-04-02",desc:"2x Expertise upgrade materials from all sources. Final push before Year 8 — max out Expertise on your best exotics.",bestBuilds:[]},
+  {name:"The Division Resurgence Launch",start:"2026-03-31",end:"2026-03-31",desc:"Free-to-play mobile game launches worldwide. Play Resurgence to earn rewards in TD2 and vice versa.",bestBuilds:[]},
+  {name:"Year 8 Season 1 — Rise Up",     start:"2026-04-02",end:"2026-06-30",desc:"New season vs Black Tusk. New weapons, gear, builds. All Y7S3 seasonal content ends — spend Stars and currency before this date.",bestBuilds:[]}
 ];
+
+// Bygg EVENTS-arrayen med auto-beräknad status + formaterat time-fält
+var EVENTS = EVENTS_RAW.map(function(e){
+  var status = calcEventStatus(e.start, e.end);
+  // Formatera datum för visning
+  var fmt = function(d){
+    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var dt = new Date(d);
+    return months[dt.getMonth()]+' '+dt.getDate();
+  };
+  var time = e.start === e.end
+    ? fmt(e.start)+', '+new Date(e.start).getFullYear()
+    : fmt(e.start)+' – '+fmt(e.end)+', '+new Date(e.end).getFullYear();
+  return {name:e.name, status:status, time:time, desc:e.desc, bestBuilds:e.bestBuilds};
+});
 
 var CREATORS=[
   {name:"Kamikazevondoom",handle:"@Kamikazevondoom",platform:"YouTube",focus:"Builds & Meta Guides",av:"K"},
