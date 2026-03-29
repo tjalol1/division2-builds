@@ -370,6 +370,49 @@ main{padding:22px;background:var(--bg)}
 .guide-num{font-family:'Share Tech Mono',monospace;font-size:9px;background:var(--blue);color:#000;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
 .guide-dismiss{margin-top:12px;background:transparent;border:1px solid var(--border2);color:var(--text3);padding:5px 12px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .15s}
 .guide-dismiss:hover{border-color:var(--blue);color:var(--blue)}
+/* ITEMS EXPLORER */
+.items-sub-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:20px;flex-wrap:wrap}
+.items-sub-btn{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:10px 18px;cursor:pointer;border:none;background:transparent;color:var(--text3);border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-1px}
+.items-sub-btn:hover{color:var(--text)}
+.items-sub-btn.active{color:var(--orange);border-bottom-color:var(--orange)}
+.item-fam-bar{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px}
+.item-fam-btn{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border2);background:transparent;color:var(--text3);cursor:pointer;transition:all .15s}
+.item-fam-btn:hover{border-color:var(--orange);color:var(--orange)}
+.item-fam-btn.active{border-color:var(--orange);color:var(--orange);background:rgba(249,115,22,.08)}
+.items-search{width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:9px 14px;font-family:'Rajdhani',sans-serif;font-size:14px;margin-bottom:16px;outline:none;transition:border-color .15s}
+.items-search:focus{border-color:var(--orange)}
+.items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.item-card{background:var(--panel);border:1px solid var(--border);transition:border-color .2s;overflow:hidden}
+.item-card:hover{border-color:var(--border2)}
+.item-card-head{padding:10px 14px 8px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.item-card-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:.5px;line-height:1.2}
+.item-card-body{padding:10px 14px}
+.item-card-row{display:flex;align-items:baseline;gap:6px;margin-bottom:5px;font-size:12px}
+.item-card-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);flex-shrink:0;width:70px}
+.item-card-val{color:var(--text);font-family:'Rajdhani',sans-serif}
+.item-card-talent{padding:8px 14px 10px;border-top:1px solid var(--border);background:rgba(0,0,0,.2)}
+.item-card-talent-name{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.item-card-talent-desc{font-size:11px;color:var(--text2);line-height:1.5}
+.item-card-note{padding:6px 14px 10px;font-size:11px;color:var(--text3);font-style:italic;border-top:1px solid var(--border)}
+.rarity-exotic{color:var(--gold)}
+.rarity-named{color:var(--blue)}
+.rarity-gear-set{color:var(--orange)}
+.rarity-high-end{color:var(--text)}
+.rarity-badge{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 6px;border:1px solid;white-space:nowrap}
+.rarity-badge.rarity-exotic{border-color:var(--gold);background:rgba(245,158,11,.1)}
+.rarity-badge.rarity-named{border-color:var(--blue);background:rgba(56,189,248,.1)}
+.rarity-badge.rarity-gear-set{border-color:var(--orange);background:rgba(249,115,22,.1)}
+.talent-badge{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border:1px solid}
+.talent-badge.chest{color:var(--orange);border-color:rgba(249,115,22,.4);background:rgba(249,115,22,.08)}
+.talent-badge.backpack{color:var(--blue);border-color:rgba(56,189,248,.4);background:rgba(56,189,248,.08)}
+.talent-badge.weapon{color:var(--text2);border-color:var(--border2);background:rgba(0,0,0,.2)}
+.set-bonus-row{display:flex;gap:8px;margin-bottom:4px;font-size:12px}
+.set-bonus-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--green);flex-shrink:0;padding-top:2px}
+.set-bonus-val{color:var(--text2);font-family:'Rajdhani',sans-serif}
+.set-bonus-4pc{color:var(--text);font-family:'Rajdhani',sans-serif;font-size:12px;line-height:1.5}
+.skill-role-off{color:var(--red)}
+.skill-role-sup{color:var(--green)}
+.items-empty{text-align:center;padding:60px 20px;color:var(--text3);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase}
 .notif{position:fixed;bottom:24px;right:24px;background:var(--bg2);border:1px solid var(--border2);border-left:3px solid var(--orange);padding:12px 20px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);z-index:500;transform:translateY(20px);opacity:0;transition:all .25s cubic-bezier(.4,0,.2,1);pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.5)}
 .notif.show{transform:translateY(0);opacity:1}
 /* MOBILE BOTTOM NAV */
@@ -581,6 +624,7 @@ main{padding:22px;background:var(--bg)}
     <li><a id="tab-guide" onclick="setTab('guide')">Guide</a></li>
     <li><a id="tab-events" onclick="setTab('events')">Events</a></li>
     <li><a id="tab-creators" style="display:none" onclick="setTab('creators')">Creators</a></li>
+    <li><a id="tab-items" onclick="setTab('items')">Items</a></li>
   </ul>
   <div class="nav-actions">
     <div class="nav-sep"></div>
@@ -633,6 +677,11 @@ main{padding:22px;background:var(--bg)}
       <div class="mob-nav-pip"></div>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       <span class="mob-nav-lbl">Creators</span>
+    </button>
+    <button class="mob-nav-item" id="mob-items" onclick="setTab('items')">
+      <div class="mob-nav-pip"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
+      <span class="mob-nav-lbl">Items</span>
     </button>
   </div>
 </nav>
@@ -834,7 +883,7 @@ var BUILDS=[
   {id:1,season:"current",patch:"Y7S3",name:"St. Elmo's Striker DPS",spec:"demolitionist",specLabel:"Demolitionist",author:"Kamikazevondoom",creatorVerified:false,sourceType:'ai-suggested',rating:9.6,stars:5,views:28400,saves:1840,tags:["DPS","Solo","Heroic","Legendary"],difficulty:"Legendary",updated:"6 days ago",
   summary:"#1 PvE build in 2026. Full 6-piece Striker with St. Elmo's Engine. Reach 60% Crit Chance then stack Crit Damage. Striker chest extends max stacks to 200.",
   description:"Striker 4-piece activates Striker's Gamble: +0.65% weapon damage per hit, up to 100 stacks. Backpack talent Risk Management raises this to +1% per stack. Chest talent Press the Advantage extends the cap to 200 stacks. St. Elmo's Engine synergises perfectly. Coyote's Mask provides group-wide crit buff. Goal: hit 60% Crit Chance cap, then go all-in on Crit Damage.",
-  tips:["Get to 60% Crit Chance first — after that every roll should be Crit Damage","Do NOT swap weapons while building stacks — stacks reset on weapon swap","Striker backpack (Risk Management) is mandatory — changes 0.65% to 1% per stack","Striker chest (Press the Advantage) pushes max stacks to 200","Assault Global Event is LIVE — increased weapon damage bonus right now"],
+  tips:["Get to 60% Crit Chance first — after that every roll should be Crit Damage","Do NOT swap weapons while building stacks — stacks reset on weapon swap","Striker backpack (Risk Management) is mandatory — changes 0.65% to 1% per stack","Striker chest (Press the Advantage) pushes max stacks to 200","Expertise Surge is LIVE until Apr 2 — max out Expertise on St. Elmo's Engine and Coyote's Mask before Y8S1 launches"],
   gear:[
     {type:"MASK",icon:"&#x1FA96;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — group-wide crit buff after 4 different enemies hit",mods:["Weapon Dmg","Crit Chance","Crit Damage"]},
     {type:"BACKPACK",icon:"&#x1F392;",name:"Striker's Battlegear Backpack",brand:"Striker's Battlegear",rarity:"gear-set",talent:"Risk Management — 0.65% to 1% per Gamble stack",mods:["Weapon Dmg","Crit Damage"]},
@@ -892,9 +941,9 @@ var BUILDS=[
   stats:{weaponDmg:88,armor:60,skillTier:1,critChance:60,critDmg:130,armorRegen:15}},
 
   {id:3,season:"current",patch:"Y7S3",name:"Eclipse Protocol Status",spec:"firewall",specLabel:"Firewall",author:"GCROCK",creatorVerified:false,sourceType:'ai-suggested',rating:9.1,stars:5,views:17600,saves:1120,tags:["Status","DPS","Heroic","Raid"],difficulty:"Heroic",updated:"2 days ago",
-  summary:"Best status build. Eclipse Protocol 4-piece spreads status effects to all nearby enemies automatically. Scorpio applies all 4 effects in one shot. Tech Overdrive modifier is LIVE — perfect time to pair this with extra Skill Tiers.",
+  summary:"Best status build. Eclipse Protocol 4-piece spreads status effects to all nearby enemies automatically. Scorpio applies all 4 effects in one shot. Confirmed meta into Y8S1 — the Recombinant modifier pairs well with status chains.",
   description:"Eclipse Protocol 4-piece 'Spread': status effects auto-transfer to enemies within 8m of a status-affected target. Vile Mask adds poison DoT on all status-affected enemies. Scorpio exotic shotgun applies burn, bleed, blind, and shock in one shot — instantly triggering Spread on entire groups. Firewall spec adds fire damage bonus. Vindictive backpack talent boosts nearby ally damage +20% per status application.",
-  tips:["Shoot Scorpio into a group — one shot spreads all 4 status effects via Spread","Vile Mask stacks poison on every status-affected enemy — replace Coyote with it in this build","Vindictive gives allies +20% damage for 5s on each status — great in groups","Lead with Oxidizer Chem Launcher to strip enemy armor before main attack","Tech Overdrive is LIVE — +3 free Skill Tiers. Skills do massive bonus damage right now"],
+  tips:["Shoot Scorpio into a group — one shot spreads all 4 status effects via Spread","Vile Mask stacks poison on every status-affected enemy — replace Coyote with it in this build","Vindictive gives allies +20% damage for 5s on each status — great in groups","Lead with Oxidizer Chem Launcher to strip enemy armor before main attack","Y8S1 launches Apr 2 — Eclipse Protocol remains top-tier with the incoming Recombinant modifier and stackable modules"],
   gear:[
     {type:"MASK",icon:"&#x1FA96;",name:"Vile Mask",brand:"Exotic",rarity:"exotic",talent:"Vile — status-affected enemies take stacking poison damage",mods:["Status Effect","Hazard Protection","Armor"]},
     {type:"BACKPACK",icon:"&#x1F392;",name:"Eclipse Protocol Backpack",brand:"Eclipse Protocol",rarity:"gear-set",talent:"Vindictive — applying a status boosts ally damage by 20% for 5s",mods:["Status Effect","Hazard Protection"]},
@@ -922,9 +971,9 @@ var BUILDS=[
   stats:{weaponDmg:55,armor:62,skillTier:2,critChance:22,critDmg:50,armorRegen:32}},
 
   {id:4,season:"current",patch:"Y7S3",name:"Skill Tier 6 Healer",spec:"technician",specLabel:"Technician",author:"NothingButSkillz",creatorVerified:false,sourceType:'ai-suggested',rating:9.0,stars:5,views:11200,saves:720,tags:["Healer","Skill","Raid","Heroic"],difficulty:"Heroic",updated:"3 days ago",
-  summary:"Essential raid healer. Full Skill Tier 6 + Future Initiative 4-piece. Tech Overdrive modifier is LIVE — now is the perfect time to farm and try this build with free +3 Skill Tiers.",
-  description:"Future Initiative 4-piece Citadel talent converts kills into team-wide healing bursts. Restorer Hive at Skill Tier 6 provides maximum range and charges. BTSU Datagloves (exotic gloves) give +1 Skill Tier and share drone charges with allies. Waveform exotic holster provides additional skill bonuses. Technician spec gives a bonus +1 Skill Tier. Tech Overdrive global modifier is LIVE until Mar 13 — free +3 Skill Tiers for everyone.",
-  tips:["BTSU Datagloves = +1 Skill Tier AND share drone charges with allies","Waveform holster is best-in-slot for skill builds — do not replace it","Place Restorer Hive behind your team, not in the line of fire","Chem Launcher Heal shot on a downed ally's body can revive them","Tech Overdrive is LIVE until Mar 13 — +3 free Skill Tiers. Perfect farming window"],
+  summary:"Essential raid healer. Full Skill Tier 6 + Future Initiative 4-piece. Skill builds are projected to remain meta in Y8S1 Escalation Mode — this build excels at sustained group healing across all difficulty tiers.",
+  description:"Future Initiative 4-piece Citadel talent converts kills into team-wide healing bursts. Restorer Hive at Skill Tier 6 provides maximum range and charges. BTSU Datagloves (exotic gloves) give +1 Skill Tier and share drone charges with allies. Waveform exotic holster provides additional skill bonuses. Technician spec gives a bonus +1 Skill Tier. Y8S1 Escalation Mode launches Apr 2 — this build is well-suited for its rotating high-difficulty missions.",
+  tips:["BTSU Datagloves = +1 Skill Tier AND share drone charges with allies","Waveform holster is best-in-slot for skill builds — do not replace it","Place Restorer Hive behind your team, not in the line of fire","Chem Launcher Heal shot on a downed ally's body can revive them","Expertise Surge is LIVE until Apr 2 — max out Expertise on BTSU Datagloves and Waveform Holster before Y8S1 launches"],
   gear:[
     {type:"MASK",icon:"&#x1FA96;",name:"Future Initiative Mask",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Haste","Skill Damage"]},
     {type:"BACKPACK",icon:"&#x1F392;",name:"Future Initiative Backpack",brand:"Future Initiative",rarity:"gear-set",talent:"Groundwork — healing out of cover also heals allies in cover nearby",mods:["Skill Tier","Skill Haste"]},
@@ -954,7 +1003,7 @@ var BUILDS=[
   {id:5,season:"current",patch:"Y7S3",name:"Memento Striker Solo",spec:"survivalist",specLabel:"Survivalist",author:"Patrick Wolf",creatorVerified:false,sourceType:'ai-suggested',rating:8.8,stars:4,views:13400,saves:910,tags:["DPS","Solo","Heroic","Farming"],difficulty:"Heroic",updated:"5 days ago",
   summary:"Memento exotic backpack replaces Striker backpack. Each Elite kill drops a trophy that simultaneously stacks Armor Regen, Weapon Damage, and Skill Damage. Aggressive solo farming.",
   description:"Memento's Momento talent drops a trophy on every Elite NPC kill. Each trophy simultaneously buffs Armor Regen, Weapon Damage, AND Skill Damage. After 5 trophies you are dramatically stronger. Use 4-piece Striker (without the backpack — use Memento instead) for Striker's Gamble. Supplement with Coyote's Mask for crits. Note: without Striker backpack, you lose Risk Management — stacks cap at 100 and per-stack is 0.65% not 1%.",
-  tips:["Trophies drop from Elites ONLY — run Heroic Control Points or The Summit","Trophies last 60 seconds — stay aggressive and keep moving","If you die, you lose ALL trophies — use cover, don't get greedy","Assault Global Event is LIVE — increased weapon damage at close range right now","Memento means you skip Striker backpack — stacks cap at 100, but Memento makes up for it"],
+  tips:["Trophies drop from Elites ONLY — run Heroic Control Points or The Summit","Trophies last 60 seconds — stay aggressive and keep moving","If you die, you lose ALL trophies — use cover, don't get greedy","Expertise Surge is LIVE until Apr 2 — max out Expertise on Memento before Y8S1 launches","Memento means you skip Striker backpack — stacks cap at 100, but Memento makes up for it"],
   gear:[
     {type:"MASK",icon:"&#x1FA96;",name:"Coyote's Mask",brand:"Exotic",rarity:"exotic",talent:"Predator — group crit buff",mods:["Weapon Dmg","Crit Chance","Crit Damage"]},
     {type:"BACKPACK",icon:"&#x1F392;",name:"Memento",brand:"Exotic",rarity:"exotic",talent:"Momento — Elite kill = trophy. Stacks Armor Regen + Weapon Dmg + Skill Dmg",mods:["All stats scale with trophies"]},
@@ -1382,7 +1431,7 @@ var BUILDS=[
   ,{id:19,season:"current",patch:"Y7S3",name:"Dark Winter Memento Farmer",spec:"survivalist",specLabel:"Survivalist",author:"Patrick Wolf",creatorVerified:false,sourceType:'ai-suggested',rating:8.4,stars:4,views:14700,saves:920,tags:["DPS","Farming","Solo","XP","SHD"],difficulty:"Heroic",updated:"4 days ago",
   summary:"Best farming build in Y7S3. Dark Winter cryo freeze + Memento armor stacking = clear rooms fast, stay alive, collect loot. Designed for high-volume Control Point and Summit farming.",
   description:"Dark Winter SMG (exotic named) fires normally but on each magazine reload sends out a cryo pulse that freezes nearby enemies. Combined with Memento backpack (armor stacks on kills) and a full red DPS setup, this build excels at farming speed. The cryo freeze gives you safe windows to push and loot. Survivalist spec grants bonus status effect damage, ammo-on-kill passive (never reload), and incendiary grenade for room-clearing. Best used for Summit floors 90-100, Control Points Level 4, and Bounty farming for SHD/XP.",
-  tips:["Dark Winter cryo: always reload in cover before pushing a new room — cryo lands before you peek","Memento stacks: chain kills without stopping — armor bonus decays if you pause","Survivalist ammo-on-kill passive: effectively unlimited ammo during sustained kills","Summit floors 91-100 on Heroic: best loot-per-hour in the game for this build","Combine with Xmas Gift seasonal modifier if active — double XP on Status Effect kills"],
+  tips:["Dark Winter cryo: always reload in cover before pushing a new room — cryo lands before you peek","Memento stacks: chain kills without stopping — armor bonus decays if you pause","Survivalist ammo-on-kill passive: effectively unlimited ammo during sustained kills","Summit floors 91-100 on Heroic: best loot-per-hour in the game for this build","10th Anniversary Event active until Apr 2 — new gear including Big Alejandro LMG added to the loot pool"],
   gear:[
     {type:"MASK",icon:"&#x1FA96;",name:"Striker Mask",brand:"Striker's Battlegear",rarity:"gear-set",talent:"—",mods:["Weapon Dmg","Crit Chance"]},
     {type:"BACKPACK",icon:"&#x1F392;",name:"Memento",brand:"Exotic",rarity:"exotic",talent:"Memento — kills grant stacking armor bonus up to +50% max armor",mods:["Weapon Dmg","Crit Damage"]},
@@ -1775,9 +1824,9 @@ var BUILDS=[
   // ── ECLIPSE PROTOCOL TECH OVERDRIVE (STATUS + SKILL HYBRID) ──
   // Source: Sportskeeda Tech Overdrive article March 2026
   ,{id:32,season:"current",patch:"Y7S3",name:"Eclipse Protocol Tech Overdrive",spec:"firewall",specLabel:"Firewall",author:"Community",creatorVerified:false,sourceType:'ai-suggested',rating:8.6,stars:4,views:11800,saves:720,tags:["Status","Skill","Heroic","Group","New"],difficulty:"Heroic",updated:"1 week ago",
-  summary:"Eclipse Protocol status build turbocharged by Tech Overdrive's +3 Skill Tiers. Skills apply Bleed and Fire status effects — each status proc triggers Spread to chain through the entire room. Confirmed strong during Tech Overdrive event.",
-  description:"During Tech Overdrive event (Mar 10–20), all agents receive +3 Skill Tiers for free. This Eclipse Protocol variant maximises that bonus: skills deal massive status effect damage at effective ST6+ even with weapon damage cores. Oxidizer Chem Launcher applies Corrosive to strip armor. Blinder Firefly applies Blind. Both trigger Eclipse Spread, which auto-transfers all status effects to enemies within 8m. Firewall spec passive: +25% skill damage while you have a status effect on yourself. Vile Mask adds poison DoT to all status-affected enemies. Source: Sportskeeda confirms this as one of three best Tech Overdrive builds.",
-  tips:["Tech Overdrive gives +3 Skill Tiers to everyone — even with red cores you reach effective ST4-5","Skills apply Bleed (Firefly) and Fire (Flamethrower sig) — both trigger Eclipse Spread chain","Firewall passive: +25% skill damage while status-affected yourself — stand briefly in your Oxidizer cloud","Spread talent chains status from one enemy to ALL enemies within 8m — one Oxidizer cloud clears a room","This build is especially powerful during Tech Overdrive — still viable after event ends at normal skill tiers"],
+  summary:"Eclipse Protocol status build with skill hybrid synergy. Skills apply Bleed and Fire status effects — each status proc triggers Spread to chain through the entire room. Strong in base gameplay and confirmed potent during Tech Overdrive (Mar 10–20).",
+  description:"Eclipse Protocol variant with skill hybrid synergy — originally designed for Tech Overdrive (Mar 10–20) but fully viable at baseline. Skills deal status effect damage even at normal skill tiers. Oxidizer Chem Launcher applies Corrosive to strip armor. Blinder Firefly applies Blind. Both trigger Eclipse Spread, which auto-transfers all status effects to enemies within 8m. Firewall spec passive: +25% skill damage while you have a status effect on yourself. Vile Mask adds poison DoT to all status-affected enemies. Confirmed strong by Sportskeeda (March 2026).",
+  tips:["Skills apply Bleed (Firefly) and Fire (Flamethrower sig) — both trigger Eclipse Spread chain","Firewall passive: +25% skill damage while status-affected yourself — stand briefly in your Oxidizer cloud","Spread talent chains status from one enemy to ALL enemies within 8m — one Oxidizer cloud clears a room","At baseline skill tiers this build still works — Tech Overdrive amplified it but the core loop is the same","Y8S1 Recombinant modifier launches Apr 2 — Eclipse Protocol's status chaining synergises with stackable modules"],
   gear:[
     {type:"MASK",icon:"&#x1FA96;",name:"Vile Mask",brand:"Exotic",rarity:"exotic",talent:"Vile — all status-affected enemies take stacking poison DoT",mods:["Status Effect","Hazard Protection"]},
     {type:"BACKPACK",icon:"&#x1F392;",name:"Eclipse Protocol Backpack",brand:"Eclipse Protocol",rarity:"gear-set",talent:"Vindictive — applying status grants allies +20% damage for 5s",mods:["Status Effect","Skill Damage"]},
@@ -1803,9 +1852,9 @@ var BUILDS=[
   // ── FUTURE INITIATIVE TECH OVERDRIVE HEALER ──────────────────
   // Source: Sportskeeda Tech Overdrive article March 2026
   ,{id:33,season:"current",patch:"Y7S3",name:"Future Initiative Tech Overdrive Healer",spec:"demolitionist",specLabel:"Demolitionist",author:"Community",creatorVerified:false,sourceType:'ai-suggested',rating:8.7,stars:4,views:9600,saves:580,tags:["Healer","Skill","Raid","Group","New"],difficulty:"Heroic",updated:"1 week ago",
-  summary:"Tech Overdrive variant of the Future Initiative healer. Free +3 Skill Tiers massively boosts Restorer Hive range and Chem Launcher output. Skills can also reset teammates' cooldowns and trigger Overcharge for the whole group.",
-  description:"During Tech Overdrive, Future Initiative healer gets a significant power spike: Chem Launcher Heal range and repair power scales with Skill Tier, and Restorer Hive covers more area. The unique addition in this variant: Capacitor's Overcharge talent triggers group-wide skill cooldown resets when charged — meaning teammates' Reviver Hives, Shields and Drones reset faster. Sportskeeda confirms this as one of three best Tech Overdrive builds (March 2026). Demolitionist spec chosen for Incombustible burn immunity — critical for Morozova fight in Iron Horse raid.",
-  tips:["Tech Overdrive: free +3 Skill Tiers — your heals cover more area and hit harder without changing any gear","Capacitor Overcharge triggers group skill resets — charge it between every Chem Launcher cast","Shoot the ground/walls with Capacitor between heals — you don't need to aim at enemies to charge Overcharge","Restorer Hive at Tech Overdrive ST levels: covers an entire room — place centrally behind cover","Demolitionist Incombustible: burn immunity — mandatory for Iron Horse raid Morozova fire phase"],
+  summary:"Future Initiative healer with Capacitor Overcharge group resets. Restorer Hive + Chem Launcher covers the whole team. Originally peaked during Tech Overdrive (Mar 10–20) — still a top-tier raid healer at baseline skill tiers.",
+  description:"Future Initiative healer built around Capacitor's Overcharge talent, which triggers group-wide skill cooldown resets when charged — meaning teammates' Reviver Hives, Shields and Drones reset faster. Chem Launcher Heal range and repair power scales with Skill Tier. Originally peaked during Tech Overdrive (Mar 10–20) with free +3 Skill Tiers, but the Overcharge group reset mechanic makes this build uniquely valuable at any skill level. Sportskeeda confirmed top-tier Tech Overdrive pick (March 2026). Demolitionist spec chosen for Incombustible burn immunity — critical for Morozova fight in Iron Horse raid.",
+  tips:["Capacitor Overcharge triggers group skill resets — charge it between every Chem Launcher cast","Shoot the ground/walls with Capacitor between heals — you don't need to aim at enemies to charge Overcharge","Restorer Hive covers a wide area at ST6 — place centrally behind cover, not at the front of the fight","Demolitionist Incombustible: burn immunity — mandatory for Iron Horse raid Morozova fire phase","Expertise Surge is LIVE until Apr 2 — max out Expertise on Capacitor before Y8S1 launches"],
   gear:[
     {type:"MASK",icon:"&#x1FA96;",name:"Future Initiative Mask",brand:"Future Initiative",rarity:"gear-set",talent:"—",mods:["Skill Tier","Repair Skills"]},
     {type:"BACKPACK",icon:"&#x1F392;",name:"Future Initiative Backpack",brand:"Future Initiative",rarity:"gear-set",talent:"Groundwork — healing out of cover heals allies in cover nearby",mods:["Repair Skills","Skill Haste"]},
@@ -1998,20 +2047,23 @@ function sourceBadge(b){
   return '';
 }
 
-// Event relevance — Tech Overdrive = +3 Skill Tiers → skill builds shine
+// Event relevance — show badge when a live event benefits specific builds
 function eventBadge(b){
   var liveEvents=EVENTS.filter(function(e){return e.status==='live';});
   if(!liveEvents.length) return '';
   var badges=[];
-  // Tech Overdrive active — skill builds get +3 free skill tiers
-  var techOverdrive=liveEvents.some(function(e){return e.name.toLowerCase().includes('tech');});
-  if(techOverdrive&&(b.tags.includes('Skill')||b.stats.skillTier>=3)){
-    badges.push('<span class="ev-build-badge" title="Tech Overdrive: +3 Skill Tiers active">&#x26A1; Event Boost</span>');
+  var stats=b.stats||{};
+  // Expertise Surge — exotic-heavy builds benefit most from upgrading Expertise
+  var expertiseSurge=liveEvents.some(function(e){return e.name.toLowerCase().includes('expertise');});
+  var hasExotic=b.gear&&b.gear.some(function(g){return g.rarity==='exotic';});
+  var exoticWeapon=b.weapons&&(b.weapons.primary&&b.weapons.primary.rarity==='exotic');
+  if(expertiseSurge&&(hasExotic||exoticWeapon)){
+    badges.push('<span class="ev-build-badge" title="Expertise Surge: 2x Expertise materials — upgrade your exotics now">&#x26A1; Expertise Surge</span>');
   }
-  // Assault Global Event — weapon damage builds
-  var assaultEvent=liveEvents.some(function(e){return e.name.toLowerCase().includes('assault');});
-  if(assaultEvent&&b.stats.weaponDmg>=80){
-    badges.push('<span class="ev-build-badge" title="Assault Global Event: bonus weapon damage modifiers">&#x1F3AF; Event Pick</span>');
+  // 10th Anniversary — builds using Anniversary loot pool items (Big Alejandro, Sheriff)
+  var anniversary=liveEvents.some(function(e){return e.name.toLowerCase().includes('anniversary');});
+  if(anniversary&&b.id&&(b.id===35||b.id===36)){
+    badges.push('<span class="ev-build-badge" title="10th Anniversary: this build uses Anniversary loot pool items">&#x1F3C6; Anniversary Pick</span>');
   }
   return badges.join('');
 }
@@ -2089,7 +2141,7 @@ document.addEventListener('keydown',function(e){
 function setTab(t){
   currentTab=t;
   window.scrollTo({top:0,behavior:'smooth'});
-  ['builds','saved','events','creators','guide'].forEach(function(x){
+  ['builds','saved','events','creators','guide','items'].forEach(function(x){
     var el=document.getElementById('tab-'+x);
     if(el) el.classList.toggle('active',x===t);
     var mel=document.getElementById('mob-'+x);
@@ -2176,13 +2228,14 @@ function renderMain(){
   if(currentTab==='events'){renderEvents(main);return;}
   if(currentTab==='creators'){renderCreators(main);return;}
   if(currentTab==='guide'){renderGuide(main);return;}
+  if(currentTab==='items'){renderItems(main);return;}
   var sortVal=document.getElementById('mainSort')?document.getElementById('mainSort').value:'top';
   var filtered=getFiltered();
   var sorted=sortBuilds(sortVal,filtered);
   var cur=sorted.filter(function(b){return b.season==='current';});
   var prev=sorted.filter(function(b){return b.season==='previous';});
-  main.innerHTML='<div class="hero"><div class="hgrid"></div><div class="hglow"></div><div class="hero-text"><h1>Build Planner<br><span>The Division 2</span></h1><p>Accurate, creator-verified builds for Year 7 Season 3. Current meta with real drop locations.</p></div><div class="hstats"><div><div class="hs-num">'+BUILDS.length+'</div><div class="hs-lbl">Builds</div></div><div><div class="hs-num">8</div><div class="hs-lbl">Creators</div></div><div><div class="hs-num">Y7S3</div><div class="hs-lbl">Patch</div></div></div></div>'
-    +'<div style="background:var(--odim);border:1px solid rgba(249,115,22,.3);border-left:3px solid var(--orange);padding:10px 14px;margin-bottom:10px;font-size:12px;color:var(--orange2)"><span style="font-family:\'Share Tech Mono\',monospace;font-size:9px;letter-spacing:2px;color:var(--orange)">LIVE NOW &bull; </span> Assault Global Event &bull; Tech Overdrive (+3 Skill Tiers) &bull; 10th Anniversary &mdash; All active until Mar 13</div>'
+  main.innerHTML='<div class="hero"><div class="hgrid"></div><div class="hglow"></div><div class="hero-text"><h1>Build Planner<br><span>The Division 2</span></h1><p>Accurate, creator-verified builds for Year 7 Season 3. Current meta with real drop locations. Y8S1 Rise Up launches Apr 2.</p></div><div class="hstats"><div><div class="hs-num">'+BUILDS.length+'</div><div class="hs-lbl">Builds</div></div><div><div class="hs-num">8</div><div class="hs-lbl">Creators</div></div><div><div class="hs-num">Y7S3</div><div class="hs-lbl">Patch</div></div></div></div>'
+    +'<div style="background:var(--odim);border:1px solid rgba(249,115,22,.3);border-left:3px solid var(--orange);padding:10px 14px;margin-bottom:10px;font-size:12px;color:var(--orange2)"><span style="font-family:\'Share Tech Mono\',monospace;font-size:9px;letter-spacing:2px;color:var(--orange)">LIVE NOW &bull; </span> Expertise Surge (2&times; Expertise materials) &bull; 10th Anniversary Event &bull; Climax Mission: Sheriff Exotic &mdash; All end Apr 2 &bull; Y8S1 Rise Up launches Apr 2</div>'
     +'<div style="background:var(--panel);border:1px solid var(--border);padding:9px 14px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px"><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;color:var(--text3);letter-spacing:1px">&#x2713; All 6 specs covered &nbsp;&bull;&nbsp; &#x2713; '+BUILDS.length+' builds total &nbsp;&bull;&nbsp; &#x2713; Creator-verified &nbsp;&bull;&nbsp; &#x1F4C5; Updated <span id="siteDate"></span></div><div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:var(--green);letter-spacing:1px;border:1px solid rgba(74,222,128,.3);padding:2px 7px;background:var(--gdim)">LIVE DATA</div></div>'
     +'<div class="toolbar"><select class="sort-sel" id="mainSort" onchange="renderMain()"><option value="top">Sort: Highest Rated</option><option value="new">Sort: Newest</option><option value="views">Sort: Most Viewed</option><option value="name">Sort: A&ndash;Z</option></select><span class="rcount">'+filtered.length+' build'+(filtered.length!==1?'s':'')+'</span></div>'
     +(cur.length>0?'<div class="sg"><div class="sg-head"><div class="sg-title">Current Meta</div><span class="sg-badge cur">Y7S3 &middot; 2026</span><div class="sg-line"></div><span class="sg-cnt">'+cur.length+' builds</span><button class="sg-tog" id="tog-cur" onclick="toggleSeason(\'cur\')">'+(collapsed['cur']?'Show &darr;':'Hide &uarr;')+'</button></div><div class="sg-grid'+(collapsed['cur']?' collapsed':'')+'" id="sg-cur">'+cur.map(buildCard).join('')+'</div></div>':'')
@@ -3018,6 +3071,255 @@ function editorSave(){
 })();
 
 
+// ── Items Explorer ──
+var itemDB = null;
+var currentItemsTab = 'weapons';
+var currentWeaponFamily = 'all';
+var itemsSearchQ = '';
+
+function loadItemDB(cb){
+  if(itemDB){ cb(itemDB); return; }
+  fetch('items.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){ itemDB = data; cb(data); })
+    .catch(function(){ cb(null); });
+}
+
+function renderItems(main){
+  main.innerHTML = '<div class="page-head"><div class="ph-grid"></div><div class="ph-content">'
+    + '<div class="ph-eyebrow">DATABASE</div>'
+    + '<h2 class="ph-title">Item Explorer</h2>'
+    + '<p class="ph-sub">Browse weapons, gear sets, exotics, talents, and skills. All data from items.json.</p>'
+    + '</div></div><div id="itemsRoot" style="padding:20px 0"><div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;letter-spacing:2px;color:var(--text3);text-align:center;padding:30px">LOADING DATABASE…</div></div>';
+  loadItemDB(function(db){
+    var root = document.getElementById('itemsRoot');
+    if(!root) return;
+    if(!db){
+      root.innerHTML = '<div class="items-empty">Failed to load items.json — check the file exists and is valid JSON.</div>';
+      return;
+    }
+    root.innerHTML = '';
+    renderItemsView(db, root);
+  });
+}
+
+function renderItemsView(db, root){
+  var tabs = [
+    {key:'weapons', label:'Weapons'},
+    {key:'gearsets', label:'Gear Sets'},
+    {key:'exotics', label:'Exotics'},
+    {key:'talents', label:'Talents'},
+    {key:'skills', label:'Skills'}
+  ];
+  var subNav = '<div class="items-sub-nav">'
+    + tabs.map(function(t){
+        return '<button class="items-sub-btn'+(currentItemsTab===t.key?' active':'')+'" onclick="setItemsTab(\''+t.key+'\',this)">'+t.label+'</button>';
+      }).join('')
+    + '</div>';
+  var searchBar = '<input class="items-search" type="text" placeholder="Search items…" value="'+itemsSearchQ.replace(/"/g,'&quot;')+'" oninput="itemsSearchQ=this.value;renderItemsContent(itemDB,document.getElementById(\'itemsContent\'))">';
+  var contentDiv = '<div id="itemsContent"></div>';
+  root.innerHTML = subNav + searchBar + contentDiv;
+  renderItemsContent(db, document.getElementById('itemsContent'));
+}
+
+function setItemsTab(key, el){
+  currentItemsTab = key;
+  currentWeaponFamily = 'all';
+  document.querySelectorAll('.items-sub-btn').forEach(function(b){ b.classList.remove('active'); });
+  if(el) el.classList.add('active');
+  var cont = document.getElementById('itemsContent');
+  if(cont) renderItemsContent(itemDB, cont);
+}
+
+function renderItemsContent(db, cont){
+  if(!cont || !db) return;
+  var q = itemsSearchQ.toLowerCase().trim();
+  if(currentItemsTab==='weapons') renderWeaponsTab(cont, db, q);
+  else if(currentItemsTab==='gearsets') renderGearSetsTab(cont, db, q);
+  else if(currentItemsTab==='exotics') renderExoticsTab(cont, db, q);
+  else if(currentItemsTab==='talents') renderTalentsTab(cont, db, q);
+  else if(currentItemsTab==='skills') renderSkillsTab(cont, db, q);
+}
+
+function weaponFamilyLabel(f){
+  var m = {ar:'Assault Rifle',lmg:'LMG',smg:'SMG',mmr:'Marksman Rifle',shotgun:'Shotgun',rifle:'Rifle',pistol:'Pistol'};
+  return m[f]||f.toUpperCase();
+}
+function rarityClass(r){ return 'rarity-'+(r||'high-end').replace(/\s+/g,'-'); }
+function rarityLabel(r){ var m={'high-end':'High-End','named':'Named','gear-set':'Gear Set','exotic':'Exotic'}; return m[r]||r||''; }
+function capitalize(s){ return s?s.charAt(0).toUpperCase()+s.slice(1):s; }
+
+function renderWeaponsTab(cont, db, q){
+  var families = ['all','ar','lmg','smg','mmr','shotgun','rifle','pistol'];
+  var famBar = '<div class="item-fam-bar">'
+    + families.map(function(f){
+        var lbl = f==='all'?'All':weaponFamilyLabel(f);
+        return '<button class="item-fam-btn'+(currentWeaponFamily===f?' active':'')+'" onclick="currentWeaponFamily=\''+f+'\';document.querySelectorAll(\'.item-fam-btn\').forEach(function(b){b.classList.remove(\'active\');});this.classList.add(\'active\');renderItemsContent(itemDB,document.getElementById(\'itemsContent\'))">'+lbl+'</button>';
+      }).join('')
+    + '</div>';
+  var weapons = (db.weapons||[]).filter(function(w){
+    if(currentWeaponFamily!=='all' && w.family!==currentWeaponFamily) return false;
+    if(q) return (w.name+' '+(w.family||'')+' '+(w.rarity||'')).toLowerCase().includes(q);
+    return true;
+  });
+  if(!weapons.length){
+    cont.innerHTML = famBar + '<div class="items-empty">No weapons match.</div>';
+    return;
+  }
+  var talentMap = {};
+  (db.weaponTalents||[]).forEach(function(t){ talentMap[t.id]=t; });
+  var cards = weapons.map(function(w){
+    var rc = rarityClass(w.rarity);
+    var rl = rarityLabel(w.rarity);
+    var talent = talentMap[w.talentId];
+    return '<div class="item-card">'
+      + '<div class="item-card-head">'
+        + '<div>'
+          + '<div class="item-card-name '+rc+'">'+w.name+'</div>'
+          + '<div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;letter-spacing:1.5px;color:var(--text3);text-transform:uppercase;margin-top:3px">'+weaponFamilyLabel(w.family||'')+'</div>'
+        + '</div>'
+        + (rl?'<span class="rarity-badge '+rc+'">'+rl+'</span>':'')
+      + '</div>'
+      + '<div class="item-card-body">'
+        + '<div class="item-card-row"><span class="item-card-lbl">Core 1</span><span class="item-card-val">'+( w.core1||'—')+'</span></div>'
+        + '<div class="item-card-row"><span class="item-card-lbl">Core 2</span><span class="item-card-val">'+( w.core2||'—')+'</span></div>'
+        + (w.attr3Options && w.attr3Options.length ? '<div class="item-card-row"><span class="item-card-lbl">Attr 3</span><span class="item-card-val">'+w.attr3Options.join(' / ')+'</span></div>' : '')
+        + (w.modSlots && w.modSlots.length ? '<div class="item-card-row"><span class="item-card-lbl">Mods</span><span class="item-card-val">'+w.modSlots.join(', ')+'</span></div>' : '')
+        + (w.primaryDrop ? '<div class="item-card-row"><span class="item-card-lbl">Drop</span><span class="item-card-val" style="color:var(--text3)">'+w.primaryDrop+'</span></div>' : '')
+      + '</div>'
+      + (talent ? '<div class="item-card-talent">'
+          + '<div class="item-card-talent-name" style="color:var(--orange)">'+talent.name+'</div>'
+          + '<div class="item-card-talent-desc">'+talent.description+'</div>'
+        + '</div>' : '')
+      + (w.shortNote ? '<div class="item-card-note">'+w.shortNote+'</div>' : '')
+    + '</div>';
+  }).join('');
+  cont.innerHTML = famBar + '<div class="items-grid">'+cards+'</div>';
+}
+
+function renderGearSetsTab(cont, db, q){
+  var sets = (db.gearSets||[]).filter(function(s){
+    if(!q) return true;
+    return (s.name+' '+(s.identity||'')+' '+(s.playstyle||'')).toLowerCase().includes(q);
+  });
+  if(!sets.length){ cont.innerHTML='<div class="items-empty">No gear sets match.</div>'; return; }
+  var chestMap = {}, bpMap = {};
+  (db.chestTalents||[]).forEach(function(t){ chestMap[t.id]=t; });
+  (db.backpackTalents||[]).forEach(function(t){ bpMap[t.id]=t; });
+  var cards = sets.map(function(s){
+    var ct = chestMap[s.chestTalentId];
+    var bt = bpMap[s.backpackTalentId];
+    return '<div class="item-card">'
+      + '<div class="item-card-head">'
+        + '<div>'
+          + '<div class="item-card-name rarity-gear-set">'+s.name+'</div>'
+          + (s.identity?'<div style="font-size:11px;color:var(--text3);margin-top:3px">'+s.identity+'</div>':'')
+        + '</div>'
+        + (s.playstyle?'<span class="talent-badge weapon" style="text-transform:uppercase">'+s.playstyle+'</span>':'')
+      + '</div>'
+      + '<div class="item-card-body">'
+        + (s.bonus2pc?'<div class="set-bonus-row"><span class="set-bonus-lbl">2 PC</span><span class="set-bonus-val">'+s.bonus2pc+'</span></div>':'')
+        + (s.bonus3pc?'<div class="set-bonus-row"><span class="set-bonus-lbl">3 PC</span><span class="set-bonus-val">'+s.bonus3pc+'</span></div>':'')
+        + (s.bonus4pc?'<div class="set-bonus-row"><span class="set-bonus-lbl">4 PC</span><span class="set-bonus-4pc">'+s.bonus4pc+'</span></div>':'')
+      + '</div>'
+      + ((ct||bt)?'<div class="item-card-talent">'
+          + (ct?'<div style="margin-bottom:'+(bt?'8px':'0')+'"><div class="item-card-talent-name"><span class="talent-badge chest">CHEST</span> <span style="color:var(--orange)">'+ct.name+'</span></div><div class="item-card-talent-desc">'+ct.description+'</div></div>':'')
+          + (bt?'<div><div class="item-card-talent-name"><span class="talent-badge backpack">BACKPACK</span> <span style="color:var(--blue)">'+bt.name+'</span></div><div class="item-card-talent-desc">'+bt.description+'</div></div>':'')
+        + '</div>':'')
+    + '</div>';
+  }).join('');
+  cont.innerHTML = '<div class="items-grid">'+cards+'</div>';
+}
+
+function renderExoticsTab(cont, db, q){
+  var exotics = (db.exotics||[]).filter(function(e){
+    if(!q) return true;
+    return (e.name+' '+(e.slot||'')+' '+(e.uniqueEffect||'')).toLowerCase().includes(q);
+  });
+  if(!exotics.length){ cont.innerHTML='<div class="items-empty">No exotics match.</div>'; return; }
+  var cards = exotics.map(function(e){
+    return '<div class="item-card">'
+      + '<div class="item-card-head">'
+        + '<div>'
+          + '<div class="item-card-name rarity-exotic">'+e.name+'</div>'
+          + '<div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;letter-spacing:1.5px;color:var(--text3);text-transform:uppercase;margin-top:3px">'+(e.slot||'')+'</div>'
+        + '</div>'
+        + '<span class="rarity-badge rarity-exotic">Exotic</span>'
+      + '</div>'
+      + '<div class="item-card-body">'
+        + (e.uniqueEffect?'<div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:8px">'+e.uniqueEffect+'</div>':'')
+        + (e.primaryAcquisition?'<div class="item-card-row"><span class="item-card-lbl">Drop</span><span class="item-card-val" style="color:var(--text3)">'+e.primaryAcquisition+'</span></div>':'')
+        + (e.playstyle && e.playstyle.length?'<div class="item-card-row"><span class="item-card-lbl">Builds</span><span class="item-card-val">'+e.playstyle.map(capitalize).join(', ')+'</span></div>':'')
+      + '</div>'
+    + '</div>';
+  }).join('');
+  cont.innerHTML = '<div class="items-grid">'+cards+'</div>';
+}
+
+function renderTalentsTab(cont, db, q){
+  var allTalents = []
+    .concat((db.weaponTalents||[]).map(function(t){ return Object.assign({},t,{_cat:'weapon'}); }))
+    .concat((db.chestTalents||[]).map(function(t){ return Object.assign({},t,{_cat:'chest'}); }))
+    .concat((db.backpackTalents||[]).map(function(t){ return Object.assign({},t,{_cat:'backpack'}); }));
+  if(q) allTalents = allTalents.filter(function(t){ return (t.name+' '+t.description).toLowerCase().includes(q); });
+  if(!allTalents.length){ cont.innerHTML='<div class="items-empty">No talents match.</div>'; return; }
+  var groups = {weapon:[], chest:[], backpack:[]};
+  allTalents.forEach(function(t){ if(groups[t._cat]) groups[t._cat].push(t); });
+  var html = '';
+  [{key:'weapon',label:'Weapon Talents'},{key:'chest',label:'Chest Talents'},{key:'backpack',label:'Backpack Talents'}].forEach(function(g){
+    var list = groups[g.key];
+    if(!list.length) return;
+    html += '<div style="margin-bottom:24px">'
+      + '<div style="font-family:\'Share Tech Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">'+g.label+' <span style="color:var(--orange)">'+list.length+'</span></div>'
+      + '<div class="items-grid">'
+      + list.map(function(t){
+          var gearSetLabel = '';
+          if(t.gearSetId){
+            var setName = t.gearSetId.replace('set-','').replace(/-/g,' ');
+            gearSetLabel = '<span style="font-size:10px;color:var(--orange);font-family:\'Share Tech Mono\',monospace;letter-spacing:1px">'+setName.toUpperCase()+'</span>';
+          }
+          if(t.lockedToWeaponId){
+            var wname = t.lockedToWeaponId.replace(/^[a-z]+-/,'').replace(/-/g,' ');
+            gearSetLabel = '<span style="font-size:10px;color:var(--gold);font-family:\'Share Tech Mono\',monospace;letter-spacing:1px">LOCKED: '+wname.toUpperCase()+'</span>';
+          }
+          return '<div class="item-card">'
+            + '<div class="item-card-head">'
+              + '<div>'
+                + '<div class="item-card-name" style="font-size:14px">'+t.name+'</div>'
+                + (gearSetLabel?'<div style="margin-top:3px">'+gearSetLabel+'</div>':'')
+              + '</div>'
+              + '<span class="talent-badge '+g.key+'">'+g.key+'</span>'
+            + '</div>'
+            + '<div class="item-card-body"><div style="font-size:12px;color:var(--text2);line-height:1.6">'+t.description+'</div></div>'
+          + '</div>';
+        }).join('')
+      + '</div></div>';
+  });
+  cont.innerHTML = html;
+}
+
+function renderSkillsTab(cont, db, q){
+  var skills = (db.skills||[]).filter(function(s){
+    if(!q) return true;
+    return (s.name+' '+(s.description||'')+' '+(s.role||'')).toLowerCase().includes(q);
+  });
+  if(!skills.length){ cont.innerHTML='<div class="items-empty">No skills match.</div>'; return; }
+  var cards = skills.map(function(s){
+    var roleColor = s.role==='offense'?'var(--red)':s.role==='support'?'var(--green)':'var(--blue)';
+    return '<div class="item-card">'
+      + '<div class="item-card-head">'
+        + '<div>'
+          + '<div class="item-card-name">'+s.name+'</div>'
+          + (s.parentSkill?'<div style="font-family:\'Share Tech Mono\',monospace;font-size:8px;letter-spacing:1.5px;color:var(--text3);text-transform:uppercase;margin-top:3px">'+s.parentSkill+'</div>':'')
+        + '</div>'
+        + (s.role?'<span style="font-family:\'Share Tech Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border:1px solid '+roleColor+';color:'+roleColor+';background:rgba(0,0,0,.2)">'+s.role+'</span>':'')
+      + '</div>'
+      + '<div class="item-card-body"><div style="font-size:12px;color:var(--text2);line-height:1.6">'+s.description+'</div></div>'
+    + '</div>';
+  }).join('');
+  cont.innerHTML = '<div class="items-grid">'+cards+'</div>';
+}
+
 renderEvWidget();
 renderMain();
 
@@ -3040,7 +3342,7 @@ function syncSearch(val){
 var origSetTab=setTab;
 setTab=function(t){
   origSetTab(t);
-  ['builds','saved','events','creators'].forEach(function(x){
+  ['builds','saved','events','creators','items'].forEach(function(x){
     var el=document.getElementById('mob-'+x);
     if(el) el.classList.toggle('active',x===t);
   });

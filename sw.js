@@ -1,4 +1,4 @@
-const CACHE = 'div2builds-v1';
+const CACHE = 'div2builds-v3';
 const ASSETS = [
   '/division2-builds/',
   '/division2-builds/index.html',
